@@ -1,0 +1,63 @@
+/* src/pages/Home/Home.module.css */
+
+.homePage {
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.formsSection {
+  padding: 5rem 0;
+  background: linear-gradient(135deg, var(--color-gray-50) 0%, var(--color-gray-100) 100%);
+}
+
+.formsContainer {
+  max-width: var(--container-xl);
+  margin: 0 auto;
+  padding: 0 1rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .formsContainer {
+    gap: 3rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .formsContainer {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+  
+  .formsSection {
+    padding: 3rem 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .formsContainer {
+    padding: 0 0.5rem;
+    gap: 2rem;
+  }
+}
+  
+  .logoIcon {
+    width: 24px;
+    height: 24px;
+  }
+
+  .mobileNav {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    box-shadow: var(--shadow-md);
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+  }
