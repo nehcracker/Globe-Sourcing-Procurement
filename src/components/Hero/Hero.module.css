@@ -418,11 +418,10 @@
   }
   
   .heroVisual {
-    height: auto;
+    height: 300px;
   }
   
   .statsGrid {
-    max-width: 400px;
     margin: 0 auto;
   }
 }
@@ -460,10 +459,7 @@
     font-size: var(--font-size-sm);
   }
   
-  .statsGrid {
-    grid-template-columns: 1fr;
-    max-width: 300px;
-  }
+ 
   
   .trustLogos {
     justify-content: center;
