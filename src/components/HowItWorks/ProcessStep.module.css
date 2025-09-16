@@ -1,0 +1,338 @@
+/* src/components/HowItWorks/ProcessStep.module.css */
+
+.processStep {
+  position: relative;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--border-radius-2xl);
+  padding: 2rem;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(60px) scale(0.9);
+  z-index: 2;
+}
+
+.processStep.visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  animation: slideInUp 0.8s ease forwards;
+}
+
+.processStep:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.processStep:hover .hoverEffect {
+  opacity: 1;
+  transform: scale(1.5);
+}
+
+/* Step Number */
+.stepNumber {
+  position: relative;
+  top: -15px;
+  left: 2rem;
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, var(--color-accent-green), var(--color-accent-green-light));
+  border-radius: var(--border-radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 20px rgba(5, 150, 105, 0.4);
+  z-index: 3;
+}
+
+.number {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-bold);
+  color: white;
+}
+
+/* Step Content */
+.stepContent {
+  position: relative;
+  z-index: 2;
+}
+
+/* Icon Container */
+.iconContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.iconWrapper {
+  width: 80px;
+  height: 80px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--border-radius-2xl);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.4s ease;
+  position: relative;
+  z-index: 2;
+}
+
+.processStep:hover .iconWrapper {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: scale(1.1);
+}
+
+.icon {
+  color: var(--color-accent-green-light);
+  transition: all 0.4s ease;
+}
+
+.processStep:hover .icon {
+  color: white;
+  transform: scale(1.1);
+}
+
+.iconGlow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100px;
+  height: 100px;
+  background: radial-gradient(circle, rgba(16, 185, 129, 0.3) 0%, transparent 70%);
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  transition: all 0.6s ease;
+  z-index: 1;
+}
+
+.processStep:hover .iconGlow {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+/* Content */
+.content {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.stepTitle {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  margin-bottom: 1rem;
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.processStep:hover .stepTitle {
+  color: var(--color-accent-green-light);
+  transform: translateY(-2px);
+}
+
+.stepDescription {
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.6;
+  font-size: var(--font-size-base);
+  text-align: justify;
+  margin: 0;
+  transition: all 0.3s ease;
+}
+
+.processStep:hover .stepDescription {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* Interactive Elements */
+.interactiveElements {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 2rem;
+}
+
+.progressBar {
+  flex: 1;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: var(--border-radius-full);
+  overflow: hidden;
+  margin-right: 1rem;
+}
+
+.progressFill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--color-accent-green), var(--color-accent-green-light));
+  border-radius: var(--border-radius-full);
+  width: 0%;
+  transition: width 1s ease 0.5s;
+}
+
+.processStep.visible .progressFill {
+  width: 100%;
+}
+
+.nextArrow {
+  width: 30px;
+  height: 30px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: var(--border-radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.6);
+  transition: all 0.3s ease;
+}
+
+.processStep:hover .nextArrow {
+  background: rgba(255, 255, 255, 0.2);
+  color: var(--color-accent-green-light);
+  transform: translateX(5px);
+}
+
+/* Background Decoration */
+.stepDecoration {
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(16, 185, 129, 0.1) 0%, transparent 70%);
+  border-radius: 50%;
+  opacity: 0;
+  transition: all 0.8s ease;
+  pointer-events: none;
+}
+
+.processStep:hover .stepDecoration {
+  opacity: 1;
+  transform: scale(1.2);
+}
+
+/* Hover Effect */
+.hoverEffect {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  transition: all 0.6s ease;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Animations */
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(60px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Pulse Animation for Icon */
+.processStep.visible .iconWrapper {
+  animation: pulse 3s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 20px rgba(16, 185, 129, 0);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .processStep {
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  
+  .stepNumber {
+    top: -10px;
+    left: 1.5rem;
+    width: 30px;
+    height: 30px;
+  }
+  
+  .number {
+    font-size: var(--font-size-sm);
+  }
+  
+  .iconWrapper {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .icon {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .stepTitle {
+    font-size: var(--font-size-lg);
+  }
+  
+  .stepDescription {
+    font-size: var(--font-size-sm);
+  }
+  
+  .interactiveElements {
+    margin-top: 1.5rem;
+  }
+  
+  .nextArrow {
+    width: 25px;
+    height: 25px;
+  }
+}
+
+@media (max-width: 480px) {
+  .processStep {
+    padding: 1rem;
+  }
+  
+  .stepNumber {
+    left: 1rem;
+    width: 25px;
+    height: 25px;
+  }
+  
+  .number {
+    font-size: var(--font-size-xs);
+  }
+  
+  .iconWrapper {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .stepTitle {
+    font-size: var(--font-size-base);
+  }
+  
+  .stepDescription {
+    font-size: var(--font-size-xs);
+  }
+  
+  .content {
+    margin-bottom: 1rem;
+  }
+  
+  .interactiveElements {
+    margin-top: 1rem;
+  }
+}
