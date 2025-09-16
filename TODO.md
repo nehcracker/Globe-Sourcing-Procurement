@@ -1,6 +1,2 @@
-# ESLint Fixes
-
-- [x] Fix redundant blocks in src/App.jsx
-- [x] Remove unused 'isVisible' in src/components/Hero/Hero.jsx
-- [x] Fix redundant block in src/pages/Home/Home.jsx
-- [x] Fix unnecessary escapes in src/utils/helpers.js
+- [x] Update src/components/Layout/Navbar/Navbar.jsx to replace Globe icon with logo image from public folder and make it link to home page
+- [x] Optimize .logoIcon in Navbar.module.css for all screen sizes using rem units

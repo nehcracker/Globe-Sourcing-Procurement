@@ -38,8 +38,8 @@
 }
 
 .logoIcon {
-  width: 32px;
-  height: 32px;
+  width: 15.625rem;
+  height: auto;
   color: var(--color-navy-blue);
 }
 
@@ -215,7 +215,7 @@
   }
   
   .logoIcon {
-    width: 24px;
-    height: 24px;
+    width: 6.25rem;
+    height: auto;
   }
 }

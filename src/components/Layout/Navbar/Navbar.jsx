@@ -1,6 +1,6 @@
 // src/components/Layout/Navbar/Navbar.jsx
 import React, { useState, useEffect } from 'react';
-import { Globe, Menu, X } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import styles from './Navbar.module.css';
 
 const Navbar = () => {
@@ -36,7 +36,7 @@ const Navbar = () => {
   };
 
   const navItems = [
-    { name: 'Home', href: '#home' },
+    { name: 'Home', href: '/' },
     { name: 'About', href: '#about' },
     { name: 'Services', href: '#services' },
     { name: 'Vendors', href: '#vendors' },
@@ -48,12 +48,9 @@ const Navbar = () => {
     <nav className={`${styles.navbar} ${isScrolled ? styles.scrolled : ''}`}>
       <div className={styles.container}>
         {/* Logo */}
-        <div className={styles.logo}>
-          <Globe className={styles.logoIcon} />
-          <span className={styles.logoText}>
-            Globe Sourcing Procurement
-          </span>
-        </div>
+        <a href="/" className={styles.logo}>
+          <img src="/logo.png" alt="Globe Sourcing Procurement Logo" className={styles.logoIcon} />
+        </a>
 
         {/* Desktop Navigation */}
         <div className={styles.desktopNav}>
