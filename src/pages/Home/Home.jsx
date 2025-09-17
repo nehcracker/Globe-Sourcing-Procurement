@@ -5,8 +5,7 @@ import Hero from '../../components/Hero/Hero';
 import styles from './Home.module.css';
 import Services from '../../components/Services/Services';
 import HowItWorks from '../../components/HowItWorks/HowItWorks';
-import VendorForm from '../../components/Forms/VendorForm/VendorForm';
-import BuyerForm from '../../components/Forms/BuyerForm/BuyerForm';
+import FormSelector from '../../components/Forms/FormSelector/FormSelector';
 /*
 
 import Testimonials from '../../components/Testimonials/Testimonials';
@@ -22,12 +21,7 @@ const Home = () => {
         <Hero />
         <Services />
          <HowItWorks />
-       <div className={styles.formsSection}>
-          <div className={styles.formsContainer}>
-            <VendorForm />
-            <BuyerForm />
-          </div>
-        </div>
+        <FormSelector />
        {/*  <Testimonials />
         <CallToAction />*/}
       </main>

@@ -1,0 +1,391 @@
+/* src/components/Forms/FormModal/FormModal.module.css */
+
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1050;
+  padding: 1rem;
+  animation: overlayAppear 0.3s ease-out;
+}
+
+@keyframes overlayAppear {
+  from {
+    opacity: 0;
+    backdrop-filter: blur(0px);
+  }
+  to {
+    opacity: 1;
+    backdrop-filter: blur(8px);
+  }
+}
+
+.modalContainer {
+  background: white;
+  border-radius: var(--border-radius-2xl);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+  max-width: 700px;
+  width: 100%;
+  max-height: 90vh;
+  overflow: hidden;
+  position: relative;
+  animation: modalAppear 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+}
+
+@keyframes modalAppear {
+  from {
+    opacity: 0;
+    transform: translateY(-50px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Modal Header */
+.modalHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2rem 2rem 1rem;
+  background: linear-gradient(135deg, var(--color-navy-blue) 0%, var(--color-navy-blue-light) 100%);
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.modalContainer.buyer .modalHeader {
+  background: linear-gradient(135deg, var(--color-accent-green) 0%, var(--color-accent-green-light) 100%);
+}
+
+.modalHeader::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.headerContent {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex: 1;
+}
+
+.headerIcon {
+  width: 50px;
+  height: 50px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: var(--border-radius-xl);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.headerText {
+  flex: 1;
+}
+
+.modalTitle {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  margin: 0 0 0.25rem 0;
+  color: white;
+}
+
+.modalSubtitle {
+  font-size: var(--font-size-sm);
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0;
+  line-height: 1.4;
+}
+
+.closeButton {
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--border-radius-lg);
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  flex-shrink: 0;
+}
+
+.closeButton:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.05);
+}
+
+/* Modal Content */
+.modalContent {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
+}
+
+.modalContent::-webkit-scrollbar {
+  width: 6px;
+}
+
+.modalContent::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.modalContent::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+}
+
+.modalContent::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+/* Progress Container */
+.progressContainer {
+  padding: 1rem 2rem;
+  background: rgba(248, 250, 252, 0.8);
+  border-top: 1px solid rgba(226, 232, 240, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.progressBar {
+  flex: 1;
+  height: 4px;
+  background: rgba(226, 232, 240, 0.5);
+  border-radius: var(--border-radius-full);
+  overflow: hidden;
+  position: relative;
+}
+
+.progressFill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--color-navy-blue), var(--color-navy-blue-light));
+  border-radius: var(--border-radius-full);
+  width: 100%;
+  animation: progressFlow 2s ease-in-out infinite;
+}
+
+.progressFill.buyer {
+  background: linear-gradient(90deg, var(--color-accent-green), var(--color-accent-green-light));
+}
+
+@keyframes progressFlow {
+  0%, 100% {
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.progressText {
+  font-size: var(--font-size-xs);
+  color: var(--color-steel-gray);
+  font-weight: var(--font-weight-medium);
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.progressText::before {
+  content: '🔒';
+  font-size: var(--font-size-sm);
+}
+
+/* Responsive Design */
+@media (min-width: 769px) {
+  .modalOverlay {
+    padding: 2rem;
+  }
+
+  .modalContainer {
+    max-width: 800px;
+    max-height: 85vh;
+  }
+
+  .modalHeader {
+    padding: 2.5rem 3rem 1.5rem;
+  }
+
+  .modalContent {
+    padding: 0 1rem 1rem;
+  }
+
+  .progressContainer {
+    padding: 1.5rem 3rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .modalContainer {
+    max-width: 900px;
+    max-height: 80vh;
+  }
+}
+
+@media (max-width: 768px) {
+  .modalOverlay {
+    padding: 0.5rem;
+    align-items: flex-start;
+    padding-top: 2rem;
+  }
+
+  .modalContainer {
+    max-height: 95vh;
+    width: 100%;
+  }
+
+  .modalHeader {
+    padding: 1.5rem 1.5rem 1rem;
+  }
+
+  .headerIcon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .modalTitle {
+    font-size: var(--font-size-lg);
+  }
+
+  .modalSubtitle {
+    font-size: var(--font-size-xs);
+  }
+
+  .closeButton {
+    width: 35px;
+    height: 35px;
+  }
+
+  .progressContainer {
+    padding: 0.75rem 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .modalOverlay {
+    padding: 0;
+    align-items: stretch;
+  }
+
+  .modalContainer {
+    max-height: 100vh;
+    border-radius: 0;
+    height: 100vh;
+  }
+
+  .modalHeader {
+    padding: 1rem 1rem 0.75rem;
+  }
+
+  .headerContent {
+    gap: 0.75rem;
+  }
+
+  .headerIcon {
+    width: 35px;
+    height: 35px;
+  }
+
+  .modalTitle {
+    font-size: var(--font-size-base);
+  }
+
+  .closeButton {
+    width: 30px;
+    height: 30px;
+  }
+
+  .progressContainer {
+    padding: 0.5rem 1rem;
+  }
+
+  .progressText {
+    font-size: 10px;
+  }
+}
+
+/* Animation for different types */
+.modalContainer.vendor {
+  border-top: 4px solid var(--color-navy-blue);
+}
+
+.modalContainer.buyer {
+  border-top: 4px solid var(--color-accent-green);
+}
+
+/* Focus management */
+.modalContainer:focus {
+  outline: none;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .modalOverlay {
+    background: rgba(0, 0, 0, 0.8);
+  }
+
+  .modalHeader {
+    border-bottom: 2px solid white;
+  }
+
+  .progressContainer {
+    border-top: 2px solid var(--color-gray-300);
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .modalOverlay,
+  .modalContainer {
+    animation: none;
+  }
+
+  .progressFill {
+    animation: none;
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .modalContainer {
+    color: white;
+  }
+
+  .progressContainer {
+    background: rgba(15, 23, 42, 0.8);
+    border-top-color: rgba(71, 85, 105, 0.5);
+  }
+
+  .progressText {
+    color: rgba(255, 255, 255, 0.7);
+  }
+}
