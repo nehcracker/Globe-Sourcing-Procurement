@@ -66,7 +66,7 @@ const Footer = () => {
   ];
 
   const businessHours = [
-    { region: 'Kenya (EAT)', time: currentTime.toLocaleTimeString('en-US', { 
+    { region: 'East Africa (EAT)', time: currentTime.toLocaleTimeString('en-US', { 
       timeZone: 'Africa/Nairobi', 
       hour12: false, 
       hour: '2-digit', 
