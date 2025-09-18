@@ -348,3 +348,82 @@ export const FILE_UPLOAD = {
   allowedTypes: ['image/jpeg', 'image/png', 'application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'],
   allowedExtensions: ['.jpg', '.jpeg', '.png', '.pdf', '.doc', '.docx']
 };
+
+
+export const ABOUT_PAGE_CONTENT = {
+  hero: {
+    headline: "About Globe Sourcing Procurement",
+    subtext: "Procurement & Sourcing Solutions Limited is a global platform connecting buyers and vendors for bulk product sourcing, purchasing, and delivery.",
+    backgroundImage: "/images/about/global-trade-hero.jpg"
+  },
+  whoWeAre: {
+    title: "Who We Are",
+    content: "We are a procurement and sourcing company bridging the gap between global buyers and bulk product vendors. Our mission is to simplify international sourcing by providing a transparent, reliable, and efficient process. We ensure suppliers are vetted, products are verified, and logistics are streamlined."
+  },
+  mission: "To provide secure and seamless sourcing of bulk products worldwide while protecting the interests of both buyers and vendors.",
+  vision: "To become the most trusted platform for global procurement, connecting manufacturers, suppliers, and buyers under one transparent ecosystem.",
+  coreValues: [
+    {
+      id: 1,
+      title: "Transparency",
+      description: "Open communication and clear processes",
+      icon: "Eye"
+    },
+    {
+      id: 2,
+      title: "Reliability",
+      description: "Dependable sourcing and delivery",
+      icon: "Shield"
+    },
+    {
+      id: 3,
+      title: "Quality Assurance",
+      description: "Verified suppliers and product samples",
+      icon: "CheckCircle"
+    },
+    {
+      id: 4,
+      title: "Global Reach",
+      description: "Connecting markets across continents",
+      icon: "Globe"
+    },
+    {
+      id: 5,
+      title: "Efficiency",
+      description: "Speed and professionalism in procurement",
+      icon: "Zap"
+    }
+  ],
+  whyChooseUs: [
+    {
+      id: 1,
+      title: "Verified Global Supplier Network",
+      description: "Access to pre-vetted suppliers worldwide"
+    },
+    {
+      id: 2,
+      title: "End-to-End Procurement & Logistics",
+      description: "Complete solution from sourcing to delivery"
+    },
+    {
+      id: 3,
+      title: "Bulk Order Specialization",
+      description: "Expertise in large-volume transactions"
+    },
+    {
+      id: 4,
+      title: "Transparent Service Fees",
+      description: "Fair pricing that protects all parties"
+    },
+    {
+      id: 5,
+      title: "Dedicated Support Team",
+      description: "24/7 professional assistance"
+    }
+  ],
+  cta: {
+    title: "Ready to source or sell in bulk?",
+    subtitle: "Partner with us today",
+    buttonText: "Get Started"
+  }
+};

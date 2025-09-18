@@ -1,0 +1,67 @@
+/* src/pages/About/About.module.css */
+
+.aboutPage {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+}
+
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Section spacing */
+.main > section {
+  position: relative;
+}
+
+.main > section:not(:first-child) {
+  margin-top: 0;
+}
+
+/* Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Global transitions for page elements */
+.aboutPage * {
+  box-sizing: border-box;
+}
+
+/* Ensure proper stacking context */
+.aboutPage {
+  position: relative;
+  z-index: 1;
+}
+
+/* Performance optimizations */
+.aboutPage img {
+  will-change: transform;
+}
+
+.aboutPage [class*="animation"] {
+  will-change: transform, opacity;
+}
+
+/* Focus management for accessibility */
+.aboutPage :focus {
+  outline: 2px solid var(--color-accent-green-light);
+  outline-offset: 2px;
+}
+
+/* Print styles */
+@media print {
+  .aboutPage {
+    background: white;
+    color: black;
+  }
+  
+  .main > section {
+    page-break-inside: avoid;
+    margin: 2rem 0;
+  }
+}
