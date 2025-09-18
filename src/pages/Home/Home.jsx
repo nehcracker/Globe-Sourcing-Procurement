@@ -6,10 +6,8 @@ import styles from './Home.module.css';
 import Services from '../../components/Services/Services';
 import HowItWorks from '../../components/HowItWorks/HowItWorks';
 import FormSelector from '../../components/Forms/FormSelector/FormSelector';
-/*
-
 import Testimonials from '../../components/Testimonials/Testimonials';
-import CallToAction from '../../components/CallToAction/CallToAction';
+/*import CallToAction from '../../components/CallToAction/CallToAction';
 */
 
 
@@ -22,8 +20,8 @@ const Home = () => {
         <Services />
          <HowItWorks />
         <FormSelector />
-       {/*  <Testimonials />
-        <CallToAction />*/}
+       <Testimonials />
+       {/* <CallToAction />*/}
       </main>
      
     </div>

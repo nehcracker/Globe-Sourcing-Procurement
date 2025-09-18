@@ -97,30 +97,191 @@ export const PROCESS_STEPS = [
 export const TESTIMONIALS = [
   {
     id: 1,
-    name: 'Sarah Kimani',
-    company: 'Kenya Agricultural Supplies Ltd',
-    role: 'Procurement Manager',
-    testimonial: 'We sourced agricultural inputs seamlessly through Globe Sourcing. Their verified supplier network saved us months of research.',
+    name: 'Li Wei Chen',
+    company: 'Guangzhou Manufacturing Co.',
+    role: 'Export Manager',
+    location: 'Guangzhou, China',
+    testimonial: 'We partnered with Globe Sourcing Procurement to expand our exports. The quote system allowed us to reach new buyers quickly and efficiently.',
     rating: 5,
-    image: '/images/testimonials/sarah-kimani.jpg'
+    image: '/images/testimonials/li-wei-chen.jpg',
+    category: 'vendor',
+    flag: '🇨🇳'
   },
   {
     id: 2,
-    name: 'James Ochieng',
-    company: 'East Africa Manufacturing Co.',
-    role: 'Operations Director',
-    testimonial: 'Delivery was timely and efficient. The end-to-end service gave us complete peace of mind for our bulk orders.',
+    name: 'Zhang Ming',
+    company: 'Shenzhen Tech Exports Ltd',
+    role: 'Production Director',
+    location: 'Shenzhen, China',
+    testimonial: 'Their procurement process reduced negotiation time significantly and helped us focus on what we do best - production.',
     rating: 5,
-    image: '/images/testimonials/james-ochieng.jpg'
+    image: '/images/testimonials/zhang-ming.jpg',
+    category: 'vendor',
+    flag: '🇨🇳'
   },
   {
     id: 3,
-    name: 'Fatuma Hassan',
-    company: 'Coastal Trading Enterprise',
-    role: 'CEO',
-    testimonial: 'The process gave us confidence in supplier quality. Globe Sourcing\'s due diligence is exceptional.',
+    name: 'Wang Xiu Ying',
+    company: 'Shanghai Electronics Supply',
+    role: 'Logistics Coordinator',
+    location: 'Shanghai, China',
+    testimonial: 'We shipped bulk electronics through their platform and the logistics were handled end-to-end without any delays. Impressive service!',
     rating: 5,
-    image: '/images/testimonials/fatuma-hassan.jpg'
+    image: '/images/testimonials/wang-xiu-ying.jpg',
+    category: 'vendor',
+    flag: '🇨🇳'
+  },
+
+  // United Kingdom
+  {
+    id: 4,
+    name: 'James Thompson',
+    company: 'London Trade Solutions',
+    role: 'Procurement Director',
+    location: 'London, United Kingdom',
+    testimonial: 'The platform gave us direct access to reliable Asian suppliers. The vetting process ensured quality every time.',
+    rating: 5,
+    image: '/images/testimonials/james-thompson.jpg',
+    category: 'buyer',
+    flag: '🇬🇧'
+  },
+  {
+    id: 5,
+    name: 'Sarah Mitchell',
+    company: 'Birmingham Industrial Group',
+    role: 'Procurement Manager',
+    location: 'Birmingham, United Kingdom',
+    testimonial: 'We sourced raw materials in bulk at competitive prices. The support team was efficient and always available when needed.',
+    rating: 5,
+    image: '/images/testimonials/sarah-mitchell.jpg',
+    category: 'buyer',
+    flag: '🇬🇧'
+  },
+  {
+    id: 6,
+    name: 'David Clarke',
+    company: 'Manchester Retail Chain',
+    role: 'Supply Chain Manager',
+    location: 'Manchester, United Kingdom',
+    testimonial: 'Our retail chain now depends on their services to keep our sourcing consistent. They\'ve become our trusted procurement partner.',
+    rating: 5,
+    image: '/images/testimonials/david-clarke.jpg',
+    category: 'buyer',
+    flag: '🇬🇧'
+  },
+
+  // United States
+  {
+    id: 7,
+    name: 'Michael Rodriguez',
+    company: 'NYC Import Solutions',
+    role: 'Import Manager',
+    location: 'New York, United States',
+    testimonial: 'We were able to compare multiple quotes from global vendors before making decisions. Transparent and reliable every step of the way.',
+    rating: 5,
+    image: '/images/testimonials/michael-rodriguez.jpg',
+    category: 'buyer',
+    flag: '🇺🇸'
+  },
+  {
+    id: 8,
+    name: 'Jennifer Adams',
+    company: 'Houston Distribution Inc.',
+    role: 'Operations Director',
+    location: 'Houston, United States',
+    testimonial: 'The bulk order process was incredibly smooth. We received samples first, which built our confidence in the suppliers.',
+    rating: 5,
+    image: '/images/testimonials/jennifer-adams.jpg',
+    category: 'buyer',
+    flag: '🇺🇸'
+  },
+  {
+    id: 9,
+    name: 'Robert Kim',
+    company: 'LA Supply Chain Corp',
+    role: 'Supply Chain Director',
+    location: 'Los Angeles, United States',
+    testimonial: 'Globe Sourcing Procurement connected us with new product lines from Asia, saving us months of supplier search time.',
+    rating: 5,
+    image: '/images/testimonials/robert-kim.jpg',
+    category: 'buyer',
+    flag: '🇺🇸'
+  },
+
+  // Asia (outside China)
+  {
+    id: 10,
+    name: 'Priya Sharma',
+    company: 'Mumbai Textiles Pvt Ltd',
+    role: 'Export Manager',
+    location: 'Mumbai, India',
+    testimonial: 'As a textile producer in India, we secured multiple international buyers through the platform. The global reach is outstanding.',
+    rating: 5,
+    image: '/images/testimonials/priya-sharma.jpg',
+    category: 'vendor',
+    flag: '🇮🇳'
+  },
+  {
+    id: 11,
+    name: 'Lim Wei Kang',
+    company: 'Singapore Trading House',
+    role: 'Procurement Specialist',
+    location: 'Singapore',
+    testimonial: 'Our company sourced agricultural products from Africa without travel. The process was seamless and saved us significant costs.',
+    rating: 5,
+    image: '/images/testimonials/lim-wei-kang.jpg',
+    category: 'buyer',
+    flag: '🇸🇬'
+  },
+  {
+    id: 12,
+    name: 'Sari Dewi',
+    company: 'Jakarta Spice Exports',
+    role: 'Business Development Manager',
+    location: 'Jakarta, Indonesia',
+    testimonial: 'We export spices from Indonesia and found verified buyers within weeks. The platform opened doors we never knew existed.',
+    rating: 5,
+    image: '/images/testimonials/sari-dewi.jpg',
+    category: 'vendor',
+    flag: '🇮🇩'
+  },
+
+  // Additional testimonials for better rotation
+  {
+    id: 13,
+    name: 'Ahmed Hassan',
+    company: 'Cairo International Trading',
+    role: 'General Manager',
+    location: 'Cairo, Egypt',
+    testimonial: 'The quality assurance and verification process gave us confidence in every transaction. Professional service throughout.',
+    rating: 5,
+    image: '/images/testimonials/ahmed-hassan.jpg',
+    category: 'buyer',
+    flag: '🇪🇬'
+  },
+  {
+    id: 14,
+    name: 'Maria Santos',
+    company: 'São Paulo Imports',
+    role: 'Purchasing Director',
+    location: 'São Paulo, Brazil',
+    testimonial: 'We\'ve reduced our procurement costs by 40% while maintaining quality. Globe Sourcing has transformed our business.',
+    rating: 5,
+    image: '/images/testimonials/maria-santos.jpg',
+    category: 'buyer',
+    flag: '🇧🇷'
+  },
+  {
+    id: 15,
+    name: 'Hans Mueller',
+    company: 'Berlin Industrial Supplies',
+    role: 'Procurement Manager',
+    location: 'Berlin, Germany',
+    testimonial: 'The platform\'s efficiency and the team\'s expertise have made international sourcing stress-free for our company.',
+    rating: 5,
+    image: '/images/testimonials/hans-mueller.jpg',
+    category: 'buyer',
+    flag: '🇩🇪'
   }
 ];
 
