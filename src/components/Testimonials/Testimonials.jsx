@@ -12,6 +12,9 @@ const Testimonials = () => {
     triggerOnce: true
   });
 
+  // Create extended testimonials array with first testimonial duplicated at the end
+  const extendedTestimonials = [...TESTIMONIALS, TESTIMONIALS[0]];
+
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
 
@@ -19,7 +22,13 @@ const Testimonials = () => {
   useEffect(() => {
     if (isAutoPlaying) {
       const interval = setInterval(() => {
-        setCurrentIndex((prev) => (prev + 1) % TESTIMONIALS.length);
+        setCurrentIndex((prev) => {
+          if (prev >= TESTIMONIALS.length) {
+            // Reset to beginning without animation
+            return 0;
+          }
+          return prev + 1;
+        });
       }, 5000); // Change every 5 seconds
 
       return () => clearInterval(interval);
@@ -27,12 +36,22 @@ const Testimonials = () => {
   }, [isAutoPlaying]);
 
   const goToPrevious = () => {
-    setCurrentIndex((prev) => (prev - 1 + TESTIMONIALS.length) % TESTIMONIALS.length);
+    setCurrentIndex((prev) => {
+      if (prev <= 0) {
+        return TESTIMONIALS.length - 1;
+      }
+      return prev - 1;
+    });
     setIsAutoPlaying(false); // Stop auto-play when user interacts
   };
 
   const goToNext = () => {
-    setCurrentIndex((prev) => (prev + 1) % TESTIMONIALS.length);
+    setCurrentIndex((prev) => {
+      if (prev >= TESTIMONIALS.length) {
+        return 0;
+      }
+      return prev + 1;
+    });
     setIsAutoPlaying(false); // Stop auto-play when user interacts
   };
 
@@ -101,13 +120,13 @@ const Testimonials = () => {
             </button>
 
             {/* Testimonial Cards */}
-            <div 
+            <div
               className={styles.carouselTrack}
-              style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+            style={{ transform: `translateX(-${currentIndex * 50}%)` }}
             >
-              {TESTIMONIALS.map((testimonial, index) => (
+              {extendedTestimonials.map((testimonial, index) => (
                 <TestimonialCard
-                  key={testimonial.id}
+                  key={`${testimonial.id}-${index}`}
                   testimonial={testimonial}
                   isActive={index === currentIndex}
                   index={index}

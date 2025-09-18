@@ -1,8 +1,8 @@
 /* src/components/Testimonials/TestimonialCard.module.css */
 
 .testimonialCard {
-  flex: 0 0 100%;
-  width: 100%;
+  flex: 0 0 50%;
+  width: 50%;
   padding: 3rem 2rem;
   position: relative;
   transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
