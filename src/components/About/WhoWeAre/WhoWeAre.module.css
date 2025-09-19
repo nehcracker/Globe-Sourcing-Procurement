@@ -1,0 +1,658 @@
+/* src/components/About/WhoWeAre/WhoWeAre.module.css */
+
+.whoWeAre {
+  padding: 5rem 0;
+  background: linear-gradient(135deg, var(--color-gray-50) 0%, var(--color-white) 50%, var(--color-gray-50) 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.container {
+  max-width: var(--container-xl);
+  margin: 0 auto;
+  padding: 0 1rem;
+  position: relative;
+  z-index: 2;
+}
+
+/* Section Header */
+.sectionHeader {
+  text-align: center;
+  margin-bottom: 4rem;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease;
+}
+
+.sectionHeader.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.headerBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background: rgba(30, 58, 138, 0.1);
+  border: 1px solid rgba(30, 58, 138, 0.2);
+  border-radius: var(--border-radius-full);
+  color: var(--color-navy-blue);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  margin-bottom: 1.5rem;
+}
+
+.sectionTitle {
+  font-size: var(--font-size-4xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-navy-blue);
+  margin-bottom: 1rem;
+  position: relative;
+}
+
+.titleUnderline {
+  width: 100px;
+  height: 4px;
+  background: linear-gradient(90deg, var(--color-navy-blue), var(--color-accent-green));
+  margin: 0 auto;
+  border-radius: var(--border-radius-full);
+}
+
+/* Main Content */
+.mainContent {
+  display: grid;
+  grid-template-columns: 1fr 500px;
+  gap: 5rem;
+  align-items: start;
+  margin-bottom: 4rem;
+}
+
+/* Content Section */
+.contentSection {
+  opacity: 0;
+  transform: translateX(-50px);
+  transition: all 0.8s ease 0.3s;
+}
+
+.contentSection.slideInLeft {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.storyContent {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.mainDescription {
+  font-size: var(--font-size-lg);
+  line-height: 1.7;
+  color: var(--color-navy-blue);
+  margin: 0;
+}
+
+.mainDescription strong {
+  color: var(--color-accent-green);
+  font-weight: var(--font-weight-bold);
+}
+
+.secondaryDescription {
+  font-size: var(--font-size-base);
+  line-height: 1.6;
+  color: var(--color-steel-gray);
+  margin: 0;
+}
+
+.secondaryDescription em {
+  color: var(--color-accent-green);
+  font-style: normal;
+  font-weight: var(--font-weight-semibold);
+}
+
+/* Key Points Grid */
+.keyPointsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.keyPoint {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(226, 232, 240, 0.5);
+  border-radius: var(--border-radius-xl);
+  transition: all 0.3s ease;
+  opacity: 0;
+  animation: slideInUp 0.8s ease forwards;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.keyPoint:hover {
+  background: white;
+  border-color: rgba(30, 58, 138, 0.2);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.keyPointIcon {
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(135deg, var(--color-navy-blue), var(--color-accent-green));
+  border-radius: var(--border-radius-xl);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+}
+
+.keyPoint:hover .keyPointIcon {
+  transform: scale(1.1);
+}
+
+.keyPointContent {
+  flex: 1;
+}
+
+.keyPointTitle {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-navy-blue);
+  margin: 0 0 0.5rem 0;
+}
+
+.keyPointDescription {
+  font-size: var(--font-size-sm);
+  color: var(--color-steel-gray);
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Philosophy Section */
+.philosophy {
+  background: linear-gradient(135deg, var(--color-navy-blue-dark), var(--color-navy-blue));
+  border-radius: var(--border-radius-2xl);
+  padding: 2rem;
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.philosophy::before {
+  content: '"';
+  position: absolute;
+  top: 1rem;
+  left: 1.5rem;
+  font-size: 4rem;
+  color: var(--color-accent-green-light);
+  opacity: 0.3;
+  font-family: serif;
+  z-index: 1;
+}
+
+.philosophyQuote {
+  font-size: var(--font-size-base);
+  line-height: 1.6;
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0 0 1.5rem 0;
+  position: relative;
+  z-index: 2;
+  padding-left: 1rem;
+}
+
+.philosophyAuthor {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  position: relative;
+  z-index: 2;
+}
+
+.authorInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.authorName {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-accent-green-light);
+}
+
+.authorTitle {
+  font-size: var(--font-size-xs);
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Visual Section */
+.visualSection {
+  position: relative;
+  opacity: 0;
+  transform: translateX(50px);
+  transition: all 0.8s ease 0.5s;
+}
+
+.visualSection.slideInRight {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Achievement Cards */
+.achievementCards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.achievementCard {
+  background: white;
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  border-radius: var(--border-radius-xl);
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  transition: all 0.3s ease;
+  opacity: 0;
+  animation: popIn 0.6s ease forwards;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  position: relative;
+  overflow: hidden;
+}
+
+.achievementCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: var(--accent-color);
+  transition: width 0.3s ease;
+}
+
+.achievementCard:hover::before {
+  width: 8px;
+}
+
+.achievementCard:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  border-color: rgba(30, 58, 138, 0.2);
+}
+
+.achievementIcon {
+  width: 40px;
+  height: 40px;
+  background: var(--accent-color);
+  border-radius: var(--border-radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  flex-shrink: 0;
+}
+
+.achievementContent {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.achievementNumber {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-navy-blue);
+  line-height: 1;
+}
+
+.achievementLabel {
+  font-size: var(--font-size-xs);
+  color: var(--color-steel-gray);
+  font-weight: var(--font-weight-medium);
+}
+
+/* Company Image */
+.companyImageContainer {
+  position: relative;
+  border-radius: var(--border-radius-2xl);
+  overflow: hidden;
+  background: var(--color-gray-100);
+}
+
+.companyImage {
+  position: relative;
+  height: 300px;
+  overflow: hidden;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.companyImage:hover .image {
+  transform: scale(1.05);
+}
+
+.imageOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(30, 58, 138, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.companyImage:hover .imageOverlay {
+  opacity: 1;
+}
+
+.overlayContent {
+  text-align: center;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.overlayText {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+}
+
+/* Floating Elements */
+.floatingElements {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.floatingElement1,
+.floatingElement2,
+.floatingElement3 {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  background: rgba(30, 58, 138, 0.1);
+  border: 1px solid rgba(30, 58, 138, 0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-navy-blue);
+}
+
+.floatingElement1 {
+  top: 10%;
+  right: 10%;
+  animation: float 6s ease-in-out infinite;
+}
+
+.floatingElement2 {
+  top: 50%;
+  right: 5%;
+  animation: float 8s ease-in-out infinite 2s;
+}
+
+.floatingElement3 {
+  bottom: 20%;
+  right: 15%;
+  animation: float 7s ease-in-out infinite 4s;
+}
+
+/* Stats Bar */
+.statsBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: white;
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  border-radius: var(--border-radius-2xl);
+  padding: 2rem;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease 0.8s;
+}
+
+.statsBar.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.statItem {
+  text-align: center;
+  flex: 1;
+  position: relative;
+}
+
+.statItem:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  width: 1px;
+  height: 40px;
+  background: rgba(226, 232, 240, 0.8);
+}
+
+.statValue {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-navy-blue);
+  margin-bottom: 0.5rem;
+}
+
+.statLabel {
+  font-size: var(--font-size-sm);
+  color: var(--color-steel-gray);
+  font-weight: var(--font-weight-medium);
+}
+
+/* Background Decorations */
+.backgroundDecorations {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.decoration1,
+.decoration2,
+.decoration3 {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(30, 58, 138, 0.03) 0%, transparent 70%);
+}
+
+.decoration1 {
+  width: 300px;
+  height: 300px;
+  top: 20%;
+  left: 5%;
+  animation: float 15s ease-in-out infinite;
+}
+
+.decoration2 {
+  width: 200px;
+  height: 200px;
+  bottom: 30%;
+  right: 10%;
+  animation: float 20s ease-in-out infinite 5s;
+}
+
+.decoration3 {
+  width: 150px;
+  height: 150px;
+  top: 60%;
+  left: 60%;
+  animation: float 12s ease-in-out infinite 8s;
+}
+
+/* Animations */
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes popIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(5deg); }
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .mainContent {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+  
+  .visualSection {
+    order: -1;
+  }
+  
+  .achievementCards {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.75rem;
+  }
+  
+  .achievementCard {
+    flex-direction: column;
+    text-align: center;
+    gap: 0.75rem;
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .whoWeAre {
+    padding: 3rem 1rem;
+  }
+  
+  .sectionHeader {
+    margin-bottom: 3rem;
+  }
+  
+  .sectionTitle {
+    font-size: var(--font-size-3xl);
+  }
+  
+  .mainContent {
+    gap: 2rem;
+    margin-bottom: 3rem;
+  }
+  
+  .keyPointsGrid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .keyPoint {
+    padding: 1rem;
+  }
+  
+  .keyPointIcon {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .philosophy {
+    padding: 1.5rem;
+  }
+  
+  .achievementCards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .companyImage {
+    height: 200px;
+  }
+  
+  .statsBar {
+    flex-direction: column;
+    gap: 1.5rem;
+    text-align: center;
+  }
+  
+  .statItem::after {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 0.5rem;
+  }
+  
+  .sectionTitle {
+    font-size: var(--font-size-2xl);
+  }
+  
+  .mainDescription {
+    font-size: var(--font-size-base);
+  }
+  
+  .keyPoint {
+    flex-direction: column;
+    text-align: center;
+    padding: 1rem;
+  }
+  
+  .achievementCards {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .achievementCard {
+    flex-direction: row;
+    text-align: left;
+  }
+  
+  .statsBar {
+    padding: 1.5rem;
+    gap: 1rem;
+  }
+}
