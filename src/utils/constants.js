@@ -427,3 +427,161 @@ export const ABOUT_PAGE_CONTENT = {
     buttonText: "Get Started"
   }
 };
+
+// Add this to your src/utils/constants.js file
+
+// SEO Configuration
+export const SEO_CONFIG = {
+  defaultTitle: 'Global Procurement & Sourcing Solutions',
+  siteName: 'Globe Sourcing Procurement',
+  siteUrl: process.env.REACT_APP_SITE_URL || 'https://globesourcingprocurement.com',
+  defaultDescription: 'Connect with verified global suppliers for bulk product sourcing. Trusted procurement platform serving 2,500+ companies across 50+ countries with end-to-end logistics.',
+  defaultKeywords: 'global procurement, bulk sourcing, international suppliers, procurement platform, wholesale products, B2B sourcing, supply chain, logistics, verified suppliers, bulk orders',
+  defaultImage: '/images/og-globe-sourcing.jpg',
+  twitterHandle: '@globesourcepro',
+  facebookAppId: '', // Add if you have Facebook App ID
+  googleSiteVerification: 'kL9BMne3dPuWscjCq4_Ulx9DMGKXm7Q65rNdBQyk0zk', // Add Google Search Console verification code
+  bingSiteVerification: '' // Add Bing Webmaster verification code
+};
+
+// Page-specific SEO data
+export const PAGE_SEO_DATA = {
+  home: {
+    title: 'Global Procurement & Sourcing Solutions',
+    description: 'We connect buyers with trusted vendors for seamless international trade and end-to-end logistics support.',
+    keywords: 'global procurement, bulk sourcing, international suppliers, procurement platform, wholesale products, B2B sourcing, supply chain, logistics, verified suppliers, bulk orders, global trade',
+    url: '/',
+    image: '/images/og-home-globe-sourcing.jpg'
+  },
+  
+  about: {
+    title: 'About Us - Leading Global Procurement Company',
+    description: 'Procurement & Sourcing Solutions Limited is a global platform connecting buyers and vendors for bulk product sourcing, purchasing, and delivery.',
+    keywords: 'about globe sourcing, procurement company, global sourcing mission, international trade, supply chain solutions, B2B platform, procurement services, verified suppliers',
+    url: '/about',
+    image: '/images/og-about-globe-sourcing.jpg'
+  },
+  
+  services: {
+    title: 'Our Services - Complete Procurement Solutions',
+    description: 'Comprehensive procurement services including product sourcing, supplier verification, logistics coordination, and end-to-end delivery. Serving businesses worldwide.',
+    keywords: 'procurement services, product sourcing, supplier verification, logistics services, international shipping, bulk ordering, supply chain management',
+    url: '/#services',
+    image: '/images/og-services-globe-sourcing.jpg'
+  },
+  
+  testimonials: {
+    title: 'Client Success Stories & Reviews - Trusted Globally',
+    description: 'Read testimonials from our satisfied clients across China, UK, USA, India, and more. 4.9/5 rating from 1,200+ reviews on our global procurement platform.',
+    keywords: 'client testimonials, procurement reviews, supplier feedback, global clients, success stories, verified reviews, customer satisfaction',
+    url: '/#testimonials',
+    image: '/images/og-testimonials-globe-sourcing.jpg'
+  }
+};
+
+// Structured Data Schemas
+export const STRUCTURED_DATA = {
+  organization: {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Globe Sourcing Procurement",
+    "alternateName": "Procurement & Sourcing Solutions Limited",
+    "url": "https://globesourcingprocurement.com",
+    "logo": "https://globesourcingprocurement.com/images/logo-structured-data.png",
+    "description": "Global procurement and sourcing platform connecting verified suppliers with buyers worldwide for bulk product sourcing and logistics.",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Saint John Woods",
+      "addressLocality": "London",
+      "addressRegion": "United Kingdom", 
+      "addressCountry": "UK"
+    },
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "contactType": "customer service",
+      "email": "info@globesourceprocurement.com",
+      "availableLanguage": ["English"],
+      "areaServed": "Worldwide"
+    },
+    "sameAs": [
+      "https://linkedin.com/company/globesourceprocurement",
+      "https://twitter.com/globesourcepro",
+      "https://facebook.com/globesourceprocurement"
+    ],
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "bestRating": "5",
+      "worstRating": "1",
+      "ratingCount": "1200"
+    },
+    "services": [
+      "Global Product Sourcing",
+      "Supplier Verification",
+      "Bulk Order Procurement",
+      "International Logistics",
+      "Supply Chain Management"
+    ]
+  },
+  
+  website: {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Globe Sourcing Procurement",
+    "url": "https://globesourcingprocurement.com",
+    "description": "Global procurement platform connecting buyers with verified suppliers for bulk product sourcing and international trade.",
+    "publisher": {
+      "@type": "Organization",
+      "name": "Globe Sourcing Procurement"
+    },
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://globesourcingprocurement.com/search?q={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
+  },
+  
+  service: {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "serviceType": "Global Procurement and Sourcing",
+    "provider": {
+      "@type": "Organization",
+      "name": "Globe Sourcing Procurement"
+    },
+    "description": "End-to-end procurement services including product sourcing, supplier verification, bulk ordering, and international logistics coordination.",
+    "areaServed": "Worldwide",
+    "audience": {
+      "@type": "BusinessAudience",
+      "audienceType": "Businesses seeking bulk product sourcing"
+    },
+    "offers": {
+      "@type": "Offer",
+      "description": "Global procurement and sourcing services",
+      "priceSpecification": {
+        "@type": "PriceSpecification",
+        "priceCurrency": "USD",
+        "price": "Contact for quote"
+      }
+    }
+  },
+  
+  breadcrumb: {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://globesourcingprocurement.com"
+      },
+      {
+        "@type": "ListItem", 
+        "position": 2,
+        "name": "About",
+        "item": "https://globesourcingprocurement.com/about"
+      }
+    ]
+  }
+};
