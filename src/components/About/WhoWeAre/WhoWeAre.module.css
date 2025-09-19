@@ -616,9 +616,10 @@
   }
   
   .statsBar {
-    flex-direction: column;
+    flex-direction: row;
     gap: 1.5rem;
     text-align: center;
+    flex-wrap: nowrap;
   }
   
   .statItem::after {
