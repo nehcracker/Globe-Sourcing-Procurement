@@ -89,6 +89,7 @@
 .mainDescription {
   font-size: var(--font-size-lg);
   line-height: 1.7;
+  text-align: justify;
   color: var(--color-navy-blue);
   margin: 0;
 }
@@ -101,6 +102,7 @@
 .secondaryDescription {
   font-size: var(--font-size-base);
   line-height: 1.6;
+  text-align: justify;
   color: var(--color-steel-gray);
   margin: 0;
 }
@@ -173,6 +175,7 @@
   color: var(--color-steel-gray);
   margin: 0;
   line-height: 1.5;
+  text-align: justify;
 }
 
 /* Philosophy Section */
@@ -200,6 +203,7 @@
 .philosophyQuote {
   font-size: var(--font-size-base);
   line-height: 1.6;
+  text-align: justify;
   font-style: italic;
   color: rgba(255, 255, 255, 0.9);
   margin: 0 0 1.5rem 0;

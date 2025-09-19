@@ -1,9 +1,7 @@
 // src/pages/About/About.jsx
 import React from 'react';
 import Navbar from '../../components/Layout/Navbar/Navbar';
-import Footer from '../../components/Layout/Footer/Footer';
 import AboutHero from '../../components/About/AboutHero/AboutHero';
-// Import other About sections when created
 import WhoWeAre from '../../components/About/WhoWeAre/WhoWeAre';
 // import MissionVision from '../../components/About/MissionVision/MissionVision';
 // import CoreValues from '../../components/About/CoreValues/CoreValues';
@@ -26,8 +24,6 @@ const About = () => {
         {/* <WhyChooseUs /> */}
         {/* <AboutCTA /> */}
       </main>
-      
-      <Footer />
     </div>
   );
 };
