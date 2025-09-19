@@ -434,7 +434,7 @@ export const ABOUT_PAGE_CONTENT = {
 export const SEO_CONFIG = {
   defaultTitle: 'Global Procurement & Sourcing Solutions',
   siteName: 'Globe Sourcing Procurement',
-  siteUrl: process.env.REACT_APP_SITE_URL || 'https://globesourcingprocurement.com',
+  siteUrl: process.env.REACT_APP_SITE_URL || 'https://globesourceprocurement.com',
   defaultDescription: 'Connect with verified global suppliers for bulk product sourcing. Trusted procurement platform serving 2,500+ companies across 50+ countries with end-to-end logistics.',
   defaultKeywords: 'global procurement, bulk sourcing, international suppliers, procurement platform, wholesale products, B2B sourcing, supply chain, logistics, verified suppliers, bulk orders',
   defaultImage: '/images/og-globe-sourcing.jpg',
@@ -486,8 +486,8 @@ export const STRUCTURED_DATA = {
     "@type": "Organization",
     "name": "Globe Sourcing Procurement",
     "alternateName": "Procurement & Sourcing Solutions Limited",
-    "url": "https://globesourcingprocurement.com",
-    "logo": "https://globesourcingprocurement.com/images/logo-structured-data.png",
+    "url": "https://globesourceprocurement.com",
+    "logo": "https://globesourceprocurement.com/images/logo-structured-data.png",
     "description": "Global procurement and sourcing platform connecting verified suppliers with buyers worldwide for bulk product sourcing and logistics.",
     "address": {
       "@type": "PostalAddress",
@@ -528,7 +528,7 @@ export const STRUCTURED_DATA = {
     "@context": "https://schema.org",
     "@type": "WebSite",
     "name": "Globe Sourcing Procurement",
-    "url": "https://globesourcingprocurement.com",
+    "url": "https://globesourceprocurement.com",
     "description": "Global procurement platform connecting buyers with verified suppliers for bulk product sourcing and international trade.",
     "publisher": {
       "@type": "Organization",
@@ -536,7 +536,7 @@ export const STRUCTURED_DATA = {
     },
     "potentialAction": {
       "@type": "SearchAction",
-      "target": "https://globesourcingprocurement.com/search?q={search_term_string}",
+      "target": "https://globesourceprocurement.com/search?q={search_term_string}",
       "query-input": "required name=search_term_string"
     }
   },
@@ -574,13 +574,13 @@ export const STRUCTURED_DATA = {
         "@type": "ListItem",
         "position": 1,
         "name": "Home",
-        "item": "https://globesourcingprocurement.com"
+        "item": "https://globesourceprocurement.com"
       },
       {
         "@type": "ListItem", 
         "position": 2,
         "name": "About",
-        "item": "https://globesourcingprocurement.com/about"
+        "item": "https://globesourceprocurement.com/about"
       }
     ]
   }

@@ -17,7 +17,7 @@ const SEO = ({
   structuredData
 }) => {
   const siteTitle = `${title} | ${COMPANY.name}`;
-  const siteUrl = process.env.REACT_APP_SITE_URL || 'https://globesourcingprocurement.com';
+  const siteUrl = process.env.REACT_APP_SITE_URL || 'https://globesourceprocurement.com';
   const fullUrl = url ? `${siteUrl}${url}` : siteUrl;
   const imageUrl = image ? (image.startsWith('http') ? image : `${siteUrl}${image}`) : `${siteUrl}/images/og-default.jpg`;
 
