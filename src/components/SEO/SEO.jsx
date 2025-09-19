@@ -1,6 +1,5 @@
-// src/components/SEO/SEO.jsx
-import React from 'react';
-import { Helmet } from 'react-helmet-async';
+// src/components/SEO/SEO.jsx (React 19 compatible version)
+import  { useEffect } from 'react';
 import { COMPANY } from '../../utils/constants';
 
 const SEO = ({
@@ -22,73 +21,143 @@ const SEO = ({
   const fullUrl = url ? `${siteUrl}${url}` : siteUrl;
   const imageUrl = image ? (image.startsWith('http') ? image : `${siteUrl}${image}`) : `${siteUrl}/images/og-default.jpg`;
 
-  return (
-    <Helmet>
-      {/* Basic Meta Tags */}
-      <title>{siteTitle}</title>
-      <meta name="description" content={description} />
-      {keywords && <meta name="keywords" content={keywords} />}
-      {author && <meta name="author" content={author} />}
+  useEffect(() => {
+    // Update document title
+    document.title = siteTitle;
+
+    // Create or update meta tags
+    const updateMetaTag = (property, content, isProperty = true) => {
+      if (!content) return;
       
-      {/* Canonical URL */}
-      <link rel="canonical" href={canonicalUrl || fullUrl} />
+      let selector = isProperty ? `meta[property="${property}"]` : `meta[name="${property}"]`;
+      let element = document.querySelector(selector);
       
-      {/* Robots */}
-      {noindex && <meta name="robots" content="noindex, nofollow" />}
+      if (element) {
+        element.setAttribute('content', content);
+      } else {
+        const meta = document.createElement('meta');
+        if (isProperty) {
+          meta.setAttribute('property', property);
+        } else {
+          meta.setAttribute('name', property);
+        }
+        meta.setAttribute('content', content);
+        document.head.appendChild(meta);
+      }
+    };
+
+    const updateLinkTag = (rel, href) => {
+      if (!href) return;
       
-      {/* Open Graph Tags */}
-      <meta property="og:type" content={type} />
-      <meta property="og:title" content={title} />
-      <meta property="og:description" content={description} />
-      <meta property="og:image" content={imageUrl} />
-      <meta property="og:image:width" content="1200" />
-      <meta property="og:image:height" content="630" />
-      <meta property="og:image:alt" content={title} />
-      <meta property="og:url" content={fullUrl} />
-      <meta property="og:site_name" content={COMPANY.name} />
-      <meta property="og:locale" content="en_US" />
+      let element = document.querySelector(`link[rel="${rel}"]`);
       
-      {/* Twitter Card Tags */}
-      <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:site" content="@globesourcepro" />
-      <meta name="twitter:creator" content="@globesourcepro" />
-      <meta name="twitter:title" content={title} />
-      <meta name="twitter:description" content={description} />
-      <meta name="twitter:image" content={imageUrl} />
-      <meta name="twitter:image:alt" content={title} />
+      if (element) {
+        element.setAttribute('href', href);
+      } else {
+        const link = document.createElement('link');
+        link.setAttribute('rel', rel);
+        link.setAttribute('href', href);
+        document.head.appendChild(link);
+      }
+    };
+
+    // Basic meta tags
+    updateMetaTag('description', description, false);
+    updateMetaTag('keywords', keywords, false);
+    updateMetaTag('author', author, false);
+
+    // Canonical URL
+    updateLinkTag('canonical', canonicalUrl || fullUrl);
+
+    // Robots
+    if (noindex) {
+      updateMetaTag('robots', 'noindex, nofollow', false);
+    }
+
+    // Open Graph tags
+    updateMetaTag('og:type', type);
+    updateMetaTag('og:title', title);
+    updateMetaTag('og:description', description);
+    updateMetaTag('og:image', imageUrl);
+    updateMetaTag('og:image:width', '1200');
+    updateMetaTag('og:image:height', '630');
+    updateMetaTag('og:image:alt', title);
+    updateMetaTag('og:url', fullUrl);
+    updateMetaTag('og:site_name', COMPANY.name);
+    updateMetaTag('og:locale', 'en_US');
+
+    // Twitter Card tags
+    updateMetaTag('twitter:card', 'summary_large_image', false);
+    updateMetaTag('twitter:site', '@globesourcepro', false);
+    updateMetaTag('twitter:creator', '@globesourcepro', false);
+    updateMetaTag('twitter:title', title, false);
+    updateMetaTag('twitter:description', description, false);
+    updateMetaTag('twitter:image', imageUrl, false);
+    updateMetaTag('twitter:image:alt', title, false);
+
+    // Article meta (for blog posts/articles)
+    if (type === 'article') {
+      updateMetaTag('article:published_time', publishedTime);
+      updateMetaTag('article:modified_time', modifiedTime);
+      updateMetaTag('article:author', author);
+    }
+
+    // Structured data
+    if (structuredData) {
+      // Remove existing structured data script
+      const existingScript = document.querySelector('script[type="application/ld+json"]');
+      if (existingScript) {
+        existingScript.remove();
+      }
+
+      // Add new structured data
+      const script = document.createElement('script');
+      script.type = 'application/ld+json';
+      script.innerHTML = JSON.stringify(structuredData);
+      document.head.appendChild(script);
+    }
+
+    // Theme color
+    updateMetaTag('theme-color', '#1e3a8a', false);
+    updateMetaTag('msapplication-TileColor', '#1e3a8a', false);
+
+    // Google site verification
+    updateMetaTag('google-site-verification', 'kL9BMne3dPuWscjCq4_Ulx9DMGKXm7Q65rNdBQyk0zk', false);
+
+    // Cleanup function
+    return () => {
+      // Optional: Remove meta tags when component unmounts
+      // This is generally not necessary for SEO meta tags
+    };
+  }, [title, description, keywords, image, url, type, author, publishedTime, modifiedTime, noindex, canonicalUrl, structuredData, siteTitle, fullUrl, imageUrl]);
+
+  // Add favicon and other static assets
+  useEffect(() => {
+    const addLinkIfNotExists = (rel, href, sizes = null, type = null) => {
+      if (document.querySelector(`link[rel="${rel}"][href="${href}"]`)) return;
       
-      {/* Article Meta (for blog posts/articles) */}
-      {type === 'article' && (
-        <>
-          {publishedTime && <meta property="article:published_time" content={publishedTime} />}
-          {modifiedTime && <meta property="article:modified_time" content={modifiedTime} />}
-          {author && <meta property="article:author" content={author} />}
-        </>
-      )}
-      
-      {/* Business/Organization Schema */}
-      {structuredData && (
-        <script type="application/ld+json">
-          {JSON.stringify(structuredData)}
-        </script>
-      )}
-      
-      {/* Preconnect for Performance */}
-      <link rel="preconnect" href="https://fonts.googleapis.com" />
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
-      
-      {/* Favicon and Icons */}
-      <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-      <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-      <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-      <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-      <link rel="manifest" href="/site.webmanifest" />
-      
-      {/* Theme Color */}
-      <meta name="theme-color" content="#1e3a8a" />
-      <meta name="msapplication-TileColor" content="#1e3a8a" />
-    </Helmet>
-  );
+      const link = document.createElement('link');
+      link.rel = rel;
+      link.href = href;
+      if (sizes) link.sizes = sizes;
+      if (type) link.type = type;
+      document.head.appendChild(link);
+    };
+
+    // Preconnect for performance
+    addLinkIfNotExists('preconnect', 'https://fonts.googleapis.com');
+    addLinkIfNotExists('preconnect', 'https://fonts.gstatic.com');
+
+    // Favicon and icons
+    addLinkIfNotExists('icon', '/favicon.ico', null, 'image/x-icon');
+    addLinkIfNotExists('apple-touch-icon', '/apple-touch-icon.png', '180x180');
+    addLinkIfNotExists('icon', '/favicon-32x32.png', '32x32', 'image/png');
+    addLinkIfNotExists('icon', '/favicon-16x16.png', '16x16', 'image/png');
+    addLinkIfNotExists('manifest', '/site.webmanifest');
+  }, []);
+
+  // This component doesn't render anything visible
+  return null;
 };
 
 export default SEO;

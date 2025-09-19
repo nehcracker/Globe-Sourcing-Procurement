@@ -10,7 +10,7 @@
     "lucide-react": "^0.544.0",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
-    "react-helmet-async": "^2.0.5",
+    "react-helmet-async": "^2.0.4",
     "react-router-dom": "^7.9.1",
     "react-scripts": "^5.0.1",
     "web-vitals": "^2.1.4"
@@ -38,6 +38,10 @@
     "serialize-javascript": "^6.0.2",
     "resolve-url-loader": {
       "postcss": "8.5.3"
+    },
+    "react-helmet-async": {
+      "react": "$react",
+      "react-dom": "$react-dom"
     }
   },
   "browserslist": {

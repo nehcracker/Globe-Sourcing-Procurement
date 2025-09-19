@@ -1,4 +1,4 @@
-// src/App.jsx
+// src/App.jsx (Fixed for React 19)
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home/Home';
