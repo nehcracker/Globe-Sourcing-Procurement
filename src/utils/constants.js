@@ -2,17 +2,14 @@
 
 // Company Information
 export const COMPANY = {
-  name: 'Globe Sourcing Procurement',
-  tagline: 'Global Procurement and Sourcing Solutions',
+  name: 'Global Source',
+  tagline: 'Global Source Procurement & Bulk Sourcing Solutions',
   description: 'Source products in bulk directly from verified manufacturers and suppliers worldwide.',
   email: 'info@globesourceprocurement.com',
-  phone: '+254-XXX-XXXXXX',
   address: {
-    street: '123 Business Avenue',
-    city: 'Mombasa',
-    state: 'Mombasa County',
-    country: 'Kenya',
-    postalCode: '80100'
+    street: 'Saint John Woods',
+    city: '<London>',
+    country: 'United Kingdom',
   },
   socialMedia: {
     linkedin: 'https://linkedin.com/company/globesourceprocurement',
@@ -23,12 +20,12 @@ export const COMPANY = {
 
 // Navigation Items
 export const NAV_ITEMS = [
-  { name: 'Home', href: '#home', path: '/' },
-  { name: 'About', href: '#about', path: '/about' },
-  { name: 'Services', href: '#services', path: '/#services' },
-  { name: 'Vendors', href: '#vendors', path: '/#vendors' },
-  { name: 'Buyers', href: '#buyers', path: '/#buyers' },
-  { name: 'Contact', href: '#contact', path: '/contact' }
+  { name: 'Home', href: 'home', path: '/' },
+  { name: 'About', href: 'about', path: '/about' },
+  { name: 'Services', href: 'services', path: '/services' },
+  { name: 'Vendors', href: 'vendors', path: '/vendors' },
+  { name: 'Buyers', href: 'buyers', path: '/buyers' },
+  { name: 'Contact', href: 'contact', path: '/contact' }
 ];
 
 // Services Data
@@ -432,7 +429,7 @@ export const ABOUT_PAGE_CONTENT = {
 
 // SEO Configuration
 export const SEO_CONFIG = {
-  defaultTitle: 'Global Procurement & Product Sourcing Solutions',
+  defaultTitle: 'Global Procurement & Bulk Sourcing Solutions',
   siteName: 'Globe Sourcing Procurement',
   siteUrl: process.env.REACT_APP_SITE_URL || 'https://globesourceprocurement.com',
   defaultDescription: 'Connect with verified global suppliers for bulk product sourcing. Trusted procurement platform serving 2,500+ companies across 50+ countries with end-to-end logistics.',
@@ -447,7 +444,7 @@ export const SEO_CONFIG = {
 // Page-specific SEO data
 export const PAGE_SEO_DATA = {
   home: {
-    title: 'Global Procurement & Sourcing Solutions',
+    title: 'Global Source Procurement & Bulk Sourcing Solutions',
     description: 'We connect buyers with trusted vendors for seamless international trade and end-to-end logistics support.',
     keywords: 'global procurement, bulk sourcing, international suppliers, procurement platform, wholesale products, B2B sourcing, supply chain, logistics, verified suppliers, bulk orders, global trade',
     url: '/',
@@ -455,7 +452,7 @@ export const PAGE_SEO_DATA = {
   },
   
   about: {
-    title: 'About Us - Leading Global Procurement Company',
+    title: 'Procurement & Product Sourcing Experts | Bulk Product Sourcing',
     description: 'Procurement & Sourcing Solutions Limited is a global platform connecting buyers and vendors for bulk product sourcing, purchasing, and delivery.',
     keywords: 'about globe sourcing, procurement company, global sourcing mission, international trade, supply chain solutions, B2B platform, procurement services, verified suppliers',
     url: '/about',
@@ -463,7 +460,7 @@ export const PAGE_SEO_DATA = {
   },
   
   services: {
-    title: 'Our Services - Complete Procurement Solutions',
+    title: 'Global Product Procurement | Supplier Sourcing | Bulk Products',
     description: 'Comprehensive procurement services including product sourcing, supplier verification, logistics coordination, and end-to-end delivery. Serving businesses worldwide.',
     keywords: 'procurement services, product sourcing, supplier verification, logistics services, international shipping, bulk ordering, supply chain management',
     url: '/#services',
@@ -484,8 +481,8 @@ export const STRUCTURED_DATA = {
   organization: {
     "@context": "https://schema.org",
     "@type": "Organization",
-    "name": "Globe Sourcing Procurement",
-    "alternateName": "Procurement & Sourcing Solutions Limited",
+    "name": "Global Source Procurementt",
+    "alternateName": "Procurement & Sourcing Services Limited",
     "url": "https://globesourceprocurement.com",
     "logo": "https://globesourceprocurement.com/images/logo-structured-data.png",
     "description": "Global procurement and sourcing platform connecting verified suppliers with buyers worldwide for bulk product sourcing and logistics.",
@@ -520,6 +517,8 @@ export const STRUCTURED_DATA = {
       "Supplier Verification",
       "Bulk Order Procurement",
       "International Logistics",
+      "Bulk Product Sourcing",
+      "Product Sourcing Services",
       "Supply Chain Management"
     ]
   },
@@ -527,7 +526,7 @@ export const STRUCTURED_DATA = {
   website: {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    "name": "Globe Sourcing Procurement",
+    "name": "Global Source Procurement",
     "url": "https://globesourceprocurement.com",
     "description": "Global procurement platform connecting buyers with verified suppliers for bulk product sourcing and international trade.",
     "publisher": {

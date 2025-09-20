@@ -64,9 +64,9 @@ const Hero = () => {
 
             {/* Headline */}
             <h1 className={`${styles.headline} ${isLoaded ? styles.fadeInUp : ''}`}>
-              <span className={styles.gradientText}>Global Procurement</span>
+              <span className={styles.gradientText}>Global Source Procurement</span>
               <br />
-              <span className={styles.regularText}>and Sourcing Services</span>
+              <span className={styles.regularText}>& Bulk Sourcing Solutions</span>
             </h1>
 
             {/* Subtitle */}
