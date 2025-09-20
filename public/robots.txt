@@ -1,6 +1,36 @@
-
-
-Add to robots.txt:
 User-agent: *
 Allow: /
-Sitemap: https://globesourcingprocurement.com/sitemap.xml
+
+# Sitemap location
+Sitemap: https://globesourceprocurement.com/sitemap.xml
+
+# Crawl delay to be respectful to server resources
+Crawl-delay: 1
+
+# Allow important pages explicitly
+Allow: /
+Allow: /about
+Allow: /services
+Allow: /contact
+Allow: /buyers
+Allow: /vendors
+
+# Disallow potential admin or private areas (future-proofing)
+# Disallow: /admin/
+# Disallow: /private/
+# Disallow: /api/
+
+# Disallow common technical files
+Disallow: /*.json$
+Disallow: /static/js/
+Disallow: /static/css/
+Disallow: /static/media/
+
+# Allow important static assets
+Allow: /static/images/
+Allow: /images/
+Allow: /favicon.ico
+Allow: /manifest.json
+
+# SEO-friendly directives
+# Cache-Control: public, max-age=86400
