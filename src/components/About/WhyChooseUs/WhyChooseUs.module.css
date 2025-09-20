@@ -1,0 +1,510 @@
+/* src/components/About/WhyChooseUs/WhyChooseUs.module.css */
+
+.whyChooseUs {
+  padding: 5rem 0;
+  background: linear-gradient(135deg, var(--color-navy-blue-dark) 0%, var(--color-navy-blue) 50%, var(--color-accent-green-dark) 100%);
+  position: relative;
+  overflow: hidden;
+  color: white;
+}
+
+.container {
+  max-width: var(--container-xl);
+  margin: 0 auto;
+  padding: 0 1rem;
+  position: relative;
+  z-index: 2;
+}
+
+/* Section Header */
+.sectionHeader {
+  text-align: center;
+  margin-bottom: 4rem;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease;
+}
+
+.sectionHeader.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.headerBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--border-radius-full);
+  color: rgba(255, 255, 255, 0.9);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  margin-bottom: 1.5rem;
+  backdrop-filter: blur(15px);
+}
+
+.headerBadge svg {
+  color: var(--color-accent-green-light);
+}
+
+.sectionTitle {
+  font-size: var(--font-size-4xl);
+  font-weight: var(--font-weight-bold);
+  color: white;
+  margin-bottom: 1rem;
+}
+
+.sectionSubtitle {
+  font-size: var(--font-size-lg);
+  color: rgba(255, 255, 255, 0.8);
+  max-width: 700px;
+  margin: 0 auto 1.5rem auto;
+  line-height: 1.6;
+}
+
+.titleUnderline {
+  width: 100px;
+  height: 4px;
+  background: linear-gradient(90deg, var(--color-accent-green-light), var(--color-white));
+  margin: 0 auto;
+  border-radius: var(--border-radius-full);
+}
+
+/* Features Grid */
+.featuresGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+  gap: 2rem;
+  margin-bottom: 4rem;
+}
+
+/* Achievements Bar */
+.achievementsBar {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--border-radius-2xl);
+  padding: 2.5rem;
+  margin-bottom: 4rem;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease 0.6s;
+}
+
+.achievementsBar.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.achievementsContent {
+  text-align: center;
+}
+
+.achievementsTitle {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  color: white;
+  margin-bottom: 2rem;
+}
+
+.achievementsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+}
+
+.achievementItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--border-radius-xl);
+  transition: all 0.3s ease;
+  opacity: 0;
+  animation: popIn 0.6s ease forwards;
+}
+
+.achievementItem:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-5px);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.achievementIcon {
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(135deg, var(--color-accent-green), var(--color-accent-green-light));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  box-shadow: 0 4px 15px rgba(5, 150, 105, 0.3);
+}
+
+.achievementContent {
+  text-align: center;
+}
+
+.achievementNumber {
+  display: block;
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-accent-green-light);
+  margin-bottom: 0.25rem;
+}
+
+.achievementLabel {
+  font-size: var(--font-size-sm);
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: var(--font-weight-medium);
+}
+
+/* Bottom CTA */
+.bottomCTA {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 3rem;
+  align-items: center;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease 0.8s;
+}
+
+.bottomCTA.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.ctaContent {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.ctaTitle {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  color: white;
+  margin: 0;
+}
+
+.ctaSubtitle {
+  font-size: var(--font-size-base);
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0;
+  line-height: 1.6;
+}
+
+.ctaButtons {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: nowrap;
+}
+
+.primaryCTA {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 2rem;
+  background: linear-gradient(135deg, var(--color-accent-green), var(--color-accent-green-light));
+  color: white;
+  border: none;
+  border-radius: var(--border-radius-xl);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 8px 25px rgba(5, 150, 105, 0.3);
+}
+
+.primaryCTA:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 12px 35px rgba(5, 150, 105, 0.4);
+}
+
+.buttonRipple {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: all 0.6s ease;
+  pointer-events: none;
+}
+
+.primaryCTA:hover .buttonRipple {
+  width: 200px;
+  height: 200px;
+}
+
+.secondaryCTA {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 2rem;
+  background: transparent;
+  color: white;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: var(--border-radius-xl);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(15px);
+}
+
+.secondaryCTA:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: translateY(-2px);
+}
+
+/* CTA Visual */
+.ctaVisual {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.trustBadges {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.trustBadge {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--border-radius-xl);
+  color: white;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.trustBadge:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateX(10px);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.trustBadge svg {
+  color: var(--color-accent-green-light);
+  flex-shrink: 0;
+}
+
+/* Background Elements */
+.backgroundElements {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.bgShape1,
+.bgShape2,
+.bgShape3 {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.02) 0%, transparent 70%);
+}
+
+.bgShape1 {
+  width: 400px;
+  height: 400px;
+  top: 10%;
+  right: -10%;
+  animation: float 20s ease-in-out infinite;
+}
+
+.bgShape2 {
+  width: 300px;
+  height: 300px;
+  bottom: 20%;
+  left: -5%;
+  animation: float 25s ease-in-out infinite 8s;
+}
+
+.bgShape3 {
+  width: 200px;
+  height: 200px;
+  top: 60%;
+  right: 20%;
+  animation: float 15s ease-in-out infinite 12s;
+}
+
+.bgPattern {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(circle at 25% 25%, rgba(255, 255, 255, 0.01) 0%, transparent 50%),
+    radial-gradient(circle at 75% 75%, rgba(255, 255, 255, 0.01) 0%, transparent 50%);
+  animation: patternMove 30s linear infinite;
+}
+
+/* Animations */
+@keyframes popIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes float {
+  0%, 100% { 
+    transform: translateY(0px) rotate(0deg); 
+  }
+  50% { 
+    transform: translateY(-30px) rotate(3deg); 
+  }
+}
+
+@keyframes patternMove {
+  0% { transform: translateX(0) translateY(0); }
+  100% { transform: translateX(-50px) translateY(-50px); }
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .featuresGrid {
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 1.5rem;
+  }
+  
+  .achievementsGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+  
+  .bottomCTA {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    text-align: center;
+  }
+  
+  .trustBadges {
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 768px) {
+  .whyChooseUs {
+    padding: 3rem 0;
+  }
+  
+  .sectionTitle {
+    font-size: var(--font-size-3xl);
+  }
+  
+  .sectionSubtitle {
+    font-size: var(--font-size-base);
+  }
+  
+  .featuresGrid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+  }
+  
+  .achievementsBar {
+    padding: 2rem;
+    margin-bottom: 3rem;
+  }
+  
+  .achievementsTitle {
+    font-size: var(--font-size-xl);
+  }
+  
+  .achievementsGrid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .achievementItem {
+    flex-direction: row;
+    text-align: left;
+    padding: 1rem;
+  }
+  
+  .achievementIcon {
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+  }
+  
+  .ctaButtons {
+    justify-content: center;
+  }
+  
+  .trustBadges {
+    flex-direction: row;
+    align-items: center;
+  }
+  
+  .trustBadge:hover {
+    transform: translateY(-3px);
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 0.5rem;
+  }
+  
+  .sectionTitle {
+    font-size: var(--font-size-2xl);
+  }
+  
+  .achievementsBar {
+    padding: 1.5rem;
+  }
+  
+  .ctaTitle {
+    font-size: var(--font-size-xl);
+  }
+  
+  .ctaButtons {
+    flex-direction: row;
+    align-items: center;
+  }
+  
+  .primaryCTA,
+  .secondaryCTA {
+    width: 100%;
+    max-width: 280px;
+    justify-content: center;
+  }
+  
+  .trustBadge {
+    padding: 0.75rem 1rem;
+  }
+}
