@@ -102,13 +102,22 @@ const Hero = () => {
               <span className={styles.trustText}>Trusted by businesses across Africa</span>
               <div className={styles.trustLogos}>
                 <div className={styles.trustLogo}>
-                  <span>Company A</span>
+                  <span>Kenya</span>
                 </div>
                 <div className={styles.trustLogo}>
-                  <span>Company B</span>
+                  <span>Uganda</span>
                 </div>
                 <div className={styles.trustLogo}>
-                  <span>Company C</span>
+                  <span>Tanzania</span>
+                </div>
+                <div className={styles.trustLogo}>
+                  <span>DRC Congo</span>
+                </div>
+                <div className={styles.trustLogo}>
+                  <span>Zambia</span>
+                </div>
+                <div className={styles.trustLogo}>
+                  <span>Zimbambwe</span>
                 </div>
               </div>
             </div>

@@ -185,6 +185,9 @@
   opacity: 0;
   transform: translateY(30px);
   transition: all 0.8s ease 0.8s;
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
 }
 
 .trustText {
@@ -198,6 +201,8 @@
   display: flex;
   gap: 2rem;
   align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 
 .trustLogo {
