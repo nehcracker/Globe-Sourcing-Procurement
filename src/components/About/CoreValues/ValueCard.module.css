@@ -1,0 +1,364 @@
+/* src/components/About/CoreValues/ValueCard.module.css */
+
+.valueCard {
+  background: white;
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  border-radius: var(--border-radius-2xl);
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 0;
+  transform: translateY(30px) scale(0.95);
+  animation: slideInUp 0.8s ease forwards;
+  cursor: pointer;
+  height: fit-content;
+  min-height: 280px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+}
+
+.valueCard:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  border-color: var(--accent-color);
+}
+
+.valueCard.visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* Card Header */
+.cardHeader {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+.iconContainer {
+  width: 60px;
+  height: 60px;
+  background: var(--accent-color);
+  border-radius: var(--border-radius-xl);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.iconContainer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, transparent 0%, rgba(255, 255, 255, 0.2) 50%, transparent 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.valueCard:hover .iconContainer::before {
+  opacity: 1;
+}
+
+.valueCard:hover .iconContainer {
+  transform: scale(1.1);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.cardTitleContainer {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cardTitle {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-navy-blue);
+  margin: 0;
+  transition: color 0.3s ease;
+}
+
+.valueCard:hover .cardTitle {
+  color: var(--accent-color);
+}
+
+.expandIndicator {
+  width: 32px;
+  height: 32px;
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.valueCard:hover .expandIndicator {
+  background: var(--accent-color);
+  color: white;
+}
+
+.chevron {
+  transition: transform 0.3s ease;
+}
+
+.chevron.rotated {
+  transform: rotate(90deg);
+}
+
+/* Card Content */
+.cardContent {
+  position: relative;
+}
+
+.cardDescription {
+  font-size: var(--font-size-base);
+  line-height: 1.6;
+  color: var(--color-steel-gray);
+  margin: 0 0 1rem 0;
+  text-align: justify;
+  transition: all 0.3s ease;
+}
+
+/* Details List */
+.detailsList {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateY(-10px);
+}
+
+.detailsList.expanded {
+  max-height: 200px;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.detailsHeader {
+  margin-bottom: 0.75rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.detailsTitle {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--accent-color);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.detailsItems {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.detailItem {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: var(--font-size-sm);
+  color: var(--color-steel-gray);
+  opacity: 0;
+  animation: slideInLeft 0.3s ease forwards;
+  transform: translateX(-10px);
+}
+
+.checkIcon {
+  color: var(--accent-color);
+  flex-shrink: 0;
+}
+
+/* Card Footer */
+.cardFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+  padding-top: 1.5rem;
+  position: relative;
+}
+
+.cardNumber {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  color: var(--accent-color);
+  opacity: 0.3;
+  transition: opacity 0.3s ease;
+}
+
+.valueCard:hover .cardNumber {
+  opacity: 1;
+}
+
+.hoverPrompt {
+  opacity: 0.6;
+  transition: opacity 0.3s ease;
+}
+
+.valueCard:hover .hoverPrompt {
+  opacity: 0;
+}
+
+.promptText {
+  font-size: var(--font-size-xs);
+  color: var(--color-steel-gray);
+  font-style: italic;
+}
+
+/* Background Elements */
+.cardBackground {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.backgroundPattern {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 60px;
+  height: 60px;
+  background: var(--accent-color);
+  opacity: 0.05;
+  border-radius: 0 var(--border-radius-2xl) 0 50%;
+  transition: all 0.3s ease;
+}
+
+.valueCard:hover .backgroundPattern {
+  opacity: 0.1;
+  transform: scale(1.2);
+}
+
+.backgroundGradient {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: var(--accent-color);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.valueCard:hover .backgroundGradient {
+  opacity: 1;
+}
+
+/* Animations */
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .valueCard {
+    padding: 1.5rem;
+    min-height: 260px;
+  }
+  
+  .cardHeader {
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+  
+  .iconContainer {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .cardTitle {
+    font-size: var(--font-size-lg);
+  }
+  
+  .expandIndicator {
+    width: 28px;
+    height: 28px;
+  }
+  
+  .cardDescription {
+    font-size: var(--font-size-sm);
+  }
+  
+  .cardFooter {
+    padding-top: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .valueCard {
+    padding: 1.25rem;
+    min-height: 240px;
+  }
+  
+  .cardHeader {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+  }
+  
+  .cardTitleContainer {
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: center;
+  }
+  
+  .iconContainer {
+    width: 45px;
+    height: 45px;
+  }
+  
+  .cardTitle {
+    font-size: var(--font-size-base);
+  }
+  
+  .cardDescription {
+    text-align: center;
+  }
+  
+  .detailsItems {
+    gap: 0.4rem;
+  }
+  
+  .detailItem {
+    font-size: var(--font-size-xs);
+  }
+}

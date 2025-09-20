@@ -4,8 +4,8 @@ import SEO from '../../components/SEO/SEO';
 import Navbar from '../../components/Layout/Navbar/Navbar';
 import AboutHero from '../../components/About/AboutHero/AboutHero';
 import WhoWeAre from '../../components/About/WhoWeAre/WhoWeAre';
-// import MissionVision from '../../components/About/MissionVision/MissionVision';
-// import CoreValues from '../../components/About/CoreValues/CoreValues';
+import MissionVision from '../../components/About/MissionVision/MissionVision';
+import CoreValues from '../../components/About/CoreValues/CoreValues';
 // import WhyChooseUs from '../../components/About/WhyChooseUs/WhyChooseUs';
 // import AboutCTA from '../../components/About/AboutCTA/AboutCTA';
 import { PAGE_SEO_DATA, STRUCTURED_DATA } from '../../utils/constants';
@@ -40,8 +40,8 @@ const About = () => {
 
           {/* Uncomment these sections as you create them */}
            <WhoWeAre />
-          {/* <MissionVision /> */}
-          {/* <CoreValues /> */}
+            <MissionVision />
+            <CoreValues /> 
           {/* <WhyChooseUs /> */}
           {/* <AboutCTA /> */}
         </main>

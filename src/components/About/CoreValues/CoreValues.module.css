@@ -1,0 +1,429 @@
+/* src/components/About/CoreValues/CoreValues.module.css */
+
+.coreValues {
+  padding: 5rem 0;
+  background: linear-gradient(135deg, var(--color-gray-50) 0%, var(--color-white) 50%, var(--color-gray-50) 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.container {
+  max-width: var(--container-xl);
+  margin: 0 auto;
+  padding: 0 1rem;
+  position: relative;
+  z-index: 2;
+}
+
+/* Section Header */
+.sectionHeader {
+  text-align: center;
+  margin-bottom: 4rem;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease;
+}
+
+.sectionHeader.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.headerBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background: rgba(30, 58, 138, 0.1);
+  border: 1px solid rgba(30, 58, 138, 0.2);
+  border-radius: var(--border-radius-full);
+  color: var(--color-navy-blue);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  margin-bottom: 1.5rem;
+}
+
+.headerBadge svg {
+  color: var(--color-accent-green);
+}
+
+.sectionTitle {
+  font-size: var(--font-size-4xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-navy-blue);
+  margin-bottom: 1rem;
+}
+
+.sectionSubtitle {
+  font-size: var(--font-size-lg);
+  color: var(--color-steel-gray);
+  max-width: 600px;
+  margin: 0 auto 1.5rem auto;
+  line-height: 1.6;
+}
+
+.titleUnderline {
+  width: 100px;
+  height: 4px;
+  background: linear-gradient(90deg, var(--color-navy-blue), var(--color-accent-green));
+  margin: 0 auto;
+  border-radius: var(--border-radius-full);
+}
+
+/* Values Grid */
+.valuesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+  margin-bottom: 5rem;
+}
+
+/* Values Summary */
+.valuesSummary {
+  display: grid;
+  grid-template-columns: 1fr 400px;
+  gap: 4rem;
+  align-items: center;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease 0.6s;
+}
+
+.valuesSummary.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.summaryContent {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.summaryTitle {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-navy-blue);
+  margin: 0;
+}
+
+.summaryText {
+  font-size: var(--font-size-base);
+  line-height: 1.7;
+  color: var(--color-steel-gray);
+  margin: 0;
+  text-align: justify;
+}
+
+.summaryStats {
+  display: flex;
+  gap: 2rem;
+  margin-top: 1rem;
+}
+
+.summaryStatItem {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.summaryStatNumber {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-accent-green);
+}
+
+.summaryStatLabel {
+  font-size: var(--font-size-sm);
+  color: var(--color-steel-gray);
+  font-weight: var(--font-weight-medium);
+}
+
+/* Values Connector Visual */
+.summaryVisual {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.valuesConnector {
+  position: relative;
+  width: 300px;
+  height: 300px;
+}
+
+.centerHub {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-75%, -75%);
+  width: 100px;
+  height: 100px;
+  background: linear-gradient(135deg, var(--color-navy-blue), var(--color-accent-green));
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  text-align: center;
+  box-shadow: 0 8px 25px rgba(30, 58, 138, 0.3);
+  z-index: 2;
+}
+
+.centerHub span {
+  margin-top: 0.25rem;
+  line-height: 1.2;
+}
+
+.connectorNode {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  background: var(--color);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transform-origin: center;
+  animation: orbit 20s linear infinite;
+  
+  /* Position nodes in a circle */
+  top: 50%;
+  left: 50%;
+  margin-top: -25px;
+  margin-left: -25px;
+  transform: 
+    translate(-50%, -50%) 
+    rotate(var(--angle)) 
+    translateY(-100px) 
+    rotate(calc(-1 * var(--angle)));
+}
+
+.connectorNode::before {
+  content: '';
+  position: absolute;
+  width: 2px;
+  height: 50px;
+  background: linear-gradient(to bottom, var(--color), transparent);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -100%);
+  opacity: 0.3;
+}
+
+/* Background Decorations */
+.backgroundDecorations {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.decoration1,
+.decoration2,
+.decoration3,
+.decoration4 {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(30, 58, 138, 0.02) 0%, transparent 70%);
+}
+
+.decoration1 {
+  width: 300px;
+  height: 300px;
+  top: 10%;
+  left: 5%;
+  animation: float 20s ease-in-out infinite;
+}
+
+.decoration2 {
+  width: 200px;
+  height: 200px;
+  top: 60%;
+  right: 10%;
+  animation: float 25s ease-in-out infinite 8s;
+}
+
+.decoration3 {
+  width: 150px;
+  height: 150px;
+  bottom: 20%;
+  left: 15%;
+  animation: float 15s ease-in-out infinite 12s;
+}
+
+.decoration4 {
+  width: 100px;
+  height: 100px;
+  top: 30%;
+  right: 20%;
+  animation: float 18s ease-in-out infinite 5s;
+}
+
+/* Animations */
+@keyframes float {
+  0%, 100% { 
+    transform: translateY(0px) rotate(0deg); 
+  }
+  50% { 
+    transform: translateY(-20px) rotate(3deg); 
+  }
+}
+
+@keyframes orbit {
+  from {
+    transform: 
+      translate(-50%, -50%) 
+      rotate(var(--angle)) 
+      translateY(-100px) 
+      rotate(calc(-1 * var(--angle)));
+  }
+  to {
+    transform: 
+      translate(-50%, -50%) 
+      rotate(calc(var(--angle) + 360deg)) 
+      translateY(-100px) 
+      rotate(calc(-1 * (var(--angle) + 360deg)));
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .valuesGrid {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+  
+  .valuesSummary {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    text-align: center;
+  }
+  
+  .summaryStats {
+    justify-content: center;
+  }
+  
+  .valuesConnector {
+    width: 250px;
+    height: 250px;
+  }
+  
+  .centerHub {
+    width: 80px;
+    height: 80px;
+  }
+  
+  .connectorNode {
+    width: 40px;
+    height: 40px;
+    margin-top: -20px;
+    margin-left: -20px;
+    transform: 
+      translate(-50%, -50%) 
+      rotate(var(--angle)) 
+      translateY(-80px) 
+      rotate(calc(-1 * var(--angle)));
+  }
+}
+
+@media (max-width: 768px) {
+  .coreValues {
+    padding: 3rem 0;
+  }
+  
+  .sectionTitle {
+    font-size: var(--font-size-3xl);
+  }
+  
+  .sectionSubtitle {
+    font-size: var(--font-size-base);
+  }
+  
+  .valuesGrid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+  }
+  
+  .summaryStats {
+    flex-direction: row;
+    gap: 1rem;
+    align-items: center;
+  }
+  
+  .summaryStatItem {
+    text-align: center;
+  }
+  
+  .valuesConnector {
+    width: 200px;
+    height: 200px;
+  }
+  
+  .centerHub {
+    width: 70px;
+    height: 70px;
+    font-size: 10px;
+  }
+  
+  .connectorNode {
+    width: 35px;
+    height: 35px;
+    margin-top: -17px;
+    margin-left: -17px;
+    transform: 
+      translate(-50%, -50%) 
+      rotate(var(--angle)) 
+      translateY(-65px) 
+      rotate(calc(-1 * var(--angle)));
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 0.5rem;
+  }
+  
+  .sectionTitle {
+    font-size: var(--font-size-2xl);
+  }
+  
+  .summaryTitle {
+    font-size: var(--font-size-xl);
+  }
+  
+  .summaryText {
+    font-size: var(--font-size-sm);
+  }
+  
+  .valuesConnector {
+    width: 180px;
+    height: 180px;
+  }
+  
+  .centerHub {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .connectorNode {
+    width: 30px;
+    height: 30px;
+    margin-top: -15px;
+    margin-left: -15px;
+    transform: 
+      translate(-50%, -50%) 
+      rotate(var(--angle)) 
+      translateY(-55px) 
+      rotate(calc(-1 * var(--angle)));
+  }
+}
