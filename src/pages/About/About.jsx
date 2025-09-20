@@ -7,7 +7,7 @@ import WhoWeAre from '../../components/About/WhoWeAre/WhoWeAre';
 import MissionVision from '../../components/About/MissionVision/MissionVision';
 import CoreValues from '../../components/About/CoreValues/CoreValues';
 import WhyChooseUs from '../../components/About/WhyChooseUs/WhyChooseUs';
-// import AboutCTA from '../../components/About/AboutCTA/AboutCTA';
+import AboutCTA from '../../components/About/AboutCTA/AboutCTA';
 import { PAGE_SEO_DATA, STRUCTURED_DATA } from '../../utils/constants';
 import styles from './About.module.css';
 
@@ -43,7 +43,7 @@ const About = () => {
             <MissionVision />
             <CoreValues /> 
             <WhyChooseUs />
-          {/* <AboutCTA /> */}
+            <AboutCTA />
         </main>
       </div>
     </>
