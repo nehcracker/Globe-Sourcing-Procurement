@@ -432,7 +432,7 @@ export const ABOUT_PAGE_CONTENT = {
 
 // SEO Configuration
 export const SEO_CONFIG = {
-  defaultTitle: 'Global Procurement & Sourcing Solutions',
+  defaultTitle: 'Global Procurement & Product Sourcing Solutions',
   siteName: 'Globe Sourcing Procurement',
   siteUrl: process.env.REACT_APP_SITE_URL || 'https://globesourceprocurement.com',
   defaultDescription: 'Connect with verified global suppliers for bulk product sourcing. Trusted procurement platform serving 2,500+ companies across 50+ countries with end-to-end logistics.',

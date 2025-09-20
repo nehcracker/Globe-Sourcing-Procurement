@@ -112,7 +112,8 @@
 .ctaButtons {
   display: flex;
   gap: 1rem;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  flex-direction: row;
   opacity: 0;
   transform: translateY(30px);
   transition: all 0.8s ease 0.6s;
@@ -123,6 +124,7 @@
   align-items: center;
   gap: 0.5rem;
   padding: 1rem 2rem;
+  padding: 0 clamp(1rem, 4vw, 2rem); /* Dynamic padding */
   background: linear-gradient(135deg, var(--color-accent-green), var(--color-accent-green-light));
   color: white;
   border: none;
@@ -447,6 +449,7 @@
   .subtitle {
     font-size: var(--font-size-base);
     max-width: none;
+    text-align: justify;
   }
   
   .ctaButtons {
@@ -482,7 +485,7 @@
   }
   
   .ctaButtons {
-    flex-direction: column;
+    flex-direction: row;
     width: 100%;
   }
   

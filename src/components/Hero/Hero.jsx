@@ -8,15 +8,27 @@ import styles from './Hero.module.css';
 
 const Hero = () => {
   const [isLoaded, setIsLoaded] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const { ref: heroRef } = useScrollAnimation({ threshold: 0.2 });
 
   useEffect(() => {
+    // Check if device is mobile
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+
     // Trigger entrance animation after component mounts
     const timer = setTimeout(() => {
       setIsLoaded(true);
     }, 100);
 
-    return () => clearTimeout(timer);
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener('resize', checkMobile);
+    };
   }, []);
 
   const handleCtaClick = (targetId) => {
@@ -24,10 +36,10 @@ const Hero = () => {
   };
 
   const stats = [
-    { number: '500+', label: 'Verified Suppliers', icon: <CheckCircle size={20} /> },
-    { number: '50+', label: 'Countries', icon: <Globe size={20} /> },
-    { number: '1000+', label: 'Products Sourced', icon: <Package size={20} /> },
-    { number: '99%', label: 'On-Time Delivery', icon: <Truck size={20} /> }
+    { number: '500+', label: 'Verified Suppliers', icon: <CheckCircle size={isMobile ? 18 : 20} /> },
+    { number: '50+', label: 'Countries', icon: <Globe size={isMobile ? 18 : 20} /> },
+    { number: '1000+', label: 'Products Sourced', icon: <Package size={isMobile ? 18 : 20} /> },
+    { number: '99%', label: 'On-Time Delivery', icon: <Truck size={isMobile ? 18 : 20} /> }
   ];
 
   return (
@@ -46,7 +58,7 @@ const Hero = () => {
           <div className={styles.mainContent}>
             {/* Badge */}
             <div className={`${styles.badge} ${isLoaded ? styles.fadeInUp : ''}`}>
-              <Globe size={16} />
+              <Globe size={14} />
               <span>Trusted Global Procurement Partner</span>
             </div>
 
@@ -54,7 +66,7 @@ const Hero = () => {
             <h1 className={`${styles.headline} ${isLoaded ? styles.fadeInUp : ''}`}>
               <span className={styles.gradientText}>Global Procurement</span>
               <br />
-              <span>and Sourcing Services</span>
+              <span className={styles.regularText}>and Sourcing Services</span>
             </h1>
 
             {/* Subtitle */}
@@ -68,16 +80,20 @@ const Hero = () => {
               <button 
                 className={`${styles.primaryCta} ${styles.pulseAnimation}`}
                 onClick={() => handleCtaClick('#buyer-form')}
+                aria-label="Request a procurement quote"
               >
                 <span>Request a Quote</span>
-                <ArrowRight size={20} />
+                <ArrowRight size={18} />
+                <div className={styles.buttonRipple}></div>
               </button>
               
               <button 
                 className={styles.secondaryCta}
                 onClick={() => handleCtaClick('#vendor-form')}
+                aria-label="Join as a vendor partner"
               >
                 <span>Join as Vendor</span>
+                <ArrowRight size={16} className={styles.secondaryArrow} />
               </button>
             </div>
 
@@ -85,10 +101,15 @@ const Hero = () => {
             <div className={`${styles.trustIndicators} ${isLoaded ? styles.fadeInUp : ''}`}>
               <span className={styles.trustText}>Trusted by businesses across Africa</span>
               <div className={styles.trustLogos}>
-                {/* Placeholder for company logos */}
-                <div className={styles.trustLogo}>Company A</div>
-                <div className={styles.trustLogo}>Company B</div>
-                <div className={styles.trustLogo}>Company C</div>
+                <div className={styles.trustLogo}>
+                  <span>Company A</span>
+                </div>
+                <div className={styles.trustLogo}>
+                  <span>Company B</span>
+                </div>
+                <div className={styles.trustLogo}>
+                  <span>Company C</span>
+                </div>
               </div>
             </div>
           </div>
@@ -113,18 +134,20 @@ const Hero = () => {
               ))}
             </div>
 
-            {/* Floating Elements */}
-            <div className={styles.floatingElements}>
-              <div className={`${styles.floatingElement} ${styles.float1}`}>
-                <Globe size={24} />
+            {/* Floating Elements - Hidden on mobile for performance */}
+            {!isMobile && (
+              <div className={styles.floatingElements}>
+                <div className={`${styles.floatingElement} ${styles.float1}`}>
+                  <Globe size={24} />
+                </div>
+                <div className={`${styles.floatingElement} ${styles.float2}`}>
+                  <Package size={20} />
+                </div>
+                <div className={`${styles.floatingElement} ${styles.float3}`}>
+                  <Truck size={22} />
+                </div>
               </div>
-              <div className={`${styles.floatingElement} ${styles.float2}`}>
-                <Package size={20} />
-              </div>
-              <div className={`${styles.floatingElement} ${styles.float3}`}>
-                <Truck size={22} />
-              </div>
-            </div>
+            )}
           </div>
         </div>
 
