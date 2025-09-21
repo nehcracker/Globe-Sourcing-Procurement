@@ -128,15 +128,15 @@ const ServicesCTA = () => {
                   <span className={styles.contactValue}>info@globesourceprocurement.com</span>
                 </div>
               </div>
-              <div className={styles.contactMethod}>
-                <div className={styles.contactIcon}>
+           {/*   <div className={styles.contactMethod}>
+                 <div className={styles.contactIcon}>
                   <Phone size={20} />
                 </div>
                 <div className={styles.contactDetails}>
                   <span className={styles.contactLabel}>Call Us</span>
                   <span className={styles.contactValue}>+254-XXX-XXXXXX</span>
-                </div>
-              </div>
+                </div> 
+              </div> */}
             </div>
           </div>
         </div>

@@ -88,7 +88,7 @@
 
 @media (max-width: 1024px) {
   .ctaDescription {
-    text-align: center;
+    text-align: justify;
   }
 }
 
@@ -586,6 +586,7 @@
   min-width: 240px;
   text-decoration: none;
   color: inherit;
+  align-items: flex-end;
 }
 
 .contactMethod:hover {
@@ -611,7 +612,7 @@
 
 @media (max-width: 480px) {
   .contactMethod {
-    max-width: 280px;
+    max-width: 1280px;
     padding: 0.875rem 1rem;
   }
 }
