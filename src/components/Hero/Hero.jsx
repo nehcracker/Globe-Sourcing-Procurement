@@ -69,6 +69,10 @@ const Hero = () => {
               <span className={styles.regularText}>& Bulk Sourcing Solutions</span>
             </h1>
 
+            <h2 className={`${styles.headline} ${isLoaded ? styles.fadeInUp : ''}`}>
+              <span className={styles.gradientText2}>Source, Procure, & Deliver Products Worldwide</span>
+            </h2>
+
             {/* Subtitle */}
             <p className={`${styles.subtitle} ${isLoaded ? styles.fadeInUp : ''}`}>
               {COMPANY.description} We connect buyers with trusted vendors for 
@@ -79,7 +83,7 @@ const Hero = () => {
             <div className={`${styles.ctaButtons} ${isLoaded ? styles.fadeInUp : ''}`}>
               <button 
                 className={`${styles.primaryCta} ${styles.pulseAnimation}`}
-                onClick={() => handleCtaClick('#buyer-form')}
+                onClick={() => handleCtaClick('buyer-form')}
                 aria-label="Request a procurement quote"
               >
                 <span>Request a Quote</span>

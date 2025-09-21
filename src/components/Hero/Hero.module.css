@@ -90,12 +90,29 @@
   transition: all 0.8s ease 0.2s;
 }
 
+.regularText {
+  color: white;
+  font-size: var(--font-size-2xl)
+}
+
 .gradientText {
   background: linear-gradient(135deg, var(--color-accent-green-light), var(--color-white));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
+
+.gradientText2 {
+  background: linear-gradient(135deg, var(--color-accent-green-light), var(--color-white));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-size: clamp(1.5rem, 8vw, 1rem);
+  font-weight: var(--font-weight-bold);
+  line-height: 1.1;
+  margin-bottom: 0;
+}
+
 
 /* Subtitle */
 .subtitle {
