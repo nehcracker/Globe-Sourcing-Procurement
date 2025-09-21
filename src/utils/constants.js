@@ -498,9 +498,9 @@ export const PAGE_SEO_DATA = {
   
   services: {
     title: 'Global Product Procurement | Supplier Sourcing | Bulk Products',
-    description: 'Comprehensive procurement services including product sourcing, supplier verification, logistics coordination, and end-to-end delivery. Serving businesses worldwide.',
+    description: 'Global procurement solutions with product sourcing, supplier verification, logistics, import & export financing, and end-to-end delivery worldwide.',
     keywords: 'procurement services, product sourcing, supplier verification, logistics services, international shipping, bulk ordering, supply chain management',
-    url: '/#services',
+    url: '/services',
     image: '/images/og-services-globe-sourcing.jpg'
   },
   

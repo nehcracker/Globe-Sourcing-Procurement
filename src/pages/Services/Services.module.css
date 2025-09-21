@@ -1,0 +1,261 @@
+/* src/pages/Services/Services.module.css */
+
+.servicesPage {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  background: var(--color-white);
+}
+
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.servicesContent {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+/* Ensure proper section spacing and flow */
+.main > section {
+  position: relative;
+  z-index: 1;
+}
+
+.main > section:not(:first-child) {
+  margin-top: 0;
+}
+
+/* Smooth scroll behavior for the entire page */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Global optimizations for services page */
+.servicesPage * {
+  box-sizing: border-box;
+}
+
+/* Performance optimizations */
+.servicesPage img {
+  will-change: transform;
+}
+
+.servicesPage [class*="animation"],
+.servicesPage [class*="slide"],
+.servicesPage [class*="fade"] {
+  will-change: transform, opacity;
+}
+
+/* Focus management for accessibility */
+.servicesPage :focus {
+  outline: 2px solid var(--color-accent-green-light);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.servicesPage button:focus {
+  outline: 2px solid var(--color-accent-green-light);
+  outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .servicesPage {
+    background: white;
+    color: black;
+  }
+  
+  .main > section {
+    border-bottom: 2px solid #000;
+  }
+}
+
+/* Print styles */
+@media print {
+  .servicesPage {
+    background: white;
+    color: black;
+  }
+  
+  .main > section {
+    page-break-inside: avoid;
+    margin: 2rem 0;
+    padding: 1rem 0;
+  }
+  
+  /* Hide interactive elements when printing */
+  .servicesPage button,
+  .servicesPage [class*="cta"],
+  .servicesPage [class*="scroll"] {
+    display: none;
+  }
+}
+
+/* Dark mode support (if needed in future) */
+@media (prefers-color-scheme: dark) {
+  .servicesPage {
+    /* Services page maintains light theme for better readability */
+    background: var(--color-white);
+    color: var(--color-gray-800);
+  }
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .servicesPage {
+    scroll-behavior: auto;
+  }
+  
+  .servicesPage *,
+  .servicesPage *::before,
+  .servicesPage *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Mobile Safari specific fixes */
+@supports (-webkit-touch-callout: none) {
+  .servicesPage {
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  .main {
+    transform: translate3d(0, 0, 0); /* Hardware acceleration */
+  }
+}
+
+/* Samsung and Android specific optimizations */
+@media screen and (max-width: 768px) {
+  .servicesPage {
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+  }
+  
+  .main {
+    overflow-x: hidden;
+    width: 100%;
+  }
+  
+  .servicesContent {
+    width: 100%;
+  }
+}
+
+/* Touch device optimizations */
+@media (pointer: coarse) {
+  .servicesPage button,
+  .servicesPage [role="button"] {
+    min-height: 48px;
+    min-width: 48px;
+  }
+  
+  .servicesPage a {
+    min-height: 44px;
+    min-width: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+/* Landscape orientation on mobile */
+@media (max-height: 500px) and (orientation: landscape) {
+  .servicesPage {
+    min-height: 100vh;
+  }
+  
+  .main {
+    min-height: calc(100vh - 60px);
+  }
+}
+
+/* Ultra-wide screens optimization */
+@media (min-width: 1920px) {
+  .main {
+    max-width: 1920px;
+    margin: 0 auto;
+  }
+}
+
+/* Small screen optimizations */
+@media (max-width: 320px) {
+  .servicesPage {
+    font-size: 14px;
+  }
+  
+  .main {
+    padding: 0;
+  }
+  
+  .servicesContent {
+    padding: 0;
+  }
+}
+
+/* Ensure proper stacking context throughout */
+.servicesPage {
+  position: relative;
+  z-index: 0;
+}
+
+.main {
+  position: relative;
+  z-index: 1;
+}
+
+/* Loading state optimization */
+.servicesPage[data-loading="true"] {
+  overflow: hidden;
+}
+
+.servicesPage[data-loading="true"] * {
+  pointer-events: none;
+}
+
+/* Error state styling */
+.servicesPage[data-error="true"] {
+  background: #fff5f5;
+  color: #721c24;
+}
+
+/* Success state styling */
+.servicesPage[data-success="true"] {
+  background: #f0fff4;
+  color: #22543d;
+}
+
+/* Responsive typography scaling */
+@media (min-width: 320px) and (max-width: 1920px) {
+  .servicesPage {
+    font-size: clamp(14px, 1.5vw, 16px);
+  }
+}
+
+/* Improve text rendering on different devices */
+.servicesPage {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Ensure consistent box model */
+.servicesPage,
+.servicesPage *,
+.servicesPage *::before,
+.servicesPage *::after {
+  box-sizing: border-box;
+}
+
+/* Memory optimization for large content */
+.servicesContent > section:not(:first-child):not(:last-child) {
+  contain: layout style paint;
+}
