@@ -3,8 +3,8 @@
 // Company Information
 export const COMPANY = {
   name: 'Global Source',
-  tagline: 'Global Source Procurement & Bulk Sourcing Solutions',
-  description: 'Source products in bulk directly from verified manufacturers and suppliers worldwide.',
+  tagline: 'Source, Procure, & Deliver Products Worldwide',
+  description: 'We connect buyers with trusted vendors for seamless international trade and end-to-end logistics support.',
   email: 'info@globesourceprocurement.com',
   address: {
     street: 'Saint John Woods',
@@ -55,6 +55,18 @@ export const SERVICES = [
     ]
   },
   {
+    id: 'logistics-coordination',
+    title: 'Logistics Coordination',
+    description: 'Comprehensive logistics solutions including shipping, customs clearance, and delivery tracking.',
+    icon: 'Truck',
+    features: [
+      'Shipping arrangements',
+      'Customs clearance',
+      'Delivery tracking',
+      'End-to-end logistics'
+    ]
+  },
+  {
     id: 'delivery-logistics',
     title: 'Delivery & Logistics',
     description: 'Complete logistics solutions with door-to-door delivery tracking and quality assurance.',
@@ -65,7 +77,32 @@ export const SERVICES = [
       'Quality assurance',
       'Insurance coverage'
     ]
-  }
+  },
+  {    
+    id: 'bulk-order-management',
+    title: 'Bulk Order Management',
+    description: 'Specialized in handling large-volume orders with efficiency and accuracy from start to finish.',
+    icon: 'ShoppingCart',
+    features: [
+      'Large-volume expertise',
+      'Order tracking',
+      'Inventory coordination',
+      'Timely fulfillment'
+    ]
+  },
+  {
+    id: 'import-export-financing',
+    title: 'Import & Export Financing',
+    description: 'Flexible financing solutions to support your international procurement and bulk sourcing needs.',
+    icon: 'DollarSign',
+    features: [
+      'Flexible payment terms',
+      'Trade financing options',
+      'Credit solutions',
+      'Risk mitigation'
+    ]
+  },
+  
 ];
 
 // Process Steps

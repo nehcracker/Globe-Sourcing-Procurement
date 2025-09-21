@@ -1,6 +1,6 @@
 // src/components/Services/ServiceCard.jsx
 import React from 'react';
-import { Globe, Package, Truck, CheckCircle } from 'lucide-react';
+import { Globe, Package, Truck, CheckCircle, DollarSign, ShoppingCart } from 'lucide-react';
 import styles from './ServiceCard.module.css';
 
 // Icon mapping for service cards
@@ -8,6 +8,8 @@ const iconMap = {
   Globe: Globe,
   Package: Package,
   Truck: Truck,
+  DollarSign: DollarSign,
+  ShoppingCart: ShoppingCart,
   CheckCircle: CheckCircle
 };
 
