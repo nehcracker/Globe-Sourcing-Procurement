@@ -74,15 +74,31 @@ const SEO = ({
       updateMetaTag('robots', 'noindex, nofollow', false);
     }
 
-    // Open Graph tags
+    // Open Graph tags - only update if different from base values
+    const currentOgTitle = document.querySelector('meta[property="og:title"]')?.getAttribute('content');
+    const currentOgDescription = document.querySelector('meta[property="og:description"]')?.getAttribute('content');
+    const currentOgImage = document.querySelector('meta[property="og:image"]')?.getAttribute('content');
+    const currentOgUrl = document.querySelector('meta[property="og:url"]')?.getAttribute('content');
+
+    // Only update if the content is different or if it's page-specific content
+    if (title && title !== currentOgTitle) {
+      updateMetaTag('og:title', title);
+    }
+    if (description && description !== currentOgDescription) {
+      updateMetaTag('og:description', description);
+    }
+    if (imageUrl && imageUrl !== currentOgImage) {
+      updateMetaTag('og:image', imageUrl);
+    }
+    if (fullUrl && fullUrl !== currentOgUrl) {
+      updateMetaTag('og:url', fullUrl);
+    }
+
+    // Always update these as they might be page-specific
     updateMetaTag('og:type', type);
-    updateMetaTag('og:title', title);
-    updateMetaTag('og:description', description);
-    updateMetaTag('og:image', imageUrl);
     updateMetaTag('og:image:width', '1200');
     updateMetaTag('og:image:height', '630');
     updateMetaTag('og:image:alt', title);
-    updateMetaTag('og:url', fullUrl);
     updateMetaTag('og:site_name', COMPANY.name);
     updateMetaTag('og:locale', 'en_US');
 
