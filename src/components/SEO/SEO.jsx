@@ -28,10 +28,10 @@ const SEO = ({
     // Create or update meta tags
     const updateMetaTag = (property, content, isProperty = true) => {
       if (!content) return;
-      
+
       let selector = isProperty ? `meta[property="${property}"]` : `meta[name="${property}"]`;
       let element = document.querySelector(selector);
-      
+
       if (element) {
         element.setAttribute('content', content);
       } else {
@@ -48,9 +48,9 @@ const SEO = ({
 
     const updateLinkTag = (rel, href) => {
       if (!href) return;
-      
+
       let element = document.querySelector(`link[rel="${rel}"]`);
-      
+
       if (element) {
         element.setAttribute('href', href);
       } else {
@@ -74,31 +74,15 @@ const SEO = ({
       updateMetaTag('robots', 'noindex, nofollow', false);
     }
 
-    // Open Graph tags - only update if different from base values
-    const currentOgTitle = document.querySelector('meta[property="og:title"]')?.getAttribute('content');
-    const currentOgDescription = document.querySelector('meta[property="og:description"]')?.getAttribute('content');
-    const currentOgImage = document.querySelector('meta[property="og:image"]')?.getAttribute('content');
-    const currentOgUrl = document.querySelector('meta[property="og:url"]')?.getAttribute('content');
-
-    // Only update if the content is different or if it's page-specific content
-    if (title && title !== currentOgTitle) {
-      updateMetaTag('og:title', title);
-    }
-    if (description && description !== currentOgDescription) {
-      updateMetaTag('og:description', description);
-    }
-    if (imageUrl && imageUrl !== currentOgImage) {
-      updateMetaTag('og:image', imageUrl);
-    }
-    if (fullUrl && fullUrl !== currentOgUrl) {
-      updateMetaTag('og:url', fullUrl);
-    }
-
-    // Always update these as they might be page-specific
+    // Open Graph tags - always update for page-specific content
     updateMetaTag('og:type', type);
+    updateMetaTag('og:title', title);
+    updateMetaTag('og:description', description);
+    updateMetaTag('og:image', imageUrl);
     updateMetaTag('og:image:width', '1200');
     updateMetaTag('og:image:height', '630');
     updateMetaTag('og:image:alt', title);
+    updateMetaTag('og:url', fullUrl);
     updateMetaTag('og:site_name', COMPANY.name);
     updateMetaTag('og:locale', 'en_US');
 
@@ -151,7 +135,7 @@ const SEO = ({
   useEffect(() => {
     const addLinkIfNotExists = (rel, href, sizes = null, type = null) => {
       if (document.querySelector(`link[rel="${rel}"][href="${href}"]`)) return;
-      
+
       const link = document.createElement('link');
       link.rel = rel;
       link.href = href;
