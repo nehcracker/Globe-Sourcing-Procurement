@@ -66,7 +66,6 @@
   justify-items: stretch;
   min-height: calc(100vh - 160px);
   min-height: calc(100dvh - 160px);
-  min-height: calc(-webkit-fill-available - 160px);
   width: 100%;
 }
 
