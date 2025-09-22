@@ -32,7 +32,28 @@ const Hero = () => {
   }, []);
 
   const handleCtaClick = (targetId) => {
-    scrollToElement(targetId);
+    // For buyer form, scroll to the FormSelector section first
+    if (targetId === 'buyer-form') {
+      scrollToElement('get-started', 80);
+      // Open buyer modal after a short delay to allow scroll to complete
+      setTimeout(() => {
+        const buyerCard = document.getElementById('buyer-form');
+        if (buyerCard) {
+          buyerCard.click();
+        }
+      }, 800);
+    } else if (targetId === 'vendor-form') {
+      scrollToElement('get-started', 80);
+      // Open vendor modal after a short delay to allow scroll to complete
+      setTimeout(() => {
+        const vendorCard = document.getElementById('vendor-form');
+        if (vendorCard) {
+          vendorCard.click();
+        }
+      }, 800);
+    } else {
+      scrollToElement(targetId);
+    }
   };
 
   const stats = [
@@ -43,14 +64,14 @@ const Hero = () => {
   ];
 
   return (
-    <section 
-      id="home" 
+    <section
+      id="home"
       ref={heroRef}
       className={`${styles.hero} ${isLoaded ? styles.loaded : ''}`}
     >
       {/* Background Pattern */}
       <div className={styles.backgroundPattern}></div>
-      
+
       {/* Hero Content */}
       <div className={styles.container}>
         <div className={styles.heroContent}>
@@ -75,13 +96,13 @@ const Hero = () => {
 
             {/* Subtitle */}
             <p className={`${styles.subtitle} ${isLoaded ? styles.fadeInUp : ''}`}>
-              {COMPANY.description} We connect buyers with trusted vendors for 
+              {COMPANY.description} We connect buyers with trusted vendors for
               seamless international trade and end-to-end logistics support.
             </p>
 
             {/* CTA Buttons */}
             <div className={`${styles.ctaButtons} ${isLoaded ? styles.fadeInUp : ''}`}>
-              <button 
+              <button
                 className={`${styles.primaryCta} ${styles.pulseAnimation}`}
                 onClick={() => handleCtaClick('buyer-form')}
                 aria-label="Request a procurement quote"
@@ -90,10 +111,10 @@ const Hero = () => {
                 <ArrowRight size={18} />
                 <div className={styles.buttonRipple}></div>
               </button>
-              
-              <button 
+
+              <button
                 className={styles.secondaryCta}
-                onClick={() => handleCtaClick('#vendor-form')}
+                onClick={() => handleCtaClick('vendor-form')}
                 aria-label="Join as a vendor partner"
               >
                 <span>Join as Vendor</span>
@@ -131,8 +152,8 @@ const Hero = () => {
           <div className={styles.heroVisual}>
             <div className={`${styles.statsGrid} ${isLoaded ? styles.slideInRight : ''}`}>
               {stats.map((stat, index) => (
-                <div 
-                  key={index} 
+                <div
+                  key={index}
                   className={styles.statCard}
                   style={{ animationDelay: `${(index + 1) * 0.1}s` }}
                 >

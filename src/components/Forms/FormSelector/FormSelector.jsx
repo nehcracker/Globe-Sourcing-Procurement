@@ -33,8 +33,8 @@ const FormSelector = () => {
 
   return (
     <>
-      <section 
-        id="get-started" 
+      <section
+        id="get-started"
         className={styles.formSelector}
         ref={sectionRef}
       >
@@ -45,7 +45,7 @@ const FormSelector = () => {
             <p className={styles.subtitle}>
               Join thousands of companies already growing with Globe Sourcing Procurement
             </p>
-            
+
             {/* Trust Indicators */}
             <div className={styles.trustIndicators}>
               <div className={styles.trustItem}>
@@ -66,7 +66,19 @@ const FormSelector = () => {
           {/* Selection Cards */}
           <div className={`${styles.cardsContainer} ${isVisible ? styles.visible : ''}`}>
             {/* Vendor Card */}
-            <div className={styles.selectionCard} onClick={openVendorModal}>
+            <div
+              id="vendor-form"
+              className={styles.selectionCard}
+              onClick={openVendorModal}
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  openVendorModal();
+                }
+              }}
+            >
               <div className={styles.cardHeader}>
                 <div className={styles.cardIcon}>
                   <Building2 size={32} />
@@ -114,7 +126,19 @@ const FormSelector = () => {
             </div>
 
             {/* Buyer Card */}
-            <div className={styles.selectionCard} onClick={openBuyerModal}>
+            <div
+              id="buyer-form"
+              className={styles.selectionCard}
+              onClick={openBuyerModal}
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  openBuyerModal();
+                }
+              }}
+            >
               <div className={styles.cardHeader}>
                 <div className={`${styles.cardIcon} ${styles.buyerIcon}`}>
                   <ShoppingCart size={32} />
@@ -165,7 +189,7 @@ const FormSelector = () => {
           {/* Bottom CTA */}
           <div className={`${styles.bottomCta} ${isVisible ? styles.visible : ''}`}>
             <p className={styles.ctaText}>
-              Not sure which option is right for you? 
+              Not sure which option is right for you?
               <button className={styles.helpButton}>Get personalized guidance</button>
             </p>
           </div>
