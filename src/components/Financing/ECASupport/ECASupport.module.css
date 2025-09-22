@@ -1,0 +1,517 @@
+/* src/components/Financing/ECASupport/ECASupport.module.css */
+
+.ecaSupport {
+  padding: clamp(4rem, 8vw, 6rem) 0;
+  background: linear-gradient(135deg, var(--color-navy-blue-dark) 0%, var(--color-navy-blue) 50%, var(--color-accent-green-dark) 100%);
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.container {
+  max-width: var(--container-xl);
+  margin: 0 auto;
+  padding: 0 clamp(1rem, 4vw, 2rem);
+  position: relative;
+  z-index: 2;
+}
+
+/* Section Header */
+.header {
+  text-align: center;
+  margin-bottom: clamp(3rem, 6vw, 4rem);
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease;
+}
+
+.header.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.title {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: var(--font-weight-bold);
+  color: white;
+  margin-bottom: 1rem;
+  background: linear-gradient(135deg, var(--color-white), var(--color-accent-green-light));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.subtitle {
+  font-size: clamp(1rem, 2.5vw, 1.125rem);
+  color: rgba(255, 255, 255, 0.9);
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* Benefits Grid */
+.benefitsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: clamp(1.5rem, 3vw, 2rem);
+  margin-bottom: clamp(4rem, 8vw, 5rem);
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s ease 0.3s;
+}
+
+.benefitsGrid.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+  .benefitsGrid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
+
+.benefitCard {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--border-radius-xl);
+  padding: clamp(1.5rem, 4vw, 2rem);
+  text-align: center;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 0;
+  transform: translateY(30px) scale(0.9);
+  animation: none;
+}
+
+.benefitsGrid.visible .benefitCard {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  animation: popIn 0.8s ease forwards;
+}
+
+.benefitCard:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-5px) scale(1.02);
+  border-color: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.benefitIcon {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, var(--color-accent-green), var(--color-accent-green-light));
+  border-radius: var(--border-radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  margin: 0 auto 1rem;
+  box-shadow: 0 4px 15px rgba(5, 150, 105, 0.3);
+  transition: all 0.3s ease;
+}
+
+.benefitCard:hover .benefitIcon {
+  transform: scale(1.1);
+  box-shadow: 0 6px 20px rgba(5, 150, 105, 0.4);
+}
+
+@media (max-width: 600px) {
+  .benefitIcon {
+    width: 50px;
+    height: 50px;
+  }
+}
+
+.benefitTitle {
+  font-size: clamp(1.125rem, 2.5vw, 1.25rem);
+  font-weight: var(--font-weight-bold);
+  color: white;
+  margin-bottom: 0.75rem;
+}
+
+.benefitDescription {
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.6;
+  font-size: clamp(0.875rem, 2vw, 1rem);
+  margin: 0;
+}
+
+/* Partners Section */
+.partnersSection {
+  margin-bottom: clamp(4rem, 8vw, 5rem);
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s ease 0.6s;
+}
+
+.partnersSection.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.partnersTitle {
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  font-weight: var(--font-weight-bold);
+  color: white;
+  text-align: center;
+  margin-bottom: clamp(2rem, 4vw, 3rem);
+}
+
+/* Partners Grid */
+.partnersGrid {
+  /*display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: clamp(1.5rem, 3vw, 2rem);*/
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* responsive cols */
+  grid-auto-rows: minmax(150px, auto); /* responsive rows */
+  gap: 1rem; /* spacing */
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .partnersGrid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .partnersGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.regionCard {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: var(--border-radius-xl);
+  padding: clamp(1.5rem, 4vw, 2rem);
+  transition: all 0.3s ease;
+}
+
+.regionCard:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.25);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.regionHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.regionTitle {
+  font-size: clamp(1.125rem, 2.5vw, 1.25rem);
+  font-weight: var(--font-weight-bold);
+  color: white;
+  margin: 0;
+}
+
+.regionIcon {
+  font-size: 1.5rem;
+  opacity: 0.8;
+}
+
+.partnersList {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.partnerItem {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: var(--border-radius-lg);
+  transition: all 0.3s ease;
+}
+
+.partnerItem:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateX(5px);
+}
+
+.partnerFlag {
+  font-size: 1.25rem;
+  flex-shrink: 0;
+}
+
+.partnerInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  flex: 1;
+}
+
+.partnerName {
+  font-size: clamp(0.875rem, 2vw, 1rem);
+  font-weight: var(--font-weight-semibold);
+  color: white;
+  line-height: 1.2;
+}
+
+.partnerCountry {
+  font-size: clamp(0.75rem, 1.5vw, 0.875rem);
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.2;
+}
+
+/* Impact Section */
+.impactSection {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s ease 0.9s;
+}
+
+.impactSection.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.impactTitle {
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  font-weight: var(--font-weight-bold);
+  color: white;
+  text-align: center;
+  margin-bottom: clamp(2rem, 4vw, 3rem);
+}
+
+.impactGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: clamp(1.5rem, 3vw, 2rem);
+}
+
+@media (max-width: 768px) {
+  .impactGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.impactCard {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: var(--border-radius-xl);
+  padding: clamp(1.5rem, 4vw, 2rem);
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.impactCard:hover {
+  background: rgba(255, 255, 255, 0.12);
+  transform: translateY(-5px);
+  border-color: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.impactIcon {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, var(--color-accent-green), var(--color-accent-green-light));
+  border-radius: var(--border-radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  margin: 0 auto 1rem;
+  box-shadow: 0 4px 15px rgba(5, 150, 105, 0.3);
+  transition: all 0.3s ease;
+}
+
+.impactCard:hover .impactIcon {
+  transform: scale(1.1);
+  box-shadow: 0 6px 20px rgba(5, 150, 105, 0.4);
+}
+
+.impactCard h4 {
+  font-size: clamp(1.125rem, 2.5vw, 1.25rem);
+  font-weight: var(--font-weight-bold);
+  color: white;
+  margin-bottom: 0.75rem;
+}
+
+.impactCard p {
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.6;
+  font-size: clamp(0.875rem, 2vw, 1rem);
+  margin: 0;
+}
+
+/* Background Elements */
+.backgroundElements {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.bgShape1,
+.bgShape2 {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.03) 0%, transparent 70%);
+}
+
+.bgShape1 {
+  width: 400px;
+  height: 400px;
+  top: -200px;
+  right: -200px;
+  animation: float 25s ease-in-out infinite;
+}
+
+.bgShape2 {
+  width: 300px;
+  height: 300px;
+  bottom: -150px;
+  left: -150px;
+  animation: float 30s ease-in-out infinite 10s;
+}
+
+/* Animations */
+@keyframes popIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes float {
+  0%, 100% { 
+    transform: translateY(0px) rotate(0deg); 
+  }
+  50% { 
+    transform: translateY(-30px) rotate(3deg); 
+  }
+}
+
+/* Mobile optimizations */
+@media screen and (max-width: 480px) {
+  .ecaSupport {
+    padding: clamp(3rem, 6vw, 4rem) 0;
+  }
+  
+  .container {
+    padding: 0 1rem;
+  }
+  
+  .benefitCard,
+  .regionCard,
+  .impactCard {
+    padding: 1.5rem;
+  }
+  
+  .benefitIcon,
+  .impactIcon {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .partnerItem {
+    padding: 0.625rem;
+    gap: 0.5rem;
+  }
+}
+
+/* Reduce motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .bgShape1,
+  .bgShape2 {
+    animation: none;
+  }
+  
+  .header,
+  .benefitsGrid,
+  .partnersSection,
+  .impactSection {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  
+  .benefitCard {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .ecaSupport {
+    background: #000;
+    color: #fff;
+  }
+  
+  .benefitCard,
+  .regionCard,
+  .impactCard {
+    background: #333;
+    border: 2px solid #fff;
+  }
+  
+  .benefitIcon,
+  .impactIcon {
+    background: #fff;
+    color: #000;
+  }
+  
+  .partnerItem {
+    background: #444;
+  }
+}
+
+/* Print styles */
+@media print {
+  .ecaSupport {
+    background: white;
+    color: black;
+  }
+  
+  .backgroundElements {
+    display: none;
+  }
+  
+  .benefitCard,
+  .regionCard,
+  .impactCard {
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    break-inside: avoid;
+    margin-bottom: 1rem;
+  }
+  
+  .title,
+  .partnersTitle,
+  .impactTitle,
+  .benefitTitle,
+  .regionTitle {
+    color: #000;
+  }
+  
+  .subtitle,
+  .benefitDescription,
+  .partnerName,
+  .partnerCountry {
+    color: #333;
+  }
+}

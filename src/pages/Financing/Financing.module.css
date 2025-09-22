@@ -1,0 +1,203 @@
+/* src/pages/Financing/Financing.module.css */
+
+.financingPage {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  background: var(--color-white);
+}
+
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+/* Ensure proper section spacing and flow */
+.main > section {
+  position: relative;
+  z-index: 1;
+}
+
+.main > section:not(:first-child) {
+  margin-top: 0;
+}
+
+/* Smooth scroll behavior for the entire page */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Global optimizations for financing page */
+.financingPage * {
+  box-sizing: border-box;
+}
+
+/* Performance optimizations */
+.financingPage img {
+  will-change: transform;
+}
+
+.financingPage [class*="animation"],
+.financingPage [class*="slide"],
+.financingPage [class*="fade"] {
+  will-change: transform, opacity;
+}
+
+/* Focus management for accessibility */
+.financingPage :focus {
+  outline: 2px solid var(--color-accent-green-light);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.financingPage button:focus {
+  outline: 2px solid var(--color-accent-green-light);
+  outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .financingPage {
+    background: white;
+    color: black;
+  }
+  
+  .main > section {
+    border-bottom: 2px solid #000;
+  }
+}
+
+/* Print styles */
+@media print {
+  .financingPage {
+    background: white;
+    color: black;
+  }
+  
+  .main > section {
+    page-break-inside: avoid;
+    margin: 2rem 0;
+    padding: 1rem 0;
+  }
+  
+  /* Hide interactive elements when printing */
+  .financingPage button,
+  .financingPage [class*="cta"],
+  .financingPage [class*="scroll"] {
+    display: none;
+  }
+}
+
+/* Dark mode support (if needed in future) */
+@media (prefers-color-scheme: dark) {
+  .financingPage {
+    /* Financing page maintains light theme for better readability */
+    background: var(--color-white);
+    color: var(--color-gray-800);
+  }
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .financingPage {
+    scroll-behavior: auto;
+  }
+  
+  .financingPage *,
+  .financingPage *::before,
+  .financingPage *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Mobile Safari specific fixes */
+@supports (-webkit-touch-callout: none) {
+  .financingPage {
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  .main {
+    transform: translate3d(0, 0, 0); /* Hardware acceleration */
+  }
+}
+
+/* Samsung and Android specific optimizations */
+@media screen and (max-width: 768px) {
+  .financingPage {
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+  }
+  
+  .main {
+    overflow-x: hidden;
+    width: 100%;
+  }
+}
+
+/* Touch device optimizations */
+@media (pointer: coarse) {
+  .financingPage button,
+  .financingPage [role="button"] {
+    min-height: 48px;
+    min-width: 48px;
+  }
+  
+  .financingPage a {
+    min-height: 44px;
+    min-width: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+/* Ultra-wide screens optimization */
+@media (min-width: 1920px) {
+  .main {
+    max-width: 1920px;
+    margin: 0 auto;
+  }
+}
+
+/* Small screen optimizations */
+@media (max-width: 320px) {
+  .financingPage {
+    font-size: 14px;
+  }
+  
+  .main {
+    padding: 0;
+  }
+}
+
+/* Ensure proper stacking context throughout */
+.financingPage {
+  position: relative;
+  z-index: 0;
+}
+
+.main {
+  position: relative;
+  z-index: 1;
+}
+
+/* Improve text rendering on different devices */
+.financingPage {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Ensure consistent box model */
+.financingPage,
+.financingPage *,
+.financingPage *::before,
+.financingPage *::after {
+  box-sizing: border-box;
+}

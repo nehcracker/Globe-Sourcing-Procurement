@@ -510,8 +510,103 @@ export const PAGE_SEO_DATA = {
     keywords: 'client testimonials, procurement reviews, supplier feedback, global clients, success stories, verified reviews, customer satisfaction',
     url: '/#testimonials',
     image: '/images/og-testimonials-globe-sourcing.jpg'
+  },
+  financing: {
+    title: 'Import & Export Financing Solutions | Trade Finance | Letters of Credit',
+    description: 'Secure financing solutions for global trade including Letters of Credit, Bank Guarantees, import/export financing, and ECA-backed trade credit for international procurement.',
+    keywords: 'import financing, export financing, letters of credit, trade finance, bank guarantees, ECA support, international trade financing, supply chain finance, structured finance',
+    url: '/financing',
+    image: '/images/og-financing-globe-sourcing.jpg'
   }
 };
+
+// financing process steps
+export const FINANCING_PROCESS_STEPS = [
+  {
+    step: '01',
+    title: 'Transaction Review',
+    description: 'We assess the trade order placed on our platform, review supplier contracts, and evaluate financing needs.',
+    icon: 'FileText'
+  },
+  {
+    step: '02',
+    title: 'Financing Approval',
+    description: 'We arrange tailored financing through Letters of Credit, Bank Guarantees, trade credit, or structured finance.',
+    icon: 'CheckCircle'
+  },
+  {
+    step: '03',
+    title: 'Secure Payment Flow',
+    description: 'Vendors receive advance payments or payment assurance while buyers gain financing without straining cash flow.',
+    icon: 'Shield'
+  },
+  {
+    step: '04',
+    title: 'Completion & Settlement',
+    description: 'After delivery confirmation, funds are settled between parties with full documentation and transparency.',
+    icon: 'CreditCard'
+  }
+];
+
+// Add ECA partners data
+export const ECA_PARTNERS = {
+  europe: [
+    { name: 'UK Export Finance', country: 'United Kingdom', flag: '🇬🇧' },
+    { name: 'Euler Hermes', country: 'Germany', flag: '🇩🇪' },
+    { name: 'SACE', country: 'Italy', flag: '🇮🇹' },
+    { name: 'Coface', country: 'France', flag: '🇫🇷' }
+  ],
+  asia: [
+    { name: 'Sinosure', country: 'China', flag: '🇨🇳' },
+    { name: 'JBIC', country: 'Japan', flag: '🇯🇵' },
+    { name: 'K-sure', country: 'South Korea', flag: '🇰🇷' },
+    { name: 'ECGC', country: 'India', flag: '🇮🇳' }
+  ],
+  africa: [
+    { name: 'Afreximbank', country: 'Africa', flag: '🌍' },
+    { name: 'ECGC Kenya', country: 'Kenya', flag: '🇰🇪' },
+    { name: 'CGIC', country: 'South Africa', flag: '🇿🇦' }
+  ],
+  americas: [
+    { name: 'Ex-Im Bank', country: 'United States', flag: '🇺🇸' },
+    { name: 'EDC', country: 'Canada', flag: '🇨🇦' },
+    { name: 'BNDES', country: 'Brazil', flag: '🇧🇷' }
+  ]
+};
+
+// Add industries supported by financing
+export const FINANCING_INDUSTRIES = [
+  {
+    name: 'Agricultural Products & Commodities',
+    icon: 'Wheat',
+    description: 'Financing for agricultural exports, commodity trading, and food processing'
+  },
+  {
+    name: 'Minerals, Oil & Gas',
+    icon: 'Zap',
+    description: 'Energy sector financing, mining operations, and petroleum product trading'
+  },
+  {
+    name: 'Manufacturing & Raw Materials',
+    icon: 'Cog',
+    description: 'Industrial manufacturing, raw material procurement, and equipment financing'
+  },
+  {
+    name: 'Consumer Goods & Distribution',
+    icon: 'Package',
+    description: 'Retail product sourcing, wholesale distribution, and consumer electronics'
+  },
+  {
+    name: 'Construction & Infrastructure',
+    icon: 'Building',
+    description: 'Construction materials, infrastructure projects, and heavy equipment'
+  },
+  {
+    name: 'Technology & Electronics',
+    icon: 'Smartphone',
+    description: 'Tech product sourcing, electronic components, and IT equipment'
+  }
+];
 
 // Structured Data Schemas
 export const STRUCTURED_DATA = {
@@ -599,6 +694,57 @@ export const STRUCTURED_DATA = {
         "priceCurrency": "USD",
         "price": "Contact for quote"
       }
+    }
+  },
+
+    financingService: {
+    "@context": "https://schema.org",
+    "@type": "FinancialService",
+    "name": "Import & Export Financing",
+    "provider": {
+      "@type": "Organization",
+      "name": "Globe Sourcing Procurement"
+    },
+    "description": "Comprehensive trade financing solutions including Letters of Credit, Bank Guarantees, and structured finance for international procurement and sourcing.",
+    "serviceType": "Trade Finance",
+    "areaServed": "Worldwide",
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Trade Financing Solutions",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Import Financing",
+            "description": "Pre-shipment and purchase order financing for buyers"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Export Financing",
+            "description": "Production and post-shipment financing for suppliers"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Letters of Credit",
+            "description": "Documentary credits and payment guarantees"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Structured Finance",
+            "description": "Tailored financing for complex trade transactions"
+          }
+        }
+      ]
     }
   },
   

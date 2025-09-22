@@ -5,6 +5,7 @@ import Home from './pages/Home/Home';
 import About from './pages/About/About';
 import Services from './pages/Services/Services';
 import Layout from './components/Layout/Layout';
+import Financing from './pages/Financing/Financing';
 // import Contact from './pages/Contact/Contact';
 
 import './styles/variables.css';
@@ -19,6 +20,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/services" element={<Services />} />
+            <Route path="/financing" element={<Financing />} />
             {/* Future routes can be added here
             <Route path="/contact" element={<Contact />} /> */}
           </Routes>
