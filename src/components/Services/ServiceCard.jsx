@@ -1,5 +1,6 @@
 // src/components/Services/ServiceCard.jsx
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Globe, Package, Truck, CheckCircle, DollarSign, ShoppingCart } from 'lucide-react';
 import styles from './ServiceCard.module.css';
 
@@ -14,7 +15,14 @@ const iconMap = {
 };
 
 const ServiceCard = ({ service, index, isVisible }) => {
+  const navigate = useNavigate();
   const IconComponent = iconMap[service.icon] || Globe;
+
+  const handleLearnMore = () => {
+    if (service.id === 'import-export-financing') {
+      navigate('/financing');
+    }
+  };
 
   return (
     <div 
@@ -52,7 +60,7 @@ const ServiceCard = ({ service, index, isVisible }) => {
 
       {/* Card Footer */}
       <div className={styles.cardFooter}>
-        <button className={styles.learnMoreBtn}>
+        <button className={styles.learnMoreBtn} onClick={handleLearnMore}>
           <span className={styles.btnText}>Learn More</span>
           <div className={styles.btnIcon}>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

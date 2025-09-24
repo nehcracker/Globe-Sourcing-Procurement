@@ -1,16 +1,16 @@
 /* src/components/Financing/FinancingHero/FinancingHero.module.css */
 
 .financingHero {
-  min-height: 100vh;
-  min-height: 100dvh;
   min-height: -webkit-fill-available;
+  min-height: 100vh;
   display: flex;
   align-items: center;
   position: relative;
   overflow: hidden;
   background: linear-gradient(135deg, var(--color-navy-blue-dark) 0%, var(--color-navy-blue) 50%, var(--color-accent-green-dark) 100%);
   color: white;
-  padding: 80px 0 40px 0;
+  /*padding: 80px 0 40px 0;*/
+ padding: clamp(6rem, 2vw, 1.5rem) 1rem 2rem 1rem;
   box-sizing: border-box;
 }
 
@@ -103,7 +103,6 @@
   gap: 0.5rem;
   padding: 0.75rem 1.5rem;
   background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(15px);
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: var(--border-radius-full);
   font-size: 0.875rem;
@@ -163,7 +162,7 @@
 
 @media (max-width: 1024px) {
   .introText {
-    text-align: center;
+    text-align: justify;
   }
 }
 
@@ -225,7 +224,6 @@
   font-weight: var(--font-weight-semibold);
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  backdrop-filter: blur(15px);
   white-space: nowrap;
 }
 
@@ -264,9 +262,10 @@
 /* Highlights */
 .highlights {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-  gap: clamp(1rem, 2vw, 1.5rem);
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: clamp(1rem, 2vw, 1rem);
   width: 100%;
+  /*padding: clamp(1rem, 2vw, 1.5rem) 0;*/
   opacity: 0;
   transform: translateY(30px);
   transition: all 0.8s ease 1s;
@@ -292,7 +291,6 @@
   gap: 0.75rem;
   padding: 1rem;
   background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: var(--border-radius-xl);
   transition: all 0.3s ease;
@@ -397,15 +395,32 @@
 
 /* Floating Elements */
 .floatingElements {
-  position: relative;
+  position: fixed;
+  display: flex;
   width: 300px;
   height: 300px;
 }
 
 @media (max-width: 768px) {
   .floatingElements {
+    position: fixed;
     width: 250px;
     height: 250px;
+  }
+}
+
+@media (max-width: 480px) {
+  .floatingElements {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: auto;
+    gap: 1rem;
+    margin-top: 1rem;
+    flex-wrap: nowrap;
   }
 }
 
@@ -417,7 +432,6 @@
   gap: 0.5rem;
   padding: 1.5rem;
   background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: var(--border-radius-xl);
   color: white;
@@ -447,6 +461,23 @@
 .financeIcon:nth-child(3) {
   bottom: 50px;
   right: 0;
+}
+
+@media (max-width: 480px) {
+  .financeIcon {
+    position: static;
+    transform: none;
+    animation: none;
+    flex: 0 0 auto;
+    min-width: 120px;
+  }
+
+  .financeIcon:nth-child(1),
+  .financeIcon:nth-child(2),
+  .financeIcon:nth-child(3) {
+    position: static;
+    transform: none;
+  }
 }
 
 .financeIcon span {
@@ -555,6 +586,8 @@
   }
   
   .floatingElements {
+    position: fixed;
+    display: flex;
     width: 200px;
     height: 200px;
   }
