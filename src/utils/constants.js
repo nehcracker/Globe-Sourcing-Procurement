@@ -512,7 +512,7 @@ export const PAGE_SEO_DATA = {
     image: '/images/og-testimonials-globe-sourcing.jpg'
   },
   financing: {
-    title: 'Import & Export Financing Solutions | Trade Finance | Letters of Credit',
+    title: 'Import & Export Financing | Trade Finance | Letters of Credit',
     description: 'Secure financing solutions for global trade including Letters of Credit, Bank Guarantees, import/export financing, and ECA-backed trade credit for international procurement.',
     keywords: 'import financing, export financing, letters of credit, trade finance, bank guarantees, ECA support, international trade financing, supply chain finance, structured finance',
     url: '/financing',
