@@ -1,29 +1,25 @@
-# Task: Import & Export Financing card Learn more button navigation
+# Task: Make vendor page scroll up when refreshed
 
-## Completed Steps:
-- ✅ Added navigation functionality to Import & Export Financing card's "Learn More" button
-- ✅ Button now navigates to `/financing` page when clicked
-- ✅ Only the financing card button is functional (other service cards remain unchanged)
+## Steps to Complete
 
-## Changes Made:
-- **Modified `src/components/Services/ServiceCard.jsx`**:
-  - Added `useNavigate` import from react-router-dom
-  - Added `handleLearnMore` function that checks for 'import-export-financing' service ID
-  - Added `onClick={handleLearnMore}` to the Learn More button
-  - Navigation only triggers for the Import & Export Financing card
+- [x] Implement global ScrollToTop component to handle scroll on route changes
+- [x] Integrate ScrollToTop in App.jsx
+- [x] Remove page-specific scroll logic from VendorRegistrationPage.jsx
+- [ ] Test the functionality by refreshing the page
 
-## Additional Optimization Completed:
-- **Optimized floatingElements on financing hero section for small devices**:
-  - Changed floatingElements from fixed positioning to relative on mobile (≤480px)
-  - Set flex-direction to row with centered alignment
-  - Made finance icons display in a horizontal row instead of floating positions
-  - Removed animations on mobile for a more fixed, stable design
-  - Added proper spacing and wrapping for small screens
+## Changes Made
 
-## Testing Status:
-- ✅ **Navigation functionality tested**: Button works correctly and navigates to financing page
-- ✅ **Mobile optimization tested**: Floating elements now display in a row on small devices
-- ✅ **Cross-browser compatibility**: Changes work across different screen sizes
+- **Created `src/components/ScrollToTop/ScrollToTop.jsx`**:
+  - New component that scrolls to top on every route change using useLocation hook
+- **Modified `src/App.jsx`**:
+  - Imported and added `ScrollToTop` inside the Router for global scroll behavior
+- **Modified `src/pages/VendorRegistration/VendorRegistrationPage.jsx`**:
+  - Removed the page-specific `window.scrollTo(0, 0)` as it's now handled globally
 
-## Summary:
-Both the original navigation task and the mobile optimization feedback have been successfully implemented. The Import & Export Financing card now has functional navigation, and the financing hero section displays optimally on small devices with elements arranged in a clean, fixed row layout.
+## Testing Status
+
+- [ ] Functionality tested: Page scrolls to top on refresh
+
+## Summary
+
+The vendor registration page (and all pages) will now automatically scroll to the top on every route change, including refreshes, providing a consistent user experience across the application.

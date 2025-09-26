@@ -1,0 +1,220 @@
+/* src/pages/VendorRegistration/VendorRegistrationPage.module.css */
+@import '../../styles/variables.css';
+
+.vendorRegistrationPage {
+  min-height: 100vh;
+  background: linear-gradient(135deg, var(--color-gray-50) 0%, var(--color-white) 50%, var(--color-gray-50) 100%);
+}
+
+/* Container */
+.container {
+  max-width: var(--container-xl);
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* Breadcrumb Navigation */
+.breadcrumb {
+  background: var(--color-white);
+  border-bottom: 1px solid var(--color-gray-200);
+  padding: 1rem 0;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.95);
+}
+
+.breadcrumbList {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: var(--font-size-sm);
+}
+
+.breadcrumbList li {
+  display: flex;
+  align-items: center;
+  color: var(--color-steel-gray);
+  margin: 0;
+}
+
+.breadcrumbList li:not(:last-child)::after {
+  content: '>';
+  margin-left: 0.5rem;
+  color: var(--color-steel-gray-light);
+  font-weight: var(--font-weight-medium);
+}
+
+.breadcrumbList a {
+  color: var(--color-navy-blue);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.breadcrumbList a:hover {
+  color: var(--color-accent-green);
+}
+
+.breadcrumbList span {
+  color: var(--color-steel-gray);
+  font-weight: var(--font-weight-medium);
+}
+
+/* Form Section (Temporary for Phase 1) */
+.formSection {
+  padding: 4rem 0;
+  position: relative;
+}
+
+.formHeader {
+  text-align: center;
+  margin-bottom: 3rem;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.formTitle {
+  font-size: var(--font-size-4xl);
+  font-weight: var(--font-weight-bold);
+  margin-bottom: 1rem;
+  background: linear-gradient(135deg, var(--color-navy-blue), var(--color-accent-green));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  position: relative;
+}
+
+.formTitle::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 4px;
+  background: linear-gradient(90deg, var(--color-navy-blue), var(--color-accent-green));
+  border-radius: var(--border-radius-full);
+}
+
+.formSubtitle {
+  font-size: var(--font-size-lg);
+  color: var(--color-steel-gray);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Background Elements */
+.formSection::before {
+  content: '';
+  position: absolute;
+  top: -50px;
+  right: -50px;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(30, 58, 138, 0.05) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.formSection::after {
+  content: '';
+  position: absolute;
+  bottom: -50px;
+  left: -50px;
+  width: 150px;
+  height: 150px;
+  background: radial-gradient(circle, rgba(5, 150, 105, 0.05) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .container {
+    padding: 0 1.5rem;
+  }
+  
+  .formTitle {
+    font-size: var(--font-size-3xl);
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 1rem;
+  }
+  
+  .breadcrumb {
+    padding: 0.75rem 0;
+  }
+  
+  .breadcrumbList {
+    font-size: var(--font-size-xs);
+  }
+  
+  .formSection {
+    padding: 2rem 0;
+  }
+  
+  .formHeader {
+    margin-bottom: 2rem;
+  }
+  
+  .formTitle {
+    font-size: var(--font-size-2xl);
+  }
+  
+  .formSubtitle {
+    font-size: var(--font-size-base);
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 0.75rem;
+  }
+  
+  .formTitle {
+    font-size: var(--font-size-xl);
+  }
+  
+  .formSubtitle {
+    font-size: var(--font-size-sm);
+  }
+  
+  .formSection::before,
+  .formSection::after {
+    display: none;
+  }
+}
+
+/* Focus and Accessibility */
+.breadcrumbList a:focus {
+  outline: 2px solid var(--color-navy-blue);
+  outline-offset: 2px;
+  border-radius: var(--border-radius-sm);
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+  .breadcrumb {
+    border-bottom-width: 2px;
+  }
+  
+  .formTitle {
+    color: var(--color-navy-blue);
+    background: none;
+    -webkit-text-fill-color: unset;
+  }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .breadcrumbList a {
+    transition: none;
+  }
+}
