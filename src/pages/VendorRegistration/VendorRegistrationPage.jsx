@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import styles from './VendorRegistrationPage.module.css';
 
 // Page Section Components (Phase 2)
-// import VendorHero from './components/PageSections/VendorHero';
+ import VendorHero from './components/PageSections/VendorHero';
 // import WhyBecomeVendor from './components/PageSections/WhyBecomeVendor';
 // import VendorServices from './components/PageSections/VendorServices';
 // import HowToJoinProcess from './components/PageSections/HowToJoinProcess';
@@ -106,8 +106,9 @@ const VendorRegistrationPage = () => {
         </div>
 
         {/* Phase 2: Page Layout Components will be added here */}
-        {/* 
+         
         <VendorHero />
+        {/*
         <WhyBecomeVendor />
         <VendorServices />
         <HowToJoinProcess />
