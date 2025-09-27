@@ -1,0 +1,353 @@
+/* src/pages/VendorRegistration/components/MultiStepForm/steps/ProductDetailsStep.module.css */
+@import '../../../styles/variables.css';
+
+.productDetailsStep {
+  width: 100%;
+  animation: stepSlideIn 0.4s ease-out;
+}
+
+/* Step Header */
+.stepHeader {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.stepTitle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-navy-blue);
+  margin: 0 0 0.75rem 0;
+}
+
+.titleIcon {
+  color: var(--color-accent-green);
+}
+
+.stepDescription {
+  font-size: var(--font-size-base);
+  color: var(--color-steel-gray);
+  line-height: 1.6;
+  margin: 0;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Form Grid */
+.formGrid {
+  margin-bottom: 3rem;
+}
+
+.formRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.formRow:last-child {
+  margin-bottom: 0;
+}
+
+.fieldGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.fieldGroup.fullWidth {
+  grid-column: 1 / -1;
+}
+
+/* Field Labels */
+.fieldLabel {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-navy-blue);
+  margin-bottom: 0.5rem;
+}
+
+.fieldLabel svg {
+  color: var(--color-steel-gray);
+}
+
+/* Input Wrapper */
+.inputWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.formInput {
+  width: 100%;
+  padding: 1rem 1.25rem;
+  padding-right: 3rem;
+  border: 2px solid var(--color-gray-300);
+  border-radius: var(--border-radius-lg);
+  font-size: var(--font-size-base);
+  font-family: inherit;
+  background: var(--color-white);
+  transition: all 0.3s ease;
+  color: var(--color-gray-900);
+}
+
+.formInput:focus {
+  outline: none;
+  border-color: var(--color-navy-blue);
+  box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.1);
+}
+
+.formInput::placeholder {
+  color: var(--color-steel-gray-light);
+}
+
+.formInput:disabled {
+  background: var(--color-gray-100);
+  color: var(--color-steel-gray);
+  cursor: not-allowed;
+}
+
+/* Input States */
+.formInput.error {
+  border-color: var(--color-error);
+  background: rgba(239, 68, 68, 0.02);
+}
+
+.formInput.success {
+  border-color: var(--color-accent-green);
+  background: rgba(5, 150, 105, 0.02);
+}
+
+/* Field Icons */
+.inputWrapper .errorIcon,
+.inputWrapper .successIcon {
+  position: absolute;
+  right: 1rem;
+  pointer-events: none;
+}
+
+.errorIcon {
+  color: var(--color-error);
+}
+
+.successIcon {
+  color: var(--color-accent-green);
+}
+
+/* Select Dropdown */
+select.formInput {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+  background-position: right 3rem center;
+  background-repeat: no-repeat;
+  background-size: 1.25em 1.25em;
+  appearance: none;
+  cursor: pointer;
+}
+
+select.formInput:focus {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%231e3a8a' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+}
+
+/* Textarea */
+textarea.formInput {
+  resize: vertical;
+  min-height: 120px;
+  line-height: 1.6;
+  padding-right: 1.25rem;
+}
+
+/* Price Group */
+.priceGroup {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.priceGroup .inputWrapper {
+  flex: 1;
+}
+
+.currencySelect {
+  padding: 1rem;
+  border: 2px solid var(--color-gray-300);
+  border-radius: var(--border-radius-lg);
+  font-size: var(--font-size-base);
+  font-family: inherit;
+  background: var(--color-white);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  min-width: 80px;
+}
+
+.currencySelect:focus {
+  outline: none;
+  border-color: var(--color-navy-blue);
+  box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.1);
+}
+
+/* Calculated Value */
+.calculatedValue {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem 1.25rem;
+  background: rgba(5, 150, 105, 0.05);
+  border: 2px solid rgba(5, 150, 105, 0.2);
+  border-radius: var(--border-radius-lg);
+  min-height: 58px;
+}
+
+.valueAmount {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-accent-green);
+}
+
+.valueLabel {
+  font-size: var(--font-size-sm);
+  color: var(--color-steel-gray);
+}
+
+/* Error Messages */
+.errorMessage {
+  font-size: var(--font-size-xs);
+  color: var(--color-error);
+  font-weight: var(--font-weight-medium);
+  margin-top: 0.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+/* Field Helper */
+.fieldHelper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0.5rem;
+}
+
+.charCount {
+  font-size: var(--font-size-xs);
+  color: var(--color-steel-gray);
+  font-weight: var(--font-weight-medium);
+}
+
+.charCountWarning {
+  color: var(--color-error);
+}
+
+/* Field Hints */
+.fieldHint {
+  font-size: var(--font-size-xs);
+  color: var(--color-steel-gray);
+  margin-top: 0.25rem;
+  line-height: 1.4;
+}
+
+/* Image Upload Section */
+.imageUploadSection {
+  margin-top: 0.5rem;
+}
+
+.imageUploadZone {
+  border: 2px dashed var(--color-gray-300);
+  border-radius: var(--border-radius-lg);
+  padding: 2rem;
+  text-align: center;
+  background: rgba(248, 250, 252, 0.5);
+  transition: all 0.3s ease;
+  margin-bottom: 1.5rem;
+}
+
+.imageUploadZone:hover {
+  border-color: var(--color-navy-blue);
+  background: rgba(30, 58, 138, 0.02);
+}
+
+.imageInput {
+  display: none;
+}
+
+.uploadLabel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  color: var(--color-steel-gray);
+  transition: color 0.3s ease;
+}
+
+.uploadLabel:hover {
+  color: var(--color-navy-blue);
+}
+
+.uploadLabel span {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-medium);
+}
+
+.uploadLabel small {
+  font-size: var(--font-size-xs);
+  opacity: 0.8;
+}
+
+.imageGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+}
+
+.imageCard {    
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-md);
+  transition: all 0.3s ease;
+}
+
+.imageCard:hover {
+  transform: scale(1.02);
+  box-shadow: var(--shadow-lg);
+}
+
+.imageCard img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: all 0.3s ease;
+}
+
+.imageCard .imageOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.imageCard:hover .imageOverlay {
+  opacity: 1;
+}
+
+.imageCard .removeButton {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  border-radius: 50%;
+  padding: 0.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}

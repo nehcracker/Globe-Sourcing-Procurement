@@ -1,5 +1,5 @@
 // src/App.jsx (Fixed for React 19)
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home/Home';
 import About from './pages/About/About';
@@ -14,6 +14,13 @@ import './styles/variables.css';
 import './styles/globals.css';
 
 function App() {
+  useEffect(() => {
+    // Disable browser scroll restoration
+    if ('scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual';
+    }
+  }, []);
+
   return (
     <Router>
       <ScrollToTop />
@@ -35,3 +42,4 @@ function App() {
 }
 
 export default App;
+

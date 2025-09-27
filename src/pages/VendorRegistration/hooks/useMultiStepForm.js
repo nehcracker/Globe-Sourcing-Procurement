@@ -172,6 +172,15 @@ export const useMultiStepForm = (initialData = {}) => {
       console.log(`Completed step ${currentStep} (${stepConfig?.name}) in ${timeSpent}ms with ${validationErrors} errors`);
     }
     
+    // Scroll to top of form
+    const formElement = document.querySelector('.multiStepForm') || document.querySelector('[class*="multiStepForm"]');
+    if (formElement) {
+      formElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+      // Fallback to window scroll
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    
     setTimeout(() => {
       setCurrentStep(stepNumber);
       setIsTransitioning(false);

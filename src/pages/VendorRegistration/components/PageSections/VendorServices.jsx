@@ -12,7 +12,7 @@ import {
   Star,
   CheckCircle
 } from 'lucide-react';
-import useScrollAnimation from '../../../hooks/useScrollAnimation';
+import useScrollAnimation from '../../hooks/useScrollAnimation';
 import styles from './VendorServices.module.css';
 
 const VendorServices = () => {
