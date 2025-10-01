@@ -56,13 +56,34 @@ const Hero = () => {
     }
   };
 
-  const stats = [
+ const stats = [
     { number: '500+', label: 'Verified Suppliers', icon: <CheckCircle size={isMobile ? 18 : 20} /> },
     { number: '50+', label: 'Countries', icon: <Globe size={isMobile ? 18 : 20} /> },
     { number: '1000+', label: 'Products Sourced', icon: <Package size={isMobile ? 18 : 20} /> },
     { number: '99%', label: 'On-Time Delivery', icon: <Truck size={isMobile ? 18 : 20} /> }
   ];
 
+  const trustPillars = [
+    {
+      title: 'Verified Excellence',
+      description: 'Every supplier rigorously vetted and certified',
+      icon: <CheckCircle size={isMobile ? 20 : 24} />,
+      highlight: '500+ Verified Suppliers'
+    },
+    {
+      title: 'Global Reach',
+      description: 'Seamless procurement across 50+ countries',
+      icon: <Globe size={isMobile ? 20 : 24} />,
+      highlight: 'Worldwide Coverage'
+    },
+    {
+      title: 'Proven Delivery',
+      description: '99% on-time delivery with full tracking',
+      icon: <Truck size={isMobile ? 20 : 24} />,
+      highlight: '1000+ Successful Projects'
+    }
+  ];
+  
   return (
     <section
       id="home"
@@ -114,36 +135,24 @@ const Hero = () => {
 
               <button
                 className={styles.secondaryCta}
-                onClick={() => handleCtaClick('vendor-form')}
+                onClick={() => window.location.href = '/vendor-registration-page'}
                 aria-label="Join as a vendor partner"
               >
                 <span>Join as Vendor</span>
-                <ArrowRight size={16} className={styles.secondaryArrow} />
+                <ArrowRight size={16} />
               </button>
             </div>
 
-            {/* Trust Indicators */}
+            {/* Trust Pillars */}
             <div className={`${styles.trustIndicators} ${isLoaded ? styles.fadeInUp : ''}`}>
-              <span className={styles.trustText}>Trusted by businesses across Africa</span>
+              <span className={styles.trustText}>Why choose us</span>
               <div className={styles.trustLogos}>
-                <div className={styles.trustLogo}>
-                  <span>Kenya</span>
-                </div>
-                <div className={styles.trustLogo}>
-                  <span>Uganda</span>
-                </div>
-                <div className={styles.trustLogo}>
-                  <span>Tanzania</span>
-                </div>
-                <div className={styles.trustLogo}>
-                  <span>DRC Congo</span>
-                </div>
-                <div className={styles.trustLogo}>
-                  <span>Zambia</span>
-                </div>
-                <div className={styles.trustLogo}>
-                  <span>Zimbambwe</span>
-                </div>
+                {trustPillars.map((pillar, index) => (
+                  <div key={index} className={styles.trustLogo}>
+                    {pillar.icon}
+                    <span>{pillar.highlight}</span>
+                  </div>
+                ))}
               </div>
             </div>
           </div>

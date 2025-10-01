@@ -1,4 +1,4 @@
-/* src/components/Hero/Hero.module.css */
+/* src/components/Hero/Hero.module.css - Triple Trust Approach */
 
 .hero {
   min-height: 100vh;
@@ -8,7 +8,7 @@
   overflow: hidden;
   background: linear-gradient(135deg, var(--color-navy-blue) 0%, var(--color-navy-blue-dark) 50%, var(--color-accent-green-dark) 100%);
   color: white;
-  padding-top: 80px; /* Account for fixed navbar */
+  padding-top: 80px;
 }
 
 .backgroundPattern {
@@ -42,7 +42,7 @@
 
 .heroContent {
   display: grid;
-  grid-template-columns: 1fr 400px;
+  grid-template-columns: 1fr 480px;
   gap: 4rem;
   align-items: center;
   min-height: calc(100vh - 160px);
@@ -52,6 +52,7 @@
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  padding: 0 1rem;
 }
 
 /* Badge */
@@ -92,7 +93,7 @@
 
 .regularText {
   color: white;
-  font-size: var(--font-size-2xl)
+  font-size: var(--font-size-2xl);
 }
 
 .gradientText {
@@ -112,7 +113,6 @@
   line-height: 1.1;
   margin-bottom: 0;
 }
-
 
 /* Subtitle */
 .subtitle {
@@ -142,8 +142,7 @@
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 1rem 2rem;
-  padding: 0 clamp(1rem, 4vw, 2rem); /* Dynamic padding */
+  padding: 1rem clamp(1rem, 4vw, 2rem);
   background: linear-gradient(135deg, var(--color-accent-green), var(--color-accent-green-light));
   color: white;
   border: none;
@@ -205,6 +204,7 @@
   transform: translateY(30px);
   transition: all 0.8s ease 0.8s;
   margin-top: 1rem;
+  margin-bottom: 2rem;
   display: flex;
   flex-direction: column;
 }
@@ -237,42 +237,158 @@
 .heroVisual {
   position: relative;
   height: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
 }
 
-.statsGrid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.5rem;
+/* ========================================
+   TRIPLE TRUST PILLARS - Main Feature
+   ======================================== */
+
+.trustPillars {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
   opacity: 0;
   transform: translateX(50px);
   transition: all 1s ease 0.4s;
+  margin-bottom: 1rem;
 }
 
-.statCard {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(15px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+.trustPillar {
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(20px);
+  border: 2px solid rgba(16, 185, 129, 0.3);
   border-radius: var(--border-radius-xl);
   padding: 1.5rem;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 1rem;
+  transition: all 0.4s ease;
+  animation: slideInUp 0.8s ease forwards;
+  opacity: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.trustPillar::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(16, 185, 129, 0.1), transparent);
+  transition: left 0.6s;
+}
+
+.trustPillar:hover::before {
+  left: 100%;
+}
+
+.trustPillar:hover {
+  background: rgba(255, 255, 255, 0.18);
+  border-color: rgba(16, 185, 129, 0.5);
+  transform: translateX(-5px);
+  box-shadow: 0 15px 40px rgba(16, 185, 129, 0.2);
+}
+
+.pillarIcon {
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(135deg, var(--color-accent-green), var(--color-accent-green-light));
+  border-radius: var(--border-radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 8px 20px rgba(16, 185, 129, 0.3);
+}
+
+.pillarContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.pillarTitle {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  color: white;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.pillarDescription {
+  font-size: var(--font-size-sm);
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0;
+  line-height: 1.4;
+}
+
+.pillarHighlight {
+  display: inline-block;
+  margin-top: 0.5rem;
+  padding: 0.25rem 0.75rem;
+  background: rgba(16, 185, 129, 0.2);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  border-radius: var(--border-radius-md);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-accent-green-light);
+  width: fit-content;
+}
+
+.pillarBadge {
+  width: 32px;
+  height: 32px;
+  background: rgba(16, 185, 129, 0.2);
+  border: 2px solid var(--color-accent-green-light);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-accent-green-light);
+  flex-shrink: 0;
+}
+
+/* Stats Grid - Secondary Trust Indicators */
+.statsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  opacity: 0;
+  transform: translateX(50px);
+  transition: all 1s ease 0.8s;
+}
+
+.statCard {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: var(--border-radius-lg);
+  padding: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
   transition: all 0.3s ease;
   animation: slideInUp 0.8s ease forwards;
   opacity: 0;
 }
 
 .statCard:hover {
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.12);
   transform: translateY(-3px);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
 .statIcon {
-  width: 40px;
-  height: 40px;
+  width: 38px;
+  height: 38px;
   background: linear-gradient(135deg, var(--color-accent-green), var(--color-accent-green-light));
-  border-radius: var(--border-radius-lg);
+  border-radius: var(--border-radius-md);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -284,16 +400,61 @@
 }
 
 .statNumber {
-  font-size: var(--font-size-2xl);
+  font-size: var(--font-size-xl);
   font-weight: var(--font-weight-bold);
   color: white;
   line-height: 1;
 }
 
 .statLabel {
-  font-size: var(--font-size-sm);
-  color: rgba(255, 255, 255, 0.7);
+  font-size: var(--font-size-xs);
+  color: rgba(255, 255, 255, 0.65);
   margin-top: 0.25rem;
+}
+
+/* Trust Seal */
+.trustSeal {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(15px);
+  border: 2px solid rgba(255, 215, 0, 0.4);
+  border-radius: var(--border-radius-lg);
+  margin-top: 0.5rem;
+  opacity: 0;
+  transition: all 0.8s ease 1.2s;
+}
+
+.sealIcon {
+  width: 45px;
+  height: 45px;
+  background: linear-gradient(135deg, #ffd700, #ffed4e);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-navy-blue-dark);
+  flex-shrink: 0;
+  box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+}
+
+.sealText {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+}
+
+.sealText strong {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-bold);
+  color: white;
+}
+
+.sealText span {
+  font-size: var(--font-size-xs);
+  color: rgba(255, 255, 255, 0.7);
 }
 
 /* Floating Elements */
@@ -399,6 +560,10 @@
   transform: translateX(0);
 }
 
+.loaded .fadeIn {
+  opacity: 1;
+}
+
 .loaded .bounce {
   animation: bounce 2s ease infinite;
 }
@@ -444,10 +609,12 @@
   }
   
   .heroVisual {
-    height: 300px;
+    max-width: 600px;
+    margin: 0 auto;
   }
   
-  .statsGrid {
+  .trustPillar {
+    max-width: 500px;
     margin: 0 auto;
   }
 }
@@ -486,11 +653,42 @@
     font-size: var(--font-size-sm);
   }
   
- 
-  
   .trustLogos {
     justify-content: center;
     gap: 1rem;
+    flex-wrap: nowrap;
+    max-width: 600px;
+    flex-direction: row;
+    align-items: center;  
+    justify-content: space-between;
+    margin: 0 auto;
+    width: 100%;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    padding: 0 1rem;
+    box-sizing: border-box;
+    overflow-x: auto;
+  }
+  
+  .trustPillars {
+    gap: 0.75rem;
+  }
+  
+  .trustPillar {
+    padding: 1.25rem;
+  }
+  
+  .pillarIcon {
+    width: 45px;
+    height: 45px;
+  }
+  
+  .statsGrid {
+    gap: 0.75rem;
+  }
+  
+  .statCard {
+    padding: 1rem;
   }
   
   .floatingElements {
@@ -519,8 +717,31 @@
     justify-content: center;
   }
   
-  .statCard {
+  .trustPillar {
     padding: 1rem;
+    gap: 0.75rem;
+  }
+  
+  .pillarIcon {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .pillarTitle {
+    font-size: var(--font-size-base);
+  }
+  
+  .pillarDescription {
+    font-size: var(--font-size-xs);
+  }
+  
+  .pillarBadge {
+    width: 28px;
+    height: 28px;
+  }
+  
+  .statCard {
+    padding: 0.875rem;
   }
   
   .statIcon {
@@ -529,6 +750,20 @@
   }
   
   .statNumber {
-    font-size: var(--font-size-xl);
+    font-size: var(--font-size-lg);
+  }
+  
+  .trustSeal {
+    padding: 0.875rem 1.25rem;
+    gap: 0.75rem;
+  }
+  
+  .sealIcon {
+    width: 38px;
+    height: 38px;
+  }
+  
+  .sealText strong {
+    font-size: var(--font-size-sm);
   }
 }

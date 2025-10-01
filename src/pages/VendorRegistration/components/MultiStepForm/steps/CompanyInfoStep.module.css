@@ -1,0 +1,262 @@
+/* src/pages/VendorRegistration/components/MultiStepForm/steps/CompanyInfoStep.module.css */
+@import '../../../styles/variables.css';
+
+.companyInfoStep {
+  width: 100%;
+  animation: stepSlideIn 0.4s ease-out;
+}
+
+/* Step Header */
+.stepHeader {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.stepTitle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-navy-blue);
+  margin: 0 0 0.75rem 0;
+}
+
+.titleIcon {
+  color: var(--color-accent-green);
+}
+
+.stepDescription {
+  font-size: var(--font-size-base);
+  color: var(--color-steel-gray);
+  line-height: 1.6;
+  margin: 0;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Form Layout */
+.formGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.formRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.fieldGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.fieldLabel {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-navy-blue);
+  margin-bottom: 0.25rem;
+}
+
+.fieldLabel svg {
+  color: var(--color-accent-green);
+}
+
+/* Input Styling */
+.inputWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.formInput {
+  width: 100%;
+  padding: 0.875rem 1rem;
+  padding-right: 2.5rem;
+  border: 2px solid rgba(226, 232, 240, 0.8);
+  border-radius: var(--border-radius-lg);
+  font-size: var(--font-size-base);
+  background: rgba(255, 255, 255, 0.9);
+  transition: all 0.2s ease;
+  outline: none;
+}
+
+.formInput:focus {
+  border-color: var(--color-accent-blue);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  background: white;
+}
+
+.formInput.error {
+  border-color: var(--color-error);
+  background: rgba(239, 68, 68, 0.05);
+}
+
+.formInput.success {
+  border-color: var(--color-accent-green);
+  background: rgba(5, 150, 105, 0.05);
+}
+
+.formInput::placeholder {
+  color: var(--color-steel-gray);
+  opacity: 0.7;
+}
+
+/* Validation Icons */
+.errorIcon,
+.successIcon {
+  position: absolute;
+  right: 0.75rem;
+  pointer-events: none;
+}
+
+.errorIcon {
+  color: var(--color-error);
+}
+
+.successIcon {
+  color: var(--color-accent-green);
+}
+
+/* Error Messages */
+.errorMessage {
+  font-size: var(--font-size-xs);
+  color: var(--color-error);
+  margin-top: 0.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+/* Field Hints */
+.fieldHint {
+  font-size: var(--font-size-xs);
+  color: var(--color-steel-gray);
+  opacity: 0.8;
+  margin-top: 0.25rem;
+}
+
+/* Select Styling */
+select.formInput {
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+  background-position: right 0.5rem center;
+  background-repeat: no-repeat;
+  background-size: 1.5em 1.5em;
+  padding-right: 2.5rem;
+}
+
+/* Animations */
+@keyframes stepSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .formRow {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .stepTitle {
+    font-size: var(--font-size-xl);
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .stepDescription {
+    font-size: var(--font-size-sm);
+  }
+}
+
+@media (max-width: 480px) {
+  .formInput {
+    padding: 0.75rem;
+    padding-right: 2.5rem;
+    font-size: var(--font-size-sm);
+  }
+  
+  .stepDescription {
+    font-size: var(--font-size-xs);
+  }
+  
+  .fieldHint {
+    font-size: var(--font-size-xs);
+  }
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+  .formInput {
+    border-width: 3px;
+  }
+  
+  .formInput.error {
+    background: rgba(239, 68, 68, 0.1);
+  }
+  
+  .formInput.success {
+    background: rgba(5, 150, 105, 0.1);
+  }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .companyInfoStep {
+    animation: none;
+  }
+  
+  .formInput {
+    transition: none;
+  }
+}
+
+/* Focus Styles */
+.formInput:focus-visible {
+  outline: 2px solid var(--color-navy-blue);
+  outline-offset: 2px;
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+  .formInput {
+    background: rgba(30, 41, 59, 0.8);
+    border-color: rgba(71, 85, 105, 0.5);
+    color: white;
+  }
+  
+  .formInput::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+  }
+  
+  .stepTitle {
+    color: white;
+  }
+  
+  .stepDescription {
+    color: rgba(255, 255, 255, 0.7);
+  }
+  
+  .fieldLabel {
+    color: white;
+  }
+  
+  .fieldHint {
+    color: rgba(255, 255, 255, 0.6);
+  }
+}
