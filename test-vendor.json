@@ -1,0 +1,18 @@
+{
+  "companyName": "Test Electronics Kenya Ltd",
+  "contactPerson": "John Mwangi",
+  "email": "john@testelectronics.co.ke",
+  "phone": "+254 712 345678",
+  "country": "Kenya",
+  "productCategory": "Electronics & Technology",
+  "productSubcategory": "Consumer Electronics",
+  "productDescription": "We manufacture high-quality consumer electronics including smartphones, tablets, and accessories. ISO 9001 certified with CE and RoHS compliance. Specialized in bulk orders for retailers and distributors across East Africa.",
+  "moq": "5000",
+  "packaging": "Boxes/Cartons",
+  "unitPrice": "12.50",
+  "currency": "USD",
+  "certifications": "ISO 9001:2015, CE, RoHS, FCC",
+  "termsAccepted": true,
+  "privacyAccepted": true,
+  "marketingConsent": false
+}

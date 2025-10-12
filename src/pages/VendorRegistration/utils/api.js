@@ -5,7 +5,7 @@
  * API Configuration
  */
 const API_CONFIG = {
-  baseURL: process.env.REACT_APP_API_URL || 'https://your-worker.your-subdomain.workers.dev',
+  baseURL: process.env.REACT_APP_API_URL || 'https://cloudflare-workers.nehlmac4.workers.dev',
   endpoints: {
     vendorRegistration: '/api/vendor-registration',
     health: '/api/health'

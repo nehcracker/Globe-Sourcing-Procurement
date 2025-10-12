@@ -4,6 +4,7 @@
 import { handleVendorRegistration } from './handlers/vendorRegistration.js';
 import { handleHealthCheck } from './handlers/health.js';
 import { handleCorsPrelight, addCorsHeaders } from './utils/cors.js';
+import { sendWithZeptoMail } from './services/email.js';
 
 /**
  * Main request handler
@@ -26,6 +27,12 @@ const worker = {
         response = await handleVendorRegistration(request, env);
       } else if (path === '/api/health' && request.method === 'GET') {
         response = await handleHealthCheck(env);
+      } else if (path === '/api/test-email' && request.method === 'POST') {
+        const body = await request.json();
+        const result = await sendWithZeptoMail(body.to, body.subject, body.html, env);
+        response = new Response(JSON.stringify(result), {
+          headers: { 'Content-Type': 'application/json' }
+        });
       } else if (path === '/' && request.method === 'GET') {
         response = new Response(JSON.stringify({
           service: 'Globe Sourcing Vendor Registration API',

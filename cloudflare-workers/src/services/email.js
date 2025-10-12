@@ -6,7 +6,7 @@ import { EMAIL_TEMPLATES } from '../config/constants.js';
 /**
  * Send email using ZeptoMail
  */
-async function sendWithZeptoMail(to, subject, html, env) {
+export async function sendWithZeptoMail(to, subject, html, env) {
   if (!env.ZEPTOMAIL_API_KEY) {
     console.warn('ZeptoMail API key not configured');
     return { success: false, message: 'Email service not configured' };
