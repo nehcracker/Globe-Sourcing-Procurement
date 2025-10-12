@@ -1,0 +1,55 @@
+# wrangler.toml - Cloudflare Workers Configuration
+# Globe Sourcing Procurement - Vendor Registration API
+
+name = "vendor-registration-api"
+main = "src/index.js"
+compatibility_date = "2024-01-01"
+
+# Worker Configuration
+workers_dev = true
+
+# Environment Variables (non-sensitive)
+[vars]
+ENVIRONMENT = "production"
+API_VERSION = "v1"
+ZOHO_API_URL = "https://www.zohoapis.com"
+ZOHO_ACCOUNTS_URL = "https://accounts.zoho.com"
+ZOHO_CRM_MODULE = "Vendors"
+MAX_FILE_SIZE = "5242880"
+RATE_LIMIT_WINDOW = "3600000"
+RATE_LIMIT_MAX_REQUESTS = "10"
+CHECK_DUPLICATES = "false"
+ENABLE_EMAIL_NOTIFICATIONS = "true"
+ADMIN_EMAIL = "supply.chain@globesourceprocurement.com"
+
+# KV Namespace - REPLACE WITH YOUR ID FROM STEP ABOVE
+[[kv_namespaces]]
+binding = "VENDOR_CACHE"
+id = "c72995a6042e4c1186cf10d4d6ece56e"  # ← Replace this!
+
+# Uncomment after deploying once:
+# routes = [
+#   { pattern = "api.globesourceprocurement.com/*", zone_name = "globesourceprocurement.com" }
+# ]
+
+# Build configuration
+[build]
+command = ""
+
+# Development environment
+[env.development]
+name = "vendor-registration-api-dev"
+vars = { ENVIRONMENT = "development" }
+
+[[env.development.kv_namespaces]]
+binding = "VENDOR_CACHE"
+id = "c72995a6042e4c1186cf10d4d6ece56e"  # Create with: wrangler kv:namespace create VENDOR_CACHE --env development
+
+# Staging environment
+[env.staging]
+name = "vendor-registration-api-staging"
+vars = { ENVIRONMENT = "staging" }
+
+[[env.staging.kv_namespaces]]
+binding = "VENDOR_CACHE"
+id = "c72995a6042e4c1186cf10d4d6ece56e"  # Create with: wrangler kv:namespace create VENDOR_CACHE --env staging

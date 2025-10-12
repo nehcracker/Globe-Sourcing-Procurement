@@ -466,10 +466,10 @@ export const ABOUT_PAGE_CONTENT = {
 
 // SEO Configuration
 export const SEO_CONFIG = {
-  defaultTitle: 'Global Procurement & Bulk Sourcing Solutions',
+  defaultTitle: 'Global Product Sourcing & bulk Supply Solutions',
   siteName: 'Globe Sourcing Procurement',
   siteUrl: process.env.REACT_APP_SITE_URL || 'https://globesourceprocurement.com',
-  defaultDescription: 'Connect with verified global suppliers for bulk product sourcing. Trusted procurement platform serving 2,500+ companies across 50+ countries with end-to-end logistics.',
+  defaultDescription: 'Global Product Sourcing & Supply Solutions connecting buyers with verified vendors for smooth international trade and complete logistics support services.',
   defaultKeywords: 'global procurement, bulk sourcing, international suppliers, procurement platform, wholesale products, B2B sourcing, supply chain, logistics, verified suppliers, bulk orders',
   defaultImage: '/images/og-globe-sourcing.jpg',
   twitterHandle: '@globesourcepro',
@@ -481,9 +481,9 @@ export const SEO_CONFIG = {
 // Page-specific SEO data
 export const PAGE_SEO_DATA = {
   home: {
-    title: 'Global Source Procurement & Bulk Sourcing Solutions',
-    description: 'We connect buyers with trusted vendors for seamless international trade and end-to-end logistics support.',
-    keywords: 'global procurement, bulk sourcing, international suppliers, procurement platform, wholesale products, B2B sourcing, supply chain, logistics, verified suppliers, bulk orders, global trade',
+    title: 'Global Product Sourcing and Supply Solutions',
+    description: 'Global Product Sourcing & Supply Solutions connecting buyers with verified vendors for smooth international trade and complete logistics support services.',
+    keywords: 'global procurement, Global Product Sourcing and Supply Solutions, bulk sourcing, international suppliers, procurement platform, wholesale products, B2B sourcing, supply chain, logistics, verified suppliers, bulk orders, global trade',
     url: '/',
     image: '/images/og-home-globe-sourcing.jpg'
   },
