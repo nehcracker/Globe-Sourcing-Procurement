@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { useMultiStepForm } from '../../hooks/useMultiStepForm';
 import { useFormAnalytics } from '../../hooks/useFormAnalytics';
+import { submitVendorRegistration } from '../../utils/api';
 import StepIndicator from './StepIndicator';
 import NavigationButtons from './NavigationButtons';
 import SuccessMessage from '../shared/SuccessMessage';
@@ -561,16 +562,38 @@ const MultiStepForm = () => {
     trackFormSubmissionStart();
 
     try {
-      // Simulate API call - Replace with actual Cloudflare Worker call
-      console.log('Submitting form data:', formData);
-      
-      // Simulate delay
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      
-      // Simulate success
-      setIsSubmitted(true);
-      trackFormSubmissionSuccess(formData);
-      
+      // Prepare form data for API submission
+      const submissionData = {
+        companyName: formData.companyName,
+        contactPerson: formData.contactPerson,
+        email: formData.email,
+        phone: formData.phone,
+        country: formData.country,
+        productCategory: formData.productCategory,
+        productDescription: formData.productDescription,
+        moq: parseInt(formData.moq),
+        packaging: formData.packaging,
+        unitPrice: parseFloat(formData.unitPrice),
+        currency: formData.currency || 'USD',
+        certifications: formData.certifications || '',
+        termsAccepted: true,
+        privacyAccepted: true,
+        marketingConsent: false
+      };
+
+      console.log('Submitting vendor registration:', submissionData);
+
+      // Call the API
+      const result = await submitVendorRegistration(submissionData);
+
+      if (result.success) {
+        console.log('Registration successful:', result);
+        setIsSubmitted(true);
+        trackFormSubmissionSuccess(formData);
+      } else {
+        throw new Error(result.error || 'Registration failed');
+      }
+
     } catch (error) {
       console.error('Submission error:', error);
       setSubmissionError(error.message || 'Submission failed. Please try again.');

@@ -198,7 +198,15 @@ export async function createVendorRecord(accessToken, formData, env) {
     ZOHO_CRM_MODULE: env.ZOHO_CRM_MODULE,
     ENVIRONMENT: env.ENVIRONMENT
   });
-  
+
+  // Ensure we have the required environment variables
+  if (!env.ZOHO_API_URL) {
+    throw new Error('ZOHO_API_URL environment variable is not set');
+  }
+  if (!env.ZOHO_CRM_MODULE) {
+    throw new Error('ZOHO_CRM_MODULE environment variable is not set');
+  }
+
   const url = `${env.ZOHO_API_URL}/crm/v3/${env.ZOHO_CRM_MODULE}`;
   
   const crmData = mapFormDataToCRM(formData);

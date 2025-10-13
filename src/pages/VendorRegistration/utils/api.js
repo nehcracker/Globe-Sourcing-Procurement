@@ -1,5 +1,5 @@
 // src/pages/VendorRegistration/utils/api.js
-// Frontend API Client for Vendor Registration
+// Frontend API Client for Vendor Registration - FIXED
 
 /**
  * API Configuration
@@ -20,10 +20,10 @@ export async function submitVendorRegistration(formData) {
   const url = `${API_CONFIG.baseURL}${API_CONFIG.endpoints.vendorRegistration}`;
 
   try {
-    // Prepare form data for submission
+    // Prepare form data for submission - FIXED FIELD NAMES
     const payload = {
-      // Company Information
-      VendorName: formData.companyName,
+      // Company Information - MATCH BACKEND EXACTLY
+      companyName: formData.companyName,  // ✅ Fixed from VendorName
       contactPerson: formData.contactPerson,
       email: formData.email,
       phone: formData.phone,
@@ -111,12 +111,31 @@ export async function submitVendorRegistrationWithFiles(formData) {
     // Create FormData for multipart upload
     const payload = new FormData();
 
-    // Add text fields
-    Object.entries(formData).forEach(([key, value]) => {
-      if (key !== 'documents' && key !== 'productImages') {
-        if (value !== null && value !== undefined) {
-          payload.append(key, value);
-        }
+    // Add text fields with correct names
+    const textFields = {
+      companyName: formData.companyName,
+      contactPerson: formData.contactPerson,
+      email: formData.email,
+      phone: formData.phone,
+      country: formData.country,
+      businessRegNumber: formData.businessRegNumber || '',
+      productCategory: formData.productCategory,
+      productSubcategory: formData.productSubcategory || '',
+      productDescription: formData.productDescription,
+      moq: formData.moq,
+      packaging: formData.packaging,
+      unitPrice: formData.unitPrice,
+      currency: formData.currency || 'USD',
+      certifications: formData.certifications || '',
+      termsAccepted: formData.termsAccepted || false,
+      privacyAccepted: formData.privacyAccepted || false,
+      marketingConsent: formData.marketingConsent || false
+    };
+
+    // Add all text fields
+    Object.entries(textFields).forEach(([key, value]) => {
+      if (value !== null && value !== undefined && value !== '') {
+        payload.append(key, value);
       }
     });
 
