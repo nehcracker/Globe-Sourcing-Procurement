@@ -26,7 +26,7 @@ export async function handleHealthCheck(env) {
 
   // Check email service
   health.services.email = {
-    configured: !!(env.SENDGRID_API_KEY || env.MAILGUN_API_KEY || env.RESEND_API_KEY),
+    configured: !!env.ZEPTOMAIL_API_KEY,
     enabled: env.ENABLE_EMAIL_NOTIFICATIONS !== 'false'
   };
 

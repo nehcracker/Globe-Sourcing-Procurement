@@ -15,6 +15,13 @@ export async function handleVendorRegistration(request, env) {
   const clientIP = request.headers.get('CF-Connecting-IP') || 'unknown';
 
   try {
+    // Log incoming request details
+    console.log('=== VENDOR REGISTRATION REQUEST ===');
+    console.log('IP:', clientIP);
+    console.log('Method:', request.method);
+    console.log('Content-Type:', request.headers.get('content-type'));
+    console.log('Origin:', request.headers.get('origin'));
+
     // 1. Parse request body
     const contentType = request.headers.get('content-type') || '';
     let formData;
@@ -62,36 +69,47 @@ export async function handleVendorRegistration(request, env) {
       }
     }
 
-    // 5. Check rate limiting
-    const rateLimitCheck = await checkRateLimit(clientIP, formData.email, env);
-    if (!rateLimitCheck.allowed) {
-      console.log('Rate limit exceeded:', {
-        ip: clientIP,
-        email: formData.email,
-        message: rateLimitCheck.message
-      });
-      
-      return jsonResponse({
-        success: false,
-        error: ERROR_MESSAGES.RATE_LIMIT_EXCEEDED,
-        message: rateLimitCheck.message,
-        retryAfter: rateLimitCheck.retryAfter
-      }, 429);
-    }
+    // 5. Check rate limiting (disabled for testing)
+    // const rateLimitCheck = await checkRateLimit(clientIP, formData.email, env);
+    // if (!rateLimitCheck.allowed) {
+    //   console.log('Rate limit exceeded:', {
+    //     ip: clientIP,
+    //     email: formData.email,
+    //     message: rateLimitCheck.message
+    //   });
 
-    // 6. Get Zoho access token
+    //   return jsonResponse({
+    //     success: false,
+    //     error: ERROR_MESSAGES.RATE_LIMIT_EXCEEDED,
+    //     message: rateLimitCheck.message,
+    //     retryAfter: rateLimitCheck.retryAfter
+    //   }, 429);
+    // }
+
+    // 6. Get Zoho access token with better error handling
     let accessToken;
     try {
+      console.log('Attempting to get Zoho access token...');
       accessToken = await getZohoAccessToken(env);
       if (!accessToken) {
         throw new Error('Failed to obtain access token');
       }
+      console.log('✓ Zoho access token obtained');
     } catch (error) {
-      console.error('Zoho authentication error:', error);
+      console.error('✗ Zoho authentication error:', error);
+      console.error('Error details:', {
+        message: error.message,
+        stack: error.stack,
+        zohoUrl: env.ZOHO_ACCOUNTS_URL,
+        hasClientId: !!env.ZOHO_CLIENT_ID,
+        hasClientSecret: !!env.ZOHO_CLIENT_SECRET,
+        hasRefreshToken: !!env.ZOHO_REFRESH_TOKEN
+      });
       return jsonResponse({
         success: false,
         error: ERROR_MESSAGES.ZOHO_API_ERROR,
-        message: 'Authentication failed. Please try again later.'
+        message: 'Authentication failed. Please try again later.',
+        details: env.ENVIRONMENT === 'development' ? error.message : undefined
       }, 500);
     }
 
@@ -178,8 +196,15 @@ export async function handleVendorRegistration(request, env) {
     }, 201);
 
   } catch (error) {
-    console.error('Unexpected error in vendor registration:', error);
-    
+    console.error('=== UNEXPECTED ERROR ===');
+    console.error('Error:', error.message);
+    console.error('Stack:', error.stack);
+    console.error('Request details:', {
+      ip: clientIP,
+      method: request.method,
+      url: request.url
+    });
+
     return jsonResponse({
       success: false,
       error: ERROR_MESSAGES.INTERNAL_ERROR,
@@ -200,13 +225,12 @@ async function parseMultipartData(request) {
 
     for (const [key, value] of formData.entries()) {
       if (value instanceof File) {
-        // Handle file upload
-        const arrayBuffer = await value.arrayBuffer();
+        // Store File/Blob directly - don't convert to ArrayBuffer
         documents.push({
           name: value.name,
           type: value.type,
           size: value.size,
-          data: arrayBuffer
+          data: value  // Keep as File/Blob
         });
       } else {
         // Handle regular form field

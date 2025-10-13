@@ -1,5 +1,6 @@
 # wrangler.toml - Cloudflare Workers Configuration
 # Globe Sourcing Procurement - Vendor Registration API
+# Worker URL: https://cloudflare-workers.nehlmac4.workers.dev
 
 name = "cloudflare-workers"
 main = "src/index.js"
@@ -8,48 +9,140 @@ compatibility_date = "2024-01-01"
 # Worker Configuration
 workers_dev = true
 
-# Environment Variables (non-sensitive)
+# ============================================
+# PRODUCTION ENVIRONMENT VARIABLES
+# ============================================
 [vars]
 ENVIRONMENT = "production"
 API_VERSION = "v1"
+
+# Zoho CRM Configuration
 ZOHO_API_URL = "https://www.zohoapis.com"
 ZOHO_ACCOUNTS_URL = "https://accounts.zoho.com"
 ZOHO_CRM_MODULE = "Vendors"
+
+# CORS Configuration - Add your production domains here
+ALLOWED_ORIGINS = "http://localhost:3000,http://localhost:5173,https://globesourceprocurement.com,https://www.globesourceprocurement.com"
+
+# File Upload Configuration
 MAX_FILE_SIZE = "5242880"
+
+# Rate Limiting Configuration
+RATE_LIMIT_ENABLED = "true"
 RATE_LIMIT_WINDOW = "3600000"
-RATE_LIMIT_MAX_REQUESTS = "10"
+RATE_LIMIT_MAX_REQUESTS_PER_IP = "10"
+
+# Feature Flags
 CHECK_DUPLICATES = "false"
 ENABLE_EMAIL_NOTIFICATIONS = "true"
+
+# Admin Configuration
 ADMIN_EMAIL = "supply.chain@globesourceprocurement.com"
 
-# KV Namespace - REPLACE WITH YOUR ID FROM STEP ABOVE
+# ============================================
+# KV Namespace Binding
+# IMPORTANT: Replace with your actual KV namespace ID
+# ============================================
 [[kv_namespaces]]
 binding = "VENDOR_CACHE"
-id = "c72995a6042e4c1186cf10d4d6ece56e"  # ← Replace this!
+id = "c72995a6042e4c1186cf10d4d6ece56e"
 
-# Uncomment after deploying once:
+# ============================================
+# Custom Domain Routes (Optional)
+# Uncomment after first successful deployment
+# and after setting up custom domain in Cloudflare
+# ============================================
 # routes = [
 #   { pattern = "api.globesourceprocurement.com/*", zone_name = "globesourceprocurement.com" }
 # ]
 
-# Build configuration
+# ============================================
+# Observability (Recommended)
+# ============================================
+[observability]
+enabled = true
+
+# ============================================
+# Build Configuration
+# ============================================
 [build]
 command = ""
 
-# Development environment
+# ============================================
+# DEVELOPMENT ENVIRONMENT
+# ============================================
 [env.development]
 name = "vendor-registration-api-dev"
-vars = { ENVIRONMENT = "development" }
+
+[env.development.vars]
+ENVIRONMENT = "development"
+API_VERSION = "v1"
+ZOHO_API_URL = "https://www.zohoapis.com"
+ZOHO_ACCOUNTS_URL = "https://accounts.zoho.com"
+ZOHO_CRM_MODULE = "Vendors"
+ALLOWED_ORIGINS = "http://localhost:3000,http://localhost:5173,http://127.0.0.1:3000"
+MAX_FILE_SIZE = "5242880"
+RATE_LIMIT_ENABLED = "true"
+RATE_LIMIT_WINDOW = "3600000"
+RATE_LIMIT_MAX_REQUESTS_PER_IP = "20"
+CHECK_DUPLICATES = "false"
+ENABLE_EMAIL_NOTIFICATIONS = "false"
+ADMIN_EMAIL = "dev@globesourceprocurement.com"
 
 [[env.development.kv_namespaces]]
 binding = "VENDOR_CACHE"
-id = "c72995a6042e4c1186cf10d4d6ece56e"  # Create with: wrangler kv:namespace create VENDOR_CACHE --env development
+id = "c72995a6042e4c1186cf10d4d6ece56e"
 
-# Staging environment
+# ============================================
+# STAGING ENVIRONMENT
+# ============================================
 [env.staging]
 name = "vendor-registration-api-staging"
-vars = { ENVIRONMENT = "staging" }
+
+[env.staging.vars]
+ENVIRONMENT = "staging"
+API_VERSION = "v1"
+ZOHO_API_URL = "https://www.zohoapis.com"
+ZOHO_ACCOUNTS_URL = "https://accounts.zoho.com"
+ZOHO_CRM_MODULE = "Vendors"
+ALLOWED_ORIGINS = "https://staging.globesourceprocurement.com,http://localhost:3000"
+MAX_FILE_SIZE = "5242880"
+RATE_LIMIT_ENABLED = "true"
+RATE_LIMIT_WINDOW = "3600000"
+RATE_LIMIT_MAX_REQUESTS_PER_IP = "15"
+CHECK_DUPLICATES = "true"
+ENABLE_EMAIL_NOTIFICATIONS = "true"
+ADMIN_EMAIL = "staging@globesourceprocurement.com"
 
 [[env.staging.kv_namespaces]]
 binding = "VENDOR_CACHE"
-id = "c72995a6042e4c1186cf10d4d6ece56e"  # Create with: wrangler kv:namespace create VENDOR_CACHE --env staging
+id = "c72995a6042e4c1186cf10d4d6ece56e"
+
+# ============================================
+# NOTES
+# ============================================
+# 
+# Worker URL: https://cloudflare-workers.nehlmac4.workers.dev
+
+#
+# Required Secrets (set via CLI):
+# - ZOHO_CLIENT_ID
+# - ZOHO_CLIENT_SECRET
+# - ZOHO_REFRESH_TOKEN
+# - ZEPTOMAIL_API_KEY
+#
+# To set secrets:
+# wrangler secret put ZOHO_CLIENT_ID
+# wrangler secret put ZOHO_CLIENT_SECRET
+# wrangler secret put ZOHO_REFRESH_TOKEN
+# wrangler secret put ZEPTOMAIL_API_KEY
+#
+# To deploy:
+# wrangler deploy
+#
+# To view logs:
+# wrangler tail
+#
+# To test health:
+# curl https://cloudflare-workers.nehlmac4.workers.dev/api/health
+#

@@ -16,7 +16,27 @@
 			"id": "c72995a6042e4c1186cf10d4d6ece56e",
 			"remote": true
 		}
-	]
+	],
+	"env": {
+		"development": {
+			"kv_namespaces": [
+				{
+					"binding": "VENDOR_CACHE",
+					"id": "6a8de8f3945d48dfa18d296bf19fb159",
+					"remote": true
+				}
+			]
+		},
+		"staging": {
+			"kv_namespaces": [
+				{
+					"binding": "VENDOR_CACHE",
+					"id": "7b398a0980384be48a4ff93f4f1d95c2",
+					"remote": true
+				}
+			]
+		}
+	}
 	/**
 	 * Smart Placement
 	 * Docs: https://developers.cloudflare.com/workers/configuration/smart-placement/#smart-placement

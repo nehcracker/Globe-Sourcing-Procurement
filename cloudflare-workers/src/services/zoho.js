@@ -7,13 +7,25 @@ import { ZOHO_FIELD_MAPPING, ZOHO_CONFIG } from '../config/constants.js';
  * Get Zoho OAuth access token (with caching)
  */
 export async function getZohoAccessToken(env) {
+  // Validate environment variables first
+  if (!env.ZOHO_REFRESH_TOKEN || !env.ZOHO_CLIENT_ID || !env.ZOHO_CLIENT_SECRET) {
+    console.error('Missing Zoho credentials:', {
+      hasRefreshToken: !!env.ZOHO_REFRESH_TOKEN,
+      hasClientId: !!env.ZOHO_CLIENT_ID,
+      hasClientSecret: !!env.ZOHO_CLIENT_SECRET
+    });
+    throw new Error('Zoho credentials not configured. Please set required secrets.');
+  }
+
   // Try to get cached token first
   if (env.VENDOR_CACHE) {
     try {
       const cachedToken = await env.VENDOR_CACHE.get('zoho_access_token');
       if (cachedToken) {
+        console.log('✓ Using cached Zoho token');
         return cachedToken;
       }
+      console.log('No cached token found, generating new one...');
     } catch (error) {
       console.warn('Failed to retrieve cached token:', error);
     }
@@ -28,6 +40,8 @@ export async function getZohoAccessToken(env) {
     grant_type: 'refresh_token'
   });
 
+  console.log('Requesting new Zoho token from:', tokenUrl);
+
   try {
     const response = await fetch(tokenUrl, {
       method: 'POST',
@@ -37,18 +51,30 @@ export async function getZohoAccessToken(env) {
       body: params.toString()
     });
 
+    const responseText = await response.text();
+    console.log('Zoho token response status:', response.status);
+
     if (!response.ok) {
-      const errorText = await response.text();
-      console.error('Zoho token error:', errorText);
-      throw new Error('Failed to obtain Zoho access token');
+      console.error('Zoho token error response:', responseText);
+      throw new Error(`Failed to obtain Zoho access token: ${response.status} - ${responseText}`);
     }
 
-    const data = await response.json();
+    let data;
+    try {
+      data = JSON.parse(responseText);
+    } catch (e) {
+      console.error('Failed to parse Zoho response:', responseText);
+      throw new Error('Invalid response from Zoho API');
+    }
+
     const accessToken = data.access_token;
 
     if (!accessToken) {
-      throw new Error('No access token in response');
+      console.error('No access token in response:', data);
+      throw new Error('No access token in Zoho response');
     }
+
+    console.log('✓ New Zoho token generated successfully');
 
     // Cache token for 50 minutes (expires in 60)
     if (env.VENDOR_CACHE) {
@@ -58,6 +84,7 @@ export async function getZohoAccessToken(env) {
           accessToken,
           { expirationTtl: ZOHO_CONFIG.tokenCacheDuration }
         );
+        console.log('✓ Token cached successfully');
       } catch (error) {
         console.warn('Failed to cache token:', error);
       }
@@ -113,6 +140,12 @@ export function mapFormDataToCRM(formData) {
  * Create vendor record in Zoho CRM
  */
 export async function createVendorRecord(accessToken, formData, env) {
+  console.log('Zoho env vars:', {
+    ZOHO_API_URL: env.ZOHO_API_URL,
+    ZOHO_CRM_MODULE: env.ZOHO_CRM_MODULE,
+    ENVIRONMENT: env.ENVIRONMENT
+  });
+  
   const url = `${env.ZOHO_API_URL}/crm/v3/${env.ZOHO_CRM_MODULE}`;
   
   const crmData = mapFormDataToCRM(formData);
@@ -121,6 +154,7 @@ export async function createVendorRecord(accessToken, formData, env) {
     data: [crmData]
   };
 
+  console.log('Creating Zoho CRM record URL:', url);
   console.log('Creating Zoho CRM record:', JSON.stringify(payload, null, 2));
 
   try {
@@ -194,37 +228,47 @@ export async function uploadFilesToZoho(accessToken, recordId, files, env) {
   for (const file of files) {
     try {
       const formData = new FormData();
-      
-      // Create blob from file data
-      const blob = new Blob([file.data], { type: file.type });
-      formData.append('file', blob, file.name);
+
+      // Use file directly if it's already a Blob/File
+      if (file.data instanceof Blob || file.data instanceof File) {
+        formData.append('file', file.data, file.name);
+      } else {
+        // If it's ArrayBuffer or other format, create Blob
+        const blob = new Blob([file.data], { type: file.type });
+        formData.append('file', blob, file.name);
+      }
+
+      console.log(`Uploading file: ${file.name} (${file.type}, ${file.size} bytes)`);
 
       const response = await fetch(url, {
         method: 'POST',
         headers: {
           'Authorization': `Zoho-oauthtoken ${accessToken}`
-          // Note: Don't set Content-Type for FormData, browser sets it with boundary
+          // Don't set Content-Type - let FormData set it with boundary
         },
         body: formData,
         signal: AbortSignal.timeout(ZOHO_CONFIG.apiTimeout)
       });
 
       const result = await response.json();
+      console.log(`Upload response for ${file.name}:`, result);
 
       if (response.ok && result.data?.[0]?.status === 'success') {
         uploadedFiles.push({
           name: file.name,
           id: result.data[0].details?.id
         });
+        console.log(`✓ Successfully uploaded: ${file.name}`);
       } else {
         failedFiles.push({
           name: file.name,
-          error: result.message || 'Upload failed'
+          error: result.message || result.data?.[0]?.message || 'Upload failed'
         });
+        console.error(`✗ Failed to upload ${file.name}:`, result);
       }
 
     } catch (error) {
-      console.error(`Failed to upload file ${file.name}:`, error);
+      console.error(`✗ Exception uploading file ${file.name}:`, error);
       failedFiles.push({
         name: file.name,
         error: error.message
