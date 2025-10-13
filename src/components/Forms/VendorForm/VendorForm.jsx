@@ -180,13 +180,13 @@ const VendorForm = () => {
           <h3 className={styles.sectionTitle}>Company Information</h3>
           <div className={styles.fieldsGrid}>
             <FormField
-              label="Company Name"
+              label="Vendor Name"
               name="companyName"
               type="text"
               value={formData.companyName}
               onChange={(value) => handleInputChange('companyName', value)}
               error={errors.companyName}
-              placeholder="Enter your company name"
+              placeholder="Enter your vendor name"
               required
             />
 

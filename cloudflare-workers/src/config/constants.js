@@ -2,27 +2,27 @@
 // Configuration Constants for Vendor Registration API
 
 export const ZOHO_FIELD_MAPPING = {
-  // Standard Zoho CRM Fields
-  companyName: 'Vendor_Name',
+  // Standard Zoho CRM Vendor Fields (corrected)
+  VendorName: 'Account_Name',  // Standard field for vendor/company name
   email: 'Email',
   phone: 'Phone',
-  country: 'Mailing_Country',
-  
+  country: 'Country',  // Or 'Country' if using custom field
+
   // Custom Fields (match your Zoho CRM API names exactly)
   contactPerson: 'Contact_Person',
   businessRegNumber: 'Business_Reg_Number',
   productCategory: 'Product_Category',
   productSubcategory: 'Product_Subcategory',
-  productDescription: 'Product_Description',
-  moq: 'MOQ',
+  productDescription: 'Description',  // Standard Description field
+  moq: 'Minimum_Order_Quantity',
   packaging: 'Packaging_Type',
   unitPrice: 'Unit_Price',
   currency: 'Price_Currency',
   certifications: 'Certifications',
-  
+
   // Meta Fields
   registrationSource: 'Registration_Source',
-  registrationDate: 'Registration_Date',
+  datetime: 'Registration_Date',
   applicationStatus: 'Application_Status',
   termsAccepted: 'Terms_Accepted',
   privacyAccepted: 'Privacy_Accepted',

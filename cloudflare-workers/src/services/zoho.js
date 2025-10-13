@@ -1,5 +1,5 @@
 // cloudflare-workers/src/services/zoho.js
-// Zoho CRM Integration Service
+// FIXED VERSION - Correct date format for Zoho
 
 import { ZOHO_FIELD_MAPPING, ZOHO_CONFIG } from '../config/constants.js';
 
@@ -104,34 +104,87 @@ export async function getZohoAccessToken(env) {
 export function mapFormDataToCRM(formData) {
   const crmData = {};
 
-  // Map standard and custom fields
-  Object.entries(ZOHO_FIELD_MAPPING).forEach(([formField, crmField]) => {
-    const value = formData[formField];
-    
-    if (value !== undefined && value !== null && value !== '') {
-      // Handle different data types
-      if (formField === 'moq' || formField === 'unitPrice') {
-        crmData[crmField] = parseFloat(value) || 0;
-      } else if (formField === 'termsAccepted' || formField === 'privacyAccepted' || formField === 'marketingConsent') {
-        crmData[crmField] = Boolean(value);
-      } else {
-        crmData[crmField] = String(value).trim();
-      }
-    }
-  });
+  // CRITICAL: Ensure Vendor_Name is always set
+  if (formData.companyName) {
+    crmData['Vendor_Name'] = String(formData.companyName).trim();
+  }
+
+  // Map other standard fields
+  if (formData.email) {
+    crmData['Email'] = String(formData.email).trim();
+  }
+
+  if (formData.phone) {
+    crmData['Phone'] = String(formData.phone).trim();
+  }
+
+  if (formData.country) {
+    crmData['Mailing_Country'] = String(formData.country).trim();
+  }
+
+  // Map custom fields
+  if (formData.contactPerson) {
+    crmData['Contact_Person'] = String(formData.contactPerson).trim();
+  }
+
+  if (formData.productCategory) {
+    crmData['Product_Category'] = String(formData.productCategory).trim();
+  }
+
+  if (formData.productSubcategory) {
+    crmData['Product_Subcategory'] = String(formData.productSubcategory).trim();
+  }
+
+  if (formData.productDescription) {
+    crmData['Product_Description'] = String(formData.productDescription).trim();
+  }
+
+  if (formData.moq) {
+    crmData['MOQ'] = parseFloat(formData.moq) || 0;
+  }
+
+  if (formData.packaging) {
+    crmData['Packaging_Type'] = String(formData.packaging).trim();
+  }
+
+  if (formData.unitPrice) {
+    crmData['Unit_Price'] = parseFloat(formData.unitPrice) || 0;
+  }
+
+  if (formData.currency) {
+    crmData['Price_Currency'] = String(formData.currency).trim();
+  }
+
+  if (formData.certifications) {
+    crmData['Certifications'] = String(formData.certifications).trim();
+  }
 
   // Add auto-filled fields
-  crmData[ZOHO_FIELD_MAPPING.registrationSource] = 'Website - Vendor Registration';
-  crmData[ZOHO_FIELD_MAPPING.registrationDate] = new Date().toISOString();
-  crmData[ZOHO_FIELD_MAPPING.applicationStatus] = 'New Registration';
+  crmData['Registration_Source'] = 'Website - Vendor Registration';
+  crmData['Registration_Date'] = new Date().toISOString().split('T')[0];
+  crmData['Application_Status'] = 'New Registration';
 
-  // Calculate estimated order value if both price and MOQ exist
+  if (formData.termsAccepted !== undefined) {
+    crmData['Terms_Accepted'] = Boolean(formData.termsAccepted);
+  }
+
+  if (formData.privacyAccepted !== undefined) {
+    crmData['Privacy_Accepted'] = Boolean(formData.privacyAccepted);
+  }
+
+  if (formData.marketingConsent !== undefined) {
+    crmData['Marketing_Consent'] = Boolean(formData.marketingConsent);
+  }
+
+  // Calculate estimated order value
   if (formData.unitPrice && formData.moq) {
     const estimatedValue = parseFloat(formData.unitPrice) * parseFloat(formData.moq);
     if (!isNaN(estimatedValue)) {
       crmData['Est_Order_Value'] = estimatedValue;
     }
   }
+
+  console.log('Mapped CRM Data:', JSON.stringify(crmData, null, 2));
 
   return crmData;
 }

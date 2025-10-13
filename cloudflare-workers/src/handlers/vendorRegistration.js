@@ -1,8 +1,8 @@
 // cloudflare-workers/src/handlers/vendorRegistration.js
-// Main Vendor Registration Handler
+// UPDATED VERSION with detailed error reporting
 
 import { validateFormData, sanitizeFormData, validateFiles } from '../utils/validation.js';
-import { checkRateLimit } from '../utils/rateLimit.js';
+// import { checkRateLimit } from '../utils/rateLimit.js';
 import { getZohoAccessToken, createVendorRecord, uploadFilesToZoho, getVendorByEmail } from '../services/zoho.js';
 import { sendAllNotifications } from '../services/email.js';
 import { ERROR_MESSAGES, SUCCESS_MESSAGES } from '../config/constants.js';
@@ -69,22 +69,7 @@ export async function handleVendorRegistration(request, env) {
       }
     }
 
-    // 5. Check rate limiting (disabled for testing)
-    // const rateLimitCheck = await checkRateLimit(clientIP, formData.email, env);
-    // if (!rateLimitCheck.allowed) {
-    //   console.log('Rate limit exceeded:', {
-    //     ip: clientIP,
-    //     email: formData.email,
-    //     message: rateLimitCheck.message
-    //   });
-
-    //   return jsonResponse({
-    //     success: false,
-    //     error: ERROR_MESSAGES.RATE_LIMIT_EXCEEDED,
-    //     message: rateLimitCheck.message,
-    //     retryAfter: rateLimitCheck.retryAfter
-    //   }, 429);
-    // }
+    // 5. Rate limiting is disabled for now
 
     // 6. Get Zoho access token with better error handling
     let accessToken;
@@ -131,10 +116,18 @@ export async function handleVendorRegistration(request, env) {
     
     if (!crmResult.success) {
       console.error('CRM record creation failed:', crmResult.message);
+      
+      // RETURN FULL ZOHO ERROR FOR DEBUGGING
       return jsonResponse({
         success: false,
         error: ERROR_MESSAGES.ZOHO_API_ERROR,
-        message: crmResult.message || 'Failed to create vendor record'
+        message: crmResult.message || 'Failed to create vendor record',
+        zohoError: crmResult.details, // Include full Zoho response
+        debug: {
+          apiUrl: env.ZOHO_API_URL,
+          module: env.ZOHO_CRM_MODULE,
+          url: `${env.ZOHO_API_URL}/crm/v3/${env.ZOHO_CRM_MODULE}`
+        }
       }, 500);
     }
 
@@ -209,7 +202,8 @@ export async function handleVendorRegistration(request, env) {
       success: false,
       error: ERROR_MESSAGES.INTERNAL_ERROR,
       message: 'An unexpected error occurred. Please try again.',
-      details: env.ENVIRONMENT === 'development' ? error.message : undefined
+      details: error.message, // Always show error details for debugging
+      stack: error.stack
     }, 500);
   }
 }

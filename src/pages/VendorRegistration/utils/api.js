@@ -23,7 +23,7 @@ export async function submitVendorRegistration(formData) {
     // Prepare form data for submission
     const payload = {
       // Company Information
-      companyName: formData.companyName,
+      VendorName: formData.companyName,
       contactPerson: formData.contactPerson,
       email: formData.email,
       phone: formData.phone,
