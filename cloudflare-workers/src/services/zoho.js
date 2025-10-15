@@ -1,7 +1,7 @@
 // cloudflare-workers/src/services/zoho.js
 // FIXED VERSION - Correct date format for Zoho
 
-import { ZOHO_FIELD_MAPPING, ZOHO_CONFIG } from '../config/constants.js';
+import { ZOHO_CONFIG } from '../config/constants.js';
 
 /**
  * Get Zoho OAuth access token (with caching)
@@ -119,7 +119,7 @@ export function mapFormDataToCRM(formData) {
   }
 
   if (formData.country) {
-    crmData['Mailing_Country'] = String(formData.country).trim();
+    crmData['Country'] = String(formData.country).trim();
   }
 
   // Map custom fields
@@ -140,7 +140,7 @@ export function mapFormDataToCRM(formData) {
   }
 
   if (formData.moq) {
-    crmData['MOQ'] = parseFloat(formData.moq) || 0;
+    crmData['Minimum_Order_Quantity'] = parseFloat(formData.moq) || 0;
   }
 
   if (formData.packaging) {
@@ -152,7 +152,7 @@ export function mapFormDataToCRM(formData) {
   }
 
   if (formData.currency) {
-    crmData['Price_Currency'] = String(formData.currency).trim();
+    crmData['Unit_Currency'] = String(formData.currency).trim();
   }
 
   if (formData.certifications) {
@@ -161,7 +161,7 @@ export function mapFormDataToCRM(formData) {
 
   // Add auto-filled fields
   crmData['Registration_Source'] = 'Website - Vendor Registration';
-  crmData['Registration_Date'] = new Date().toISOString().split('T')[0];
+  crmData['Registration_Date'] = new Date().toISOString();
   crmData['Application_Status'] = 'New Registration';
 
   if (formData.termsAccepted !== undefined) {

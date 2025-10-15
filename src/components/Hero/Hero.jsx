@@ -1,5 +1,6 @@
 // src/components/Hero/Hero.jsx
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { ArrowRight, Globe, Package, Truck, CheckCircle } from 'lucide-react';
 import useScrollAnimation from '../../hooks/useScrollAnimation';
 import { COMPANY } from '../../utils/constants';
@@ -7,6 +8,7 @@ import { scrollToElement } from '../../utils/helpers';
 import styles from './Hero.module.css';
 
 const Hero = () => {
+  const navigate = useNavigate();
   const [isLoaded, setIsLoaded] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const { ref: heroRef } = useScrollAnimation({ threshold: 0.2 });
@@ -133,7 +135,7 @@ const Hero = () => {
 
               <button
                 className={styles.secondaryCta}
-                onClick={() => window.location.href = '/vendor-registration-page'}
+                onClick={() => navigate('/vendor-registration-page#vendor-form-section')}
                 aria-label="Join as a vendor partner"
               >
                 <span>Join as Vendor</span>

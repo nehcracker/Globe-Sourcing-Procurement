@@ -17,13 +17,17 @@ export async function sendWithZeptoMail(to, subject, html, env) {
   const payload = {
     from: {
       address: EMAIL_TEMPLATES.vendor.from,
-      name: 'Globe Sourcing Procurement'
+      name: 'Globe Supply Solutions'
     },
     to: [{
       email_address: {
         address: to,
         name: 'Recipient'
       }
+    }],
+    reply_to: [{
+      address: EMAIL_TEMPLATES.vendor.replyTo,
+      name: 'Supply Chain Manager'
     }],
     subject: subject,
     htmlbody: html
@@ -412,7 +416,19 @@ export async function sendVendorConfirmation(formData, env) {
   const html = generateVendorEmailHTML(formData);
   const subject = EMAIL_TEMPLATES.vendor.subject;
 
-  return await sendWithZeptoMail(formData.email, subject, html, env);
+  // Use supply email as reply-to for vendor emails
+  const supplyEmail = env.SUPPLY_EMAIL || 'supply.chain@globesourceprocurement.com';
+
+  // Temporarily modify EMAIL_TEMPLATES for this send
+  const originalReplyTo = EMAIL_TEMPLATES.vendor.replyTo;
+  EMAIL_TEMPLATES.vendor.replyTo = supplyEmail;
+
+  const result = await sendWithZeptoMail(formData.email, subject, html, env);
+
+  // Restore original reply-to
+  EMAIL_TEMPLATES.vendor.replyTo = originalReplyTo;
+
+  return result;
 }
 
 /**
@@ -421,7 +437,7 @@ export async function sendVendorConfirmation(formData, env) {
 export async function sendAdminNotification(formData, recordId, env) {
   const html = generateAdminEmailHTML(formData, recordId, env);
   const subject = `${EMAIL_TEMPLATES.admin.subject}: ${formData.companyName}`;
-  const adminEmail = env.ADMIN_EMAIL || 'admin@globesourceprocurement.com';
+  const adminEmail = env.ADMIN_EMAIL || 'info@globesourceprocurement.com';
 
   return await sendWithZeptoMail(adminEmail, subject, html, env);
 }

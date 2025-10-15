@@ -69,10 +69,16 @@ const Navbar = () => {
             <ul className={styles.navList}>
               {navItems.map((item) => (
                 <li key={item.name}>
-                  <a 
-                    href={item.href} 
+                  <a
+                    href={item.href}
                     className={styles.navLink}
-                    onClick={closeMenu}
+                    onClick={(e) => {
+                      closeMenu();
+                      if (item.name === 'Vendors') {
+                        e.preventDefault();
+                        window.location.href = '/vendor-registration-page';
+                      }
+                    }}
                   >
                     {item.name}
                   </a>
@@ -99,15 +105,21 @@ const Navbar = () => {
           <div className={styles.mobileNavContent}>
             <ul className={styles.mobileNavList}>
               {navItems.map((item, index) => (
-                <li 
+                <li
                   key={item.name}
                   className={styles.mobileNavItem}
                   style={{ '--delay': `${index * 0.1}s` }}
                 >
-                  <a 
-                    href={item.href} 
+                  <a
+                    href={item.href}
                     className={styles.mobileNavLink}
-                    onClick={closeMenu}
+                    onClick={(e) => {
+                      closeMenu();
+                      if (item.name === 'Vendors') {
+                        e.preventDefault();
+                        window.location.href = '/vendor-registration-page';
+                      }
+                    }}
                   >
                     {item.name}
                   </a>

@@ -1,6 +1,13 @@
 /* src/pages/VendorRegistration/components/MultiStepForm/MultiStepForm.module.css */
 @import '../../styles/variables.css';
 
+/* Form Wrapper */
+.formWrapper {
+  position: relative;
+  width: 100%;
+  min-height: 600px;
+}
+
 /* Main Form Container */
 .multiStepForm {
   margin: 0 auto;
@@ -8,11 +15,44 @@
   backdrop-filter: blur(20px);
   border: 2px solid rgba(59, 130, 246, 0.1);
   border-radius: var(--border-radius-3xl);
-  box-shadow: 
+  box-shadow:
     0 25px 50px rgba(59, 130, 246, 0.15),
     0 0 0 1px rgba(255, 255, 255, 0.8) inset;
   overflow: hidden;
   position: relative;
+  transition: transform 0.6s ease-out, opacity 0.6s ease-out;
+}
+
+/* Success Container */
+.successContainer {
+  animation: successFadeIn 0.6s ease-out; /* Simple fade in */
+  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 50%, #ffffff 100%); /* Clear background */
+  padding: 3rem 2rem; /* Proper spacing */
+  max-width: 900px; /* Contained width */
+  min-height: 400px; /* Ensures visibility */
+  box-shadow: 0 20px 50px rgba(59, 130, 246, 0.15);
+  border: 2px solid rgba(59, 130, 246, 0.1);
+  position: relative;
+  z-index: 10; /* ✅ Ensures it's on top */
+}
+
+/* Step Content */
+.stepContent {
+  width: 100%;
+  animation: stepSlideUp 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  flex: 1;
+}
+
+/* Animation States */
+.formWrapper.submitted .multiStepForm.slideUp {
+  transform: translateY(-100%);
+  opacity: 0;
+}
+
+.formWrapper.submitted .successContainer.slideIn {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
 }
 
 .multiStepForm::before {
@@ -512,6 +552,67 @@
   color: #059669;
   font-weight: var(--font-weight-bold);
   font-size: var(--font-size-base);
+}
+
+/* Form Wrapper and Animation Classes */
+.formWrapper {
+  position: relative;
+  width: 100%;
+  min-height: 600px;
+}
+
+.multiStepForm {
+  transition: transform 0.6s ease-out, opacity 0.6s ease-out;
+}
+
+.multiStepForm.slideUp {
+  transform: translateY(-100%);
+  opacity: 0;
+}
+
+.successContainer {
+  position: relative;
+  width: 100%;
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+  animation: successFadeIn 0.6s ease-out;
+}
+
+/* Form exit animation when submitted */
+.multiStepForm.slideUp {
+  transform: translateY(-100%);
+  opacity: 0;
+  transition: transform 0.6s ease-out, opacity 0.6s ease-out;
+}
+
+@keyframes slideUpAnimation {
+  0% {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideDownAnimation {
+  0% {
+    transform: translateY(-30px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Step Content */
+.stepContent {
+  width: 100%;
+  animation: stepSlideUp 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  flex: 1;
 }
 
 /* Checkbox */

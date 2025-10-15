@@ -51,6 +51,7 @@ export const useMultiStepForm = (initialData = {}) => {
     
     // Product Details
     productCategory: '',
+    productSubcategory: '',
     productDescription: '',
     moq: '',
     packaging: '',
@@ -244,11 +245,12 @@ export const useMultiStepForm = (initialData = {}) => {
       country: '', 
       businessRegNumber: '',
       // Product Details
-      productCategory: '', 
-      productDescription: '', 
-      moq: '', 
-      packaging: '', 
-      unitPrice: '', 
+      productCategory: '',
+      productSubcategory: '',
+      productDescription: '',
+      moq: '',
+      packaging: '',
+      unitPrice: '',
       currency: 'USD',
       // Business Credentials
       certifications: '', 

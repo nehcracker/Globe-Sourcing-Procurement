@@ -26,14 +26,23 @@ export async function handleVendorRegistration(request, env) {
     const contentType = request.headers.get('content-type') || '';
     let formData;
 
-    if (contentType.includes('application/json')) {
-      formData = await request.json();
-    } else if (contentType.includes('multipart/form-data')) {
-      formData = await parseMultipartData(request);
-    } else {
+    try {
+      if (contentType.includes('application/json')) {
+        formData = await request.json();
+      } else if (contentType.includes('multipart/form-data')) {
+        formData = await parseMultipartData(request);
+      } else {
+        return jsonResponse({
+          success: false,
+          error: 'Invalid content type. Expected application/json or multipart/form-data.'
+        }, 400);
+      }
+    } catch (error) {
+      console.error('Request parsing error:', error);
       return jsonResponse({
         success: false,
-        error: 'Invalid content type'
+        error: 'Failed to parse request data. Please check your form data format.',
+        details: env.ENVIRONMENT === 'development' ? error.message : undefined
       }, 400);
     }
 
@@ -44,16 +53,35 @@ export async function handleVendorRegistration(request, env) {
     });
 
     // 2. Sanitize input
-    formData = sanitizeFormData(formData);
-
-    // 3. Validate form data
-    const validation = validateFormData(formData);
-    if (!validation.valid) {
-      console.log('Validation failed:', validation.errors);
+    try {
+      formData = sanitizeFormData(formData);
+    } catch (error) {
+      console.error('Data sanitization error:', error);
       return jsonResponse({
         success: false,
-        error: ERROR_MESSAGES.VALIDATION_FAILED,
-        errors: validation.errors
+        error: 'Failed to process form data. Please check your input.',
+        details: env.ENVIRONMENT === 'development' ? error.message : undefined
+      }, 400);
+    }
+
+    // 3. Validate form data
+    let validation;
+    try {
+      validation = validateFormData(formData);
+      if (!validation.valid) {
+        console.log('Validation failed:', validation.errors);
+        return jsonResponse({
+          success: false,
+          error: ERROR_MESSAGES.VALIDATION_FAILED,
+          errors: validation.errors
+        }, 400);
+      }
+    } catch (error) {
+      console.error('Validation error:', error);
+      return jsonResponse({
+        success: false,
+        error: 'Form validation failed. Please check your input data.',
+        details: env.ENVIRONMENT === 'development' ? error.message : undefined
       }, 400);
     }
 
@@ -100,23 +128,40 @@ export async function handleVendorRegistration(request, env) {
 
     // 7. Check for duplicate email (optional)
     if (env.CHECK_DUPLICATES !== 'false') {
-      const duplicateCheck = await getVendorByEmail(accessToken, formData.email, env);
-      if (duplicateCheck.found) {
-        console.log('Duplicate vendor found:', formData.email);
-        return jsonResponse({
-          success: false,
-          error: 'A vendor with this email address is already registered.',
-          message: 'If you need to update your information, please contact support.'
-        }, 409);
+      try {
+        const duplicateCheck = await getVendorByEmail(accessToken, formData.email, env);
+        if (duplicateCheck.found) {
+          console.log('Duplicate vendor found:', formData.email);
+          return jsonResponse({
+            success: false,
+            error: 'A vendor with this email address is already registered.',
+            message: 'If you need to update your information, please contact support.'
+          }, 409);
+        }
+      } catch (error) {
+        console.error('Duplicate check error:', error);
+        // Don't fail registration if duplicate check fails, just log it
+        console.log('Skipping duplicate check due to error');
       }
     }
 
     // 8. Create vendor record in Zoho CRM
-    const crmResult = await createVendorRecord(accessToken, formData, env);
-    
+    let crmResult;
+    try {
+      crmResult = await createVendorRecord(accessToken, formData, env);
+    } catch (error) {
+      console.error('CRM record creation error:', error);
+      return jsonResponse({
+        success: false,
+        error: ERROR_MESSAGES.ZOHO_API_ERROR,
+        message: 'Failed to create vendor record in CRM system.',
+        details: env.ENVIRONMENT === 'development' ? error.message : undefined
+      }, 500);
+    }
+
     if (!crmResult.success) {
       console.error('CRM record creation failed:', crmResult.message);
-      
+
       // RETURN FULL ZOHO ERROR FOR DEBUGGING
       return jsonResponse({
         success: false,
@@ -147,6 +192,12 @@ export async function handleVendorRegistration(request, env) {
         console.log('File upload result:', fileUploadResult);
       } catch (error) {
         console.error('File upload error:', error);
+        // Log detailed error for debugging but don't fail the whole request
+        console.error('File upload details:', {
+          recordId,
+          fileCount: formData.documents.length,
+          errorMessage: error.message
+        });
         // Don't fail the whole request if file upload fails
       }
     }
@@ -158,6 +209,12 @@ export async function handleVendorRegistration(request, env) {
       console.log('Email notifications sent:', emailResults);
     } catch (error) {
       console.error('Email notification error:', error);
+      // Log detailed error for debugging but don't fail the whole request
+      console.error('Email notification details:', {
+        recordId,
+        email: formData.email,
+        errorMessage: error.message
+      });
       // Don't fail the request if email fails
     }
 
@@ -195,16 +252,33 @@ export async function handleVendorRegistration(request, env) {
     console.error('Request details:', {
       ip: clientIP,
       method: request.method,
-      url: request.url
+      url: request.url,
+      contentType: request.headers.get('content-type')
     });
+
+    // Determine error type for better user messaging
+    let errorMessage = 'An unexpected error occurred. Please try again.';
+    let statusCode = 500;
+
+    if (error.message.includes('network') || error.message.includes('fetch')) {
+      errorMessage = 'Network error occurred. Please check your connection and try again.';
+      statusCode = 503;
+    } else if (error.message.includes('timeout')) {
+      errorMessage = 'Request timed out. Please try again.';
+      statusCode = 408;
+    } else if (error.message.includes('memory') || error.message.includes('heap')) {
+      errorMessage = 'Server temporarily overloaded. Please try again in a few minutes.';
+      statusCode = 503;
+    }
 
     return jsonResponse({
       success: false,
       error: ERROR_MESSAGES.INTERNAL_ERROR,
-      message: 'An unexpected error occurred. Please try again.',
-      details: error.message, // Always show error details for debugging
-      stack: error.stack
-    }, 500);
+      message: errorMessage,
+      details: env.ENVIRONMENT === 'development' ? error.message : undefined,
+      stack: env.ENVIRONMENT === 'development' ? error.stack : undefined,
+      timestamp: new Date().toISOString()
+    }, statusCode);
   }
 }
 

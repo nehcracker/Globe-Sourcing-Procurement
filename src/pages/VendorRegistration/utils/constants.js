@@ -3,7 +3,7 @@
 // Product Categories
 export const PRODUCT_CATEGORIES = [
   'Agricultural Products',
-  'Industrial Equipment', 
+  'Industrial Equipment',
   'Electronics & Technology',
   'Textiles & Apparel',
   'Automotive Parts',
@@ -11,11 +11,69 @@ export const PRODUCT_CATEGORIES = [
   'Food & Beverages',
   'Medical Supplies',
   'Chemicals',
-  'Raw Materials',
-  'Consumer Goods',
-  'Machinery',
   'Other'
 ];
+
+// Product Subcategories (dependent on main category)
+export const PRODUCT_SUBCATEGORIES = {
+  'Agricultural Products': [
+    'Fresh Produce',
+    'Grains & Cereals',
+    'Seeds & Plants',
+    'Agricultural Equipment'
+  ],
+  'Electronics & Technology': [
+    'Consumer Electronics',
+    'Computer Hardware',
+    'Telecommunications',
+    'Smart Devices'
+  ],
+  'Industrial Equipment': [
+    'Heavy Machinery',
+    'Manufacturing Tools',
+    'Automation Systems',
+    'Safety Equipment'
+  ],
+  'Textiles & Apparel': [
+    'Fashion Clothing',
+    'Fabrics & Materials',
+    'Accessories',
+    'Footwear'
+  ],
+  'Automotive Parts': [
+    'Engine Components',
+    'Electronic Parts',
+    'Body & Exterior',
+    'Interior Accessories'
+  ],
+  'Construction Materials': [
+    'Building Materials',
+    'Tools & Hardware',
+    'Safety Equipment',
+    'Architectural Products'
+  ],
+  'Food & Beverages': [
+    'Packaged Foods',
+    'Beverages',
+    'Ingredients',
+    'Specialty Products'
+  ],
+  'Medical Supplies': [
+    'Medical Devices',
+    'Pharmaceuticals',
+    'Healthcare Equipment',
+    'Diagnostic Tools'
+  ],
+  'Chemicals': [
+    'Industrial Chemicals',
+    'Specialty Chemicals',
+    'Raw Materials',
+    'Laboratory Supplies'
+  ],
+  'Other': [
+    'Specify in description'
+  ]
+};
 
 // Currency Options
 export const CURRENCIES = [

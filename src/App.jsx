@@ -7,6 +7,7 @@ import Services from './pages/Services/Services';
 import Layout from './components/Layout/Layout';
 import Financing from './pages/Financing/Financing';
 import VendorRegistrationPage from './pages/VendorRegistration';
+import VendorFormPage from './pages/VendorForm/VendorFormPage';
 import ScrollToTop from './components/ScrollToTop/ScrollToTop';
 // import Contact from './pages/Contact/Contact';
 
@@ -31,7 +32,8 @@ function App() {
             <Route path="/about" element={<About />} />
             <Route path="/services" element={<Services />} />
             <Route path="/financing" element={<Financing />} />
-            <Route path="/vendor-registration-page" element={<VendorRegistrationPage />} />
+            <Route path="/Vendor-Registration-Page" element={<VendorRegistrationPage />} />
+            <Route path="/vendor-form" element={<VendorFormPage />} />
             {/* Future routes can be added here
             <Route path="/contact" element={<Contact />} /> */}
           </Routes>

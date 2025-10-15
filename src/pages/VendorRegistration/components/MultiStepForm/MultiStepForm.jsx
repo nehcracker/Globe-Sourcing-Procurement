@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useMultiStepForm } from '../../hooks/useMultiStepForm';
 import { useFormAnalytics } from '../../hooks/useFormAnalytics';
 import { submitVendorRegistration } from '../../utils/api';
+import { PRODUCT_SUBCATEGORIES } from '../../utils/constants';
 import StepIndicator from './StepIndicator';
 import NavigationButtons from './NavigationButtons';
 import SuccessMessage from '../shared/SuccessMessage';
@@ -169,17 +170,21 @@ const ProductDetailsStep = ({ formData, updateFormData, updateValidation }) => {
 
   useEffect(() => {
     const newErrors = {};
-    
+
     if (!formData.productCategory.trim()) {
       newErrors.productCategory = 'Product category is required';
     }
-    
+
+    if (!formData.productSubcategory.trim()) {
+      newErrors.productSubcategory = 'Product subcategory is required';
+    }
+
     if (!formData.productDescription.trim()) {
       newErrors.productDescription = 'Product description is required';
     } else if (formData.productDescription.trim().length < 50) {
       newErrors.productDescription = 'Product description must be at least 50 characters';
     }
-    
+
     if (!formData.moq.trim()) {
       newErrors.moq = 'Minimum bulk quantity is required';
     } else if (isNaN(formData.moq) || parseFloat(formData.moq) <= 0) {
@@ -189,13 +194,13 @@ const ProductDetailsStep = ({ formData, updateFormData, updateValidation }) => {
     if (!formData.packaging.trim()) {
       newErrors.packaging = 'Packaging type is required';
     }
-    
+
     if (!formData.unitPrice.trim()) {
       newErrors.unitPrice = 'Unit price is required';
     } else if (isNaN(formData.unitPrice) || parseFloat(formData.unitPrice) <= 0) {
       newErrors.unitPrice = 'Please enter a valid positive price';
     }
-    
+
     setLocalErrors(newErrors);
     updateValidation(2, Object.keys(newErrors).length === 0, newErrors);
   }, [formData, updateValidation]);
@@ -208,13 +213,16 @@ const ProductDetailsStep = ({ formData, updateFormData, updateValidation }) => {
       </p>
       
       <div className={styles.compactForm}>
-        {/* Row 1: Product Category and MOQ */}
+        {/* Row 1: Product Category and Subcategory */}
         <div className={styles.formRow}>
           <div className={styles.fieldContainer}>
             <label>Product Category *</label>
             <select
               value={formData.productCategory}
-              onChange={(e) => updateFormData('productCategory', e.target.value)}
+              onChange={(e) => {
+                updateFormData('productCategory', e.target.value);
+                updateFormData('productSubcategory', ''); // Reset subcategory when category changes
+              }}
               className={localErrors.productCategory ? styles.error : ''}
             >
               <option value="">Select product category</option>
@@ -230,6 +238,31 @@ const ProductDetailsStep = ({ formData, updateFormData, updateValidation }) => {
           </div>
 
           <div className={styles.fieldContainer}>
+            <label>Product Subcategory *</label>
+            <select
+              value={formData.productSubcategory}
+              onChange={(e) => updateFormData('productSubcategory', e.target.value)}
+              className={localErrors.productSubcategory ? styles.error : ''}
+              disabled={!formData.productCategory}
+            >
+              <option value="">
+                {formData.productCategory ? 'Select subcategory' : 'Select category first'}
+              </option>
+              {formData.productCategory && PRODUCT_SUBCATEGORIES[formData.productCategory]?.map((subcategory) => (
+                <option key={subcategory} value={subcategory}>
+                  {subcategory}
+                </option>
+              ))}
+            </select>
+            {localErrors.productSubcategory && (
+              <span className={styles.errorText}>{localErrors.productSubcategory}</span>
+            )}
+          </div>
+        </div>
+
+        {/* Row 2: MOQ and Packaging Type */}
+        <div className={styles.formRow}>
+          <div className={styles.fieldContainer}>
             <label>Minimum Bulk Quantity *</label>
             <input
               type="number"
@@ -244,10 +277,7 @@ const ProductDetailsStep = ({ formData, updateFormData, updateValidation }) => {
               <span className={styles.errorText}>{localErrors.moq}</span>
             )}
           </div>
-        </div>
 
-        {/* Row 2: Packaging Type and Unit Price */}
-        <div className={styles.formRow}>
           <div className={styles.fieldContainer}>
             <label>Packaging Type *</label>
             <select
@@ -266,7 +296,10 @@ const ProductDetailsStep = ({ formData, updateFormData, updateValidation }) => {
               <span className={styles.errorText}>{localErrors.packaging}</span>
             )}
           </div>
+        </div>
 
+        {/* Row 3: Unit Price and Currency */}
+        <div className={styles.formRow}>
           <div className={styles.fieldContainer}>
             <label>Unit Price *</label>
             <input
@@ -282,10 +315,7 @@ const ProductDetailsStep = ({ formData, updateFormData, updateValidation }) => {
               <span className={styles.errorText}>{localErrors.unitPrice}</span>
             )}
           </div>
-        </div>
 
-        {/* Row 3: Currency (standalone) */}
-        <div className={styles.formRow}>
           <div className={styles.fieldContainer}>
             <label>Currency</label>
             <select
@@ -298,9 +328,6 @@ const ProductDetailsStep = ({ formData, updateFormData, updateValidation }) => {
                 </option>
               ))}
             </select>
-          </div>
-          <div className={styles.fieldContainer}>
-            {/* Empty space for alignment */}
           </div>
         </div>
 
@@ -550,6 +577,66 @@ const MultiStepForm = () => {
 
   const { trackFormSubmissionStart, trackFormSubmissionSuccess, trackFormSubmissionError } = useFormAnalytics();
 
+  const [animationDirection, setAnimationDirection] = useState('up');
+  const [isAnimating, setIsAnimating] = useState(false);
+
+  // Scroll to step header when step changes (only during form navigation)
+  useEffect(() => {
+    if (!isSubmitted && !isSubmitting && currentStep > 0) {
+      scrollToStepHeader();
+    }
+  }, [currentStep, isSubmitted, isSubmitting]);
+
+  // Scroll to step header smoothly to show validation errors and empty fields
+  const scrollToStepHeader = () => {
+    // Small delay to ensure DOM is updated
+    setTimeout(() => {
+      const stepHeader = document.querySelector(`.${styles.stepHeader}`);
+      if (stepHeader) {
+        const headerOffset = 80; // Offset from top for comfortable viewing
+        const elementPosition = stepHeader.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
+      }
+    }, 100); // Small delay for DOM update
+  };
+
+  // Handle navigation with animation and scroll to header
+  const handleNextStep = () => {
+    setAnimationDirection('up');
+    setIsAnimating(true);
+    setTimeout(() => {
+      nextStep();
+      setIsAnimating(false);
+    }, 300);
+  };
+
+  const handlePrevStep = () => {
+    setAnimationDirection('down');
+    setIsAnimating(true);
+    setTimeout(() => {
+      prevStep();
+      setIsAnimating(false);
+    }, 300);
+  };
+
+  const handleGoToStep = (stepNumber) => {
+    if (stepNumber > currentStep) {
+      setAnimationDirection('up');
+    } else {
+      setAnimationDirection('down');
+    }
+    setIsAnimating(true);
+    setTimeout(() => {
+      goToStep(stepNumber);
+      setIsAnimating(false);
+    }, 300);
+  };
+
   // Handle form submission
   const handleSubmit = async () => {
     if (!isFormComplete()) {
@@ -570,12 +657,14 @@ const MultiStepForm = () => {
         phone: formData.phone,
         country: formData.country,
         productCategory: formData.productCategory,
+        productSubcategory: formData.productSubcategory,
         productDescription: formData.productDescription,
         moq: parseInt(formData.moq),
         packaging: formData.packaging,
         unitPrice: parseFloat(formData.unitPrice),
         currency: formData.currency || 'USD',
         certifications: formData.certifications || '',
+        Registration_Date: new Date().toISOString(),
         termsAccepted: true,
         privacyAccepted: true,
         marketingConsent: false
@@ -588,8 +677,10 @@ const MultiStepForm = () => {
 
       if (result.success) {
         console.log('Registration successful:', result);
-        setIsSubmitted(true);
         trackFormSubmissionSuccess(formData);
+        
+        // Show success message - NO SCROLLING
+        setIsSubmitted(true);
       } else {
         throw new Error(result.error || 'Registration failed');
       }
@@ -608,6 +699,12 @@ const MultiStepForm = () => {
     console.log('Draft saved successfully');
   };
 
+  // Handle reset form
+  const handleReset = () => {
+    resetForm();
+    // No auto-scroll, let user naturally navigate
+  };
+
   // Render current step
   const renderCurrentStep = () => {
     if (isTransitioning) {
@@ -619,54 +716,69 @@ const MultiStepForm = () => {
       );
     }
 
+    const stepClass = `${
+      isAnimating ? styles.fadeOut : 
+      animationDirection === 'up' ? styles.slideUp : styles.slideDown
+    }`;
+
     switch (currentStep) {
       case 1:
         return (
-          <CompanyInfoStep
-            formData={formData}
-            updateFormData={updateFormData}
-            errors={stepValidation[1].errors}
-            updateValidation={updateStepValidation}
-          />
+          <div className={stepClass}>
+            <CompanyInfoStep
+              formData={formData}
+              updateFormData={updateFormData}
+              errors={stepValidation[1].errors}
+              updateValidation={updateStepValidation}
+            />
+          </div>
         );
       case 2:
         return (
-          <ProductDetailsStep
-            formData={formData}
-            updateFormData={updateFormData}
-            errors={stepValidation[2].errors}
-            updateValidation={updateStepValidation}
-          />
+          <div className={stepClass}>
+            <ProductDetailsStep
+              formData={formData}
+              updateFormData={updateFormData}
+              errors={stepValidation[2].errors}
+              updateValidation={updateStepValidation}
+            />
+          </div>
         );
       case 3:
         return (
-          <BusinessCredentialsStep
-            formData={formData}
-            updateFormData={updateFormData}
-            errors={stepValidation[3].errors}
-            updateValidation={updateStepValidation}
-          />
+          <div className={stepClass}>
+            <BusinessCredentialsStep
+              formData={formData}
+              updateFormData={updateFormData}
+              errors={stepValidation[3].errors}
+              updateValidation={updateStepValidation}
+            />
+          </div>
         );
       case 4:
         return (
-          <ReviewSubmitStep
-            formData={formData}
-            updateValidation={updateStepValidation}
-          />
+          <div className={stepClass}>
+            <ReviewSubmitStep
+              formData={formData}
+              updateValidation={updateStepValidation}
+            />
+          </div>
         );
       default:
         return <div>Step not found</div>;
     }
   };
 
-  // If form is submitted successfully, show success message
+  // If form is submitted successfully, show success message with animation
   if (isSubmitted) {
     return (
-      <SuccessMessage
-        title="Application Submitted Successfully!"
-        message="Thank you for your vendor application. We'll review your information and get back to you within 24-48 hours."
-        onReset={resetForm}
-      />
+      <div className={styles.successContainer}>
+        <SuccessMessage
+          title="Application Submitted Successfully!"
+          message="Thank you for your vendor application. We'll review your information and get back to you within 24-48 hours."
+          onReset={handleReset}
+        />
+      </div>
     );
   }
 
@@ -677,7 +789,7 @@ const MultiStepForm = () => {
         steps={formSteps}
         currentStep={currentStep}
         stepValidation={stepValidation}
-        onStepClick={goToStep}
+        onStepClick={handleGoToStep}
       />
 
       {/* Form Content */}
@@ -689,7 +801,7 @@ const MultiStepForm = () => {
         </div>
 
         {/* Step Content */}
-        <div className={styles.stepWrapper}>
+        <div className={`${styles.stepWrapper} ${isAnimating ? styles.transitioning : ''}`}>
           {renderCurrentStep()}
         </div>
 
@@ -709,8 +821,8 @@ const MultiStepForm = () => {
         isLastStep={isLastStep}
         isCurrentStepValid={stepValidation[currentStep]?.isValid || false}
         isSubmitting={isSubmitting}
-        onPrevious={prevStep}
-        onNext={nextStep}
+        onPrevious={handlePrevStep}
+        onNext={handleNextStep}
         onSubmit={handleSubmit}
         onSaveDraft={handleSaveDraft}
       />

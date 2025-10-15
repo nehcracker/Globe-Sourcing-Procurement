@@ -10,13 +10,13 @@ const VendorHero = () => {
     triggerOnce: true
   });
 
-  const scrollToForm = () => {
-    const formElement = document.getElementById('vendor-form-section');
-    if (formElement) {
-      formElement.scrollIntoView({ 
-        behavior: 'smooth',
-        block: 'start'
-      });
+  const navigateToForm = () => {
+    const formSection = document.getElementById('vendor-form-section');
+    if (formSection) {
+      formSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+      // Fallback: scroll to top if form section not found
+      window.scrollTo(0, 0);
     }
   };
 
@@ -55,7 +55,8 @@ const VendorHero = () => {
   ];
 
   return (
-    <section 
+    <section
+      id="vendor-hero-section"
       ref={heroRef}
       className={`${styles.vendorHero} ${isVisible ? styles.visible : ''}`}
     >
@@ -98,8 +99,8 @@ const VendorHero = () => {
 
             {/* CTA Buttons */}
             <div className={styles.heroActions}>
-              <button 
-                onClick={scrollToForm}
+              <button
+                onClick={navigateToForm}
                 className={styles.primaryCta}
               >
                 <span>Become a Vendor</span>

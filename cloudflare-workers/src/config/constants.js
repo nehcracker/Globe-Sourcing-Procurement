@@ -17,7 +17,7 @@ export const ZOHO_FIELD_MAPPING = {
   moq: 'Minimum_Order_Quantity',
   packaging: 'Packaging_Type',
   unitPrice: 'Unit_Price',
-  currency: 'Price_Currency',
+  currency: 'Unit_Currency',
   certifications: 'Certifications',
 
   // Meta Fields
@@ -92,11 +92,11 @@ export const ZOHO_CONFIG = {
 export const EMAIL_TEMPLATES = {
   vendor: {
     subject: 'Thank you for registering - Globe Sourcing Procurement',
-    from: 'noreply@globesourceprocurement.com',
-    replyTo: 'info@globesourceprocurement.com'
+    from: 'info@globesourceprocurement.com',
+    replyTo: 'supply.chain@globesourceprocurement.com'
   },
   admin: {
     subject: 'New Vendor Registration',
-    from: 'noreply@globesourceprocurement.com'
+    from: 'info@globesourceprocurement.com'
   }
 };

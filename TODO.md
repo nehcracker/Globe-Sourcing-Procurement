@@ -1,3 +1,11 @@
-# TODO: Update wrangler.toml Configuration
+# Add Product Subcategory Dependent Picklist
 
-- [x] Update cloudflare-workers/wrangler.toml with the new detailed configuration including production, development, and staging environment variables, observability settings, and deployment notes.
+## Tasks
+- [ ] Update constants.js: Add PRODUCT_SUBCATEGORIES object mapping categories to subcategories
+- [ ] Update MultiStepForm.jsx: Add subcategory select field that depends on selected category
+- [ ] Update form validation to include subcategory requirement
+- [ ] Update form data structure to include subcategory field
+
+## Followup steps
+- [ ] Test subcategory dropdown updates when category changes
+- [ ] Verify form validation includes subcategory

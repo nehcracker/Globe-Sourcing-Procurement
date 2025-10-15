@@ -25,6 +25,27 @@ const VendorRegistrationPage = () => {
     // Smooth scroll behavior
     document.documentElement.style.scrollBehavior = 'smooth';
 
+    // Handle hash-based scrolling for external navigation
+    const hash = window.location.hash;
+    if (hash) {
+      setTimeout(() => {
+        const element = document.querySelector(hash);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 100);
+    } else {
+      // Scroll to hero section for fresh page load
+      setTimeout(() => {
+        const heroSection = document.getElementById('vendor-hero-section');
+        if (heroSection) {
+          heroSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        } else {
+          window.scrollTo(0, 0);
+        }
+      }, 100);
+    }
+
     // Set document title and meta tags
     document.title = 'Become a Verified Vendor | Global Product Sourcing Platform';
 
