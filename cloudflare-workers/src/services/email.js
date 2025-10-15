@@ -257,7 +257,7 @@ function generateVendorEmailHTML(formData) {
         </div>
 
         <div class="footer">
-          <p><strong>Globe Sourcing Procurement</strong></p>
+          <p><strong>Global Supply Solutions</strong></p>
           <p>Saint John Woods, London, United Kingdom</p>
           <p>
             <a href="https://globesourceprocurement.com">Website</a> | 
@@ -265,7 +265,7 @@ function generateVendorEmailHTML(formData) {
             <a href="https://globesourceprocurement.com/terms">Terms of Service</a>
           </p>
           <p style="margin-top: 20px; font-size: 12px;">
-            © ${new Date().getFullYear()} Globe Sourcing Procurement. All rights reserved.
+            © ${new Date().getFullYear()} Global Supply Solutions. All rights reserved.
           </p>
         </div>
       </div>

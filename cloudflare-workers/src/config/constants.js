@@ -91,12 +91,12 @@ export const ZOHO_CONFIG = {
 
 export const EMAIL_TEMPLATES = {
   vendor: {
-    subject: 'Thank you for registering - Globe Sourcing Procurement',
-    from: 'info@globesourceprocurement.com',
+    subject: 'Thank you for registering - Globe Supply Solutions',
+    from: 'noreply@globesourceprocurement.com',
     replyTo: 'supply.chain@globesourceprocurement.com'
   },
   admin: {
     subject: 'New Vendor Registration',
-    from: 'info@globesourceprocurement.com'
+    from: 'noreply@globesourceprocurement.com'
   }
 };
