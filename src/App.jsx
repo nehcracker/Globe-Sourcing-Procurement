@@ -9,6 +9,7 @@ import Financing from './pages/Financing/Financing';
 import VendorRegistrationPage from './pages/VendorRegistration';
 import VendorFormPage from './pages/VendorForm/VendorFormPage';
 import ScrollToTop from './components/ScrollToTop/ScrollToTop';
+import Importfinancing from './pages/importfinancing';
 // import Contact from './pages/Contact/Contact';
 
 import './styles/variables.css';
@@ -34,6 +35,7 @@ function App() {
             <Route path="/financing" element={<Financing />} />
             <Route path="/Vendor-Registration-Page" element={<VendorRegistrationPage />} />
             <Route path="/vendor-form" element={<VendorFormPage />} />
+            <Route path="/Import-financing" element={<Importfinancing />} />
             {/* Future routes can be added here
             <Route path="/contact" element={<Contact />} /> */}
           </Routes>

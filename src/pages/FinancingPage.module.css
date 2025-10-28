@@ -1,0 +1,157 @@
+/* src/components/Financing/FinancingPage.module.css */
+
+.financingPage {
+  width: 100%;
+  overflow-x: hidden;
+  background-color: var(--color-white);
+}
+
+/* Section Styling */
+.heroSection {
+  width: 100%;
+  position: relative;
+  background: linear-gradient(135deg, var(--color-navy-blue-dark) 0%, var(--color-navy-blue) 50%, var(--color-accent-green-dark) 100%);
+}
+
+.overviewSection {
+  width: 100%;
+  padding: clamp(3rem, 8vw, 5rem) 0;
+  background: var(--color-white);
+  position: relative;
+}
+
+.processSection {
+  width: 100%;
+  padding: clamp(3rem, 8vw, 5rem) 0;
+  background: linear-gradient(135deg, var(--color-gray-50) 0%, var(--color-white) 50%, var(--color-gray-50) 100%);
+  position: relative;
+}
+
+.whatWeFinanceSection {
+  width: 100%;
+  padding: clamp(3rem, 8vw, 5rem) 0;
+  background: var(--color-white);
+  position: relative;
+}
+
+.benefitsSection {
+  width: 100%;
+  padding: clamp(3rem, 8vw, 5rem) 0;
+  background: linear-gradient(135deg, var(--color-navy-blue-dark) 0%, var(--color-navy-blue) 50%, var(--color-accent-green-dark) 100%);
+  color: white;
+  position: relative;
+}
+
+.ecaPartnersSection {
+  width: 100%;
+  padding: clamp(3rem, 8vw, 5rem) 0;
+  background: var(--color-white);
+  position: relative;
+}
+
+.industriesSection {
+  width: 100%;
+  padding: clamp(3rem, 8vw, 5rem) 0;
+  background: linear-gradient(135deg, var(--color-gray-50) 0%, var(--color-white) 50%, var(--color-gray-50) 100%);
+  position: relative;
+}
+
+.formSection {
+  width: 100%;
+  padding: clamp(3rem, 8vw, 5rem) 0;
+  background: var(--color-white);
+  position: relative;
+}
+
+.ctaSection {
+  width: 100%;
+  padding: clamp(3rem, 8vw, 5rem) 0;
+  background: linear-gradient(135deg, var(--color-navy-blue-dark) 0%, var(--color-navy-blue) 50%, var(--color-accent-green-dark) 100%);
+  color: white;
+  position: relative;
+}
+
+.faqSection {
+  width: 100%;
+  padding: clamp(3rem, 8vw, 5rem) 0;
+  background: var(--color-white);
+  position: relative;
+  border-top: 1px solid var(--color-gray-200);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .heroSection,
+  .overviewSection,
+  .processSection,
+  .whatWeFinanceSection,
+  .benefitsSection,
+  .ecaPartnersSection,
+  .industriesSection,
+  .formSection,
+  .ctaSection,
+  .faqSection {
+    padding: clamp(2rem, 6vw, 3rem) 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .heroSection,
+  .overviewSection,
+  .processSection,
+  .whatWeFinanceSection,
+  .benefitsSection,
+  .ecaPartnersSection,
+  .industriesSection,
+  .formSection,
+  .ctaSection,
+  .faqSection {
+    padding: clamp(1.5rem, 4vw, 2.5rem) 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .financingPage {
+    overflow-x: hidden;
+  }
+
+  .heroSection,
+  .overviewSection,
+  .processSection,
+  .whatWeFinanceSection,
+  .benefitsSection,
+  .ecaPartnersSection,
+  .industriesSection,
+  .formSection,
+  .ctaSection,
+  .faqSection {
+    padding: clamp(1rem, 3vw, 2rem) 0;
+  }
+}
+
+
+/* Remove default margins from main element */
+main {
+  margin: 0;
+  padding: 0;
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Print styles */
+@media print {
+  .heroSection {
+    page-break-before: always;
+  }
+
+  .faqSection {
+    page-break-inside: avoid;
+  }
+}
