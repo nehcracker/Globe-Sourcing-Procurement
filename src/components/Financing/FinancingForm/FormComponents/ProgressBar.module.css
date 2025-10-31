@@ -1,0 +1,267 @@
+/* Src/components/Financing/FinancingForm/FormComponents/ProgressBar.module.css */
+
+.progressBar {
+  position: relative;
+  width: 100%;
+  padding: 1rem 0 2rem 0;
+  margin-bottom: 2rem;
+}
+
+/* Progress line */
+.progressLine {
+  position: absolute;
+  top: 2rem;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background-color: var(--color-gray-200);
+  border-radius: var(--border-radius-full);
+  z-index: 0;
+}
+
+.progressFill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--color-accent-green), var(--color-accent-green-light));
+  border-radius: var(--border-radius-full);
+  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 8px rgba(5, 150, 105, 0.3);
+}
+
+/* Steps container */
+.stepsContainer {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  z-index: 1;
+}
+
+/* Individual step */
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  flex: 1;
+  position: relative;
+}
+
+/* Step circle */
+.stepCircle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-base);
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 2;
+  background-color: white;
+  border: 3px solid var(--color-gray-200);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.stepNumber {
+  color: var(--color-steel-gray);
+}
+
+/* Completed state */
+.step.completed .stepCircle {
+  background: linear-gradient(135deg, var(--color-accent-green), var(--color-accent-green-light));
+  border-color: var(--color-accent-green);
+  color: white;
+  box-shadow: 0 4px 12px rgba(5, 150, 105, 0.3);
+}
+
+.step.completed .stepCircle svg {
+  color: white;
+}
+
+/* Active state */
+.step.active .stepCircle {
+  background: linear-gradient(135deg, var(--color-navy-blue), var(--color-navy-blue-light));
+  border-color: var(--color-navy-blue);
+  box-shadow: 0 6px 16px rgba(30, 58, 138, 0.4);
+  transform: scale(1.1);
+}
+
+.step.active .stepNumber {
+  color: white;
+}
+
+/* Pulse animation for active step */
+.step.active .stepCircle::before {
+  content: '';
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  right: -3px;
+  bottom: -3px;
+  border-radius: 50%;
+  border: 2px solid var(--color-navy-blue);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.3);
+    opacity: 0;
+  }
+}
+
+/* Future state */
+.step.future .stepCircle {
+  background-color: white;
+  border-color: var(--color-gray-200);
+}
+
+/* Step label */
+.stepLabel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.stepTitle {
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-steel-gray);
+  white-space: nowrap;
+  display: none;
+}
+
+.stepTitleFull {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-steel-gray);
+  white-space: nowrap;
+}
+
+/* Active step label */
+.step.active .stepTitleFull,
+.step.active .stepTitle {
+  color: var(--color-navy-blue);
+  font-weight: var(--font-weight-bold);
+}
+
+/* Completed step label */
+.step.completed .stepTitleFull,
+.step.completed .stepTitle {
+  color: var(--color-accent-green);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .progressBar {
+    padding: 1rem 0 1.5rem 0;
+    margin-bottom: 1.5rem;
+  }
+
+  .stepCircle {
+    width: 36px;
+    height: 36px;
+    font-size: var(--font-size-sm);
+  }
+
+  .stepTitle {
+    display: block;
+  }
+
+  .stepTitleFull {
+    display: none;
+  }
+
+  .progressLine {
+    top: 1.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .progressBar {
+    padding: 0.75rem 0 1.25rem 0;
+    margin-bottom: 1rem;
+  }
+
+  .stepCircle {
+    width: 32px;
+    height: 32px;
+    font-size: 0.875rem;
+    border-width: 2px;
+  }
+
+  .step.active .stepCircle {
+    transform: scale(1.05);
+  }
+
+  .stepTitle {
+    font-size: 0.625rem;
+  }
+
+  .progressLine {
+    top: 1.5rem;
+    height: 2px;
+  }
+
+  .stepsContainer {
+    gap: 0.25rem;
+  }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .stepCircle {
+    border-width: 4px;
+  }
+
+  .step.completed .stepCircle {
+    background: #059669;
+    border-color: #059669;
+  }
+
+  .step.active .stepCircle {
+    background: #1e3a8a;
+    border-color: #1e3a8a;
+  }
+}
+
+/* Reduce motion */
+@media (prefers-reduced-motion: reduce) {
+  .progressFill,
+  .stepCircle,
+  .stepLabel {
+    transition: none;
+  }
+
+  .step.active .stepCircle::before {
+    animation: none;
+  }
+
+  .step.active .stepCircle {
+    transform: none;
+  }
+}
+
+/* Print styles */
+@media print {
+  .progressBar {
+    page-break-after: avoid;
+  }
+
+  .step.active .stepCircle::before {
+    display: none;
+  }
+
+  .stepCircle {
+    box-shadow: none;
+  }
+}

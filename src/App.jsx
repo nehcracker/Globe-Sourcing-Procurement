@@ -35,7 +35,7 @@ function App() {
             <Route path="/financing" element={<Financing />} />
             <Route path="/Vendor-Registration-Page" element={<VendorRegistrationPage />} />
             <Route path="/vendor-form" element={<VendorFormPage />} />
-            <Route path="/Import-financing" element={<Importfinancing />} />
+            <Route path="/import-financing" element={<Importfinancing />} />
             {/* Future routes can be added here
             <Route path="/contact" element={<Contact />} /> */}
           </Routes>

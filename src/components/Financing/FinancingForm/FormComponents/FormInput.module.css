@@ -1,0 +1,195 @@
+/* Src/components/Financing/FinancingForm/FormComponents/FormInput.module.css */
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  width: 100%;
+}
+
+.label {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-navy-blue);
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.required {
+  color: #ef4444;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.inputWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.icon {
+  position: absolute;
+  left: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-steel-gray);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.input {
+  width: 100%;
+  padding: 0.875rem 1rem;
+  font-size: var(--font-size-base);
+  font-family: inherit;
+  color: var(--color-navy-blue);
+  background-color: white;
+  border: 2px solid var(--color-gray-200);
+  border-radius: var(--border-radius-lg);
+  transition: all 0.3s ease;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.input.hasIcon {
+  padding-left: 3rem;
+}
+
+.input::placeholder {
+  color: var(--color-steel-gray);
+  opacity: 0.7;
+}
+
+.input:hover:not(:disabled) {
+  border-color: var(--color-accent-green);
+}
+
+.input:focus {
+  border-color: var(--color-accent-green);
+  box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.1);
+}
+
+.input:disabled {
+  background-color: var(--color-gray-50);
+  color: var(--color-steel-gray);
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Error state */
+.hasError .input {
+  border-color: #ef4444;
+  background-color: rgba(239, 68, 68, 0.05);
+}
+
+.hasError .input:focus {
+  border-color: #ef4444;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+}
+
+.hasError .label {
+  color: #ef4444;
+}
+
+.hasError .icon {
+  color: #ef4444;
+}
+
+/* Help text */
+.helpText {
+  font-size: var(--font-size-xs);
+  color: var(--color-steel-gray);
+  line-height: 1.4;
+  margin-top: -0.25rem;
+}
+
+/* Error text */
+.errorText {
+  font-size: var(--font-size-xs);
+  color: #ef4444;
+  font-weight: var(--font-weight-medium);
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  margin-top: -0.25rem;
+  animation: slideDown 0.2s ease;
+}
+
+.errorText::before {
+  content: '⚠';
+  font-size: 0.875rem;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Number input - hide spinners */
+.input[type='number']::-webkit-inner-spin-button,
+.input[type='number']::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  appearance: none;
+  margin: 0;
+}
+
+.input[type='number'] {
+  -webkit-appearance: textfield;
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .input {
+    font-size: 16px; /* Prevents zoom on iOS */
+    padding: 0.75rem 1rem;
+  }
+
+  .input.hasIcon {
+    padding-left: 2.75rem;
+  }
+
+  .icon {
+    left: 0.875rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .formGroup {
+    margin-bottom: 1.25rem;
+  }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .input {
+    border-width: 3px;
+  }
+
+  .hasError .input {
+    border-color: #dc2626;
+  }
+}
+
+/* Print styles */
+@media print {
+  .input {
+    border: 1px solid #ddd;
+    background: white;
+  }
+
+  .helpText,
+  .errorText {
+    display: none;
+  }
+}

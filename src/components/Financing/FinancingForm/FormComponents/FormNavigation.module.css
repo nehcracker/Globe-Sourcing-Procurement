@@ -1,0 +1,273 @@
+/* Src/components/Financing/FinancingForm/FormComponents/FormNavigation.module.css */
+
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 2px solid var(--color-gray-200);
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1rem 2rem;
+  min-height: 48px;
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  font-family: inherit;
+  border: none;
+  border-radius: var(--border-radius-lg);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  white-space: nowrap;
+  position: relative;
+  overflow: hidden;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.button:focus-visible {
+  outline: 2px solid var(--color-accent-green);
+  outline-offset: 2px;
+}
+
+.button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Previous button */
+.previousButton {
+  background-color: white;
+  color: var(--color-navy-blue);
+  border: 2px solid var(--color-gray-200);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.previousButton:hover:not(:disabled) {
+  background-color: var(--color-gray-50);
+  border-color: var(--color-navy-blue);
+  transform: translateX(-3px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.previousButton:active:not(:disabled) {
+  transform: translateX(-1px);
+}
+
+/* Next button */
+.nextButton {
+  background: linear-gradient(135deg, var(--color-accent-green), var(--color-accent-green-light));
+  color: white;
+  box-shadow: 0 4px 12px rgba(5, 150, 105, 0.3);
+  min-width: 160px;
+}
+
+.nextButton:hover:not(:disabled) {
+  background: linear-gradient(135deg, var(--color-accent-green-light), var(--color-accent-green));
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 6px 16px rgba(5, 150, 105, 0.4);
+}
+
+.nextButton:active:not(:disabled) {
+  transform: translateY(0) scale(1);
+}
+
+.nextButton:disabled {
+  background: var(--color-gray-200);
+  color: var(--color-steel-gray);
+  box-shadow: none;
+}
+
+/* Submit button */
+.submitButton {
+  background: linear-gradient(135deg, var(--color-navy-blue), var(--color-navy-blue-light));
+  color: white;
+  box-shadow: 0 4px 12px rgba(30, 58, 138, 0.3);
+  min-width: 200px;
+  position: relative;
+}
+
+.submitButton::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, var(--color-accent-green), var(--color-accent-green-light));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border-radius: inherit;
+}
+
+.submitButton:hover:not(:disabled)::before {
+  opacity: 1;
+}
+
+.submitButton:hover:not(:disabled) {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 6px 16px rgba(30, 58, 138, 0.4);
+}
+
+.submitButton:active:not(:disabled) {
+  transform: translateY(0) scale(1);
+}
+
+.submitButton:disabled {
+  background: var(--color-gray-200);
+  color: var(--color-steel-gray);
+  box-shadow: none;
+}
+
+.submitButton span,
+.submitButton svg {
+  position: relative;
+  z-index: 1;
+}
+
+/* Spinner */
+.spinner {
+  width: 18px;
+  height: 18px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Spacer */
+.spacer {
+  flex: 0;
+}
+
+/* Button ripple effect */
+.button::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.button:active:not(:disabled)::after {
+  width: 300px;
+  height: 300px;
+}
+
+/* Icon animations */
+.button svg {
+  transition: transform 0.3s ease;
+}
+
+.nextButton:hover:not(:disabled) svg {
+  transform: translateX(4px);
+}
+
+.previousButton:hover:not(:disabled) svg {
+  transform: translateX(-4px);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .navigation {
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+  }
+
+  .button {
+    padding: 0.875rem 1.5rem;
+    font-size: var(--font-size-sm);
+  }
+
+  .nextButton,
+  .submitButton {
+    min-width: 140px;
+  }
+
+  .submitButton {
+    min-width: 160px;
+  }
+}
+
+@media (max-width: 480px) {
+  .navigation {
+    flex-direction: column-reverse;
+    gap: 0.75rem;
+    margin-top: 1.25rem;
+    padding-top: 1.25rem;
+  }
+
+  .button {
+    width: 100%;
+    max-width: 100%;
+    justify-content: center;
+  }
+
+  .previousButton {
+    margin-top: 0.5rem;
+  }
+
+  .spacer {
+    display: none;
+  }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .button {
+    border-width: 3px;
+  }
+
+  .previousButton {
+    border-color: var(--color-navy-blue);
+  }
+
+  .nextButton,
+  .submitButton {
+    border: 3px solid white;
+  }
+}
+
+/* Reduce motion */
+@media (prefers-reduced-motion: reduce) {
+  .button,
+  .button svg,
+  .spinner {
+    transition: none;
+    animation: none;
+  }
+
+  .button:hover:not(:disabled),
+  .button:active:not(:disabled) {
+    transform: none;
+  }
+
+  .button::after {
+    display: none;
+  }
+}
+
+/* Print styles */
+@media print {
+  .navigation {
+    display: none;
+  }
+}

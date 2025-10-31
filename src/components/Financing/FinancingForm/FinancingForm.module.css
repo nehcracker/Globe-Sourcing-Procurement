@@ -1,0 +1,297 @@
+/* Src/components/Financing/FinancingForm/FinancingForm.module.css */
+
+.financingForm {
+  width: 100%;
+  min-height: 100vh;
+  padding: clamp(4rem, 8vw, 6rem) 0;
+  background: linear-gradient(135deg, var(--color-gray-50) 0%, var(--color-white) 50%, var(--color-gray-50) 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 clamp(1rem, 4vw, 2rem);
+  position: relative;
+  z-index: 2;
+}
+
+/* Form Header */
+.formHeader {
+  text-align: center;
+  margin-bottom: 3rem;
+  animation: fadeInDown 0.6s ease;
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.formTitle {
+  font-size: clamp(2rem, 5vw, 2.5rem);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-navy-blue);
+  margin: 0 0 1rem 0;
+  background: linear-gradient(135deg, var(--color-navy-blue), var(--color-accent-green));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.formSubtitle {
+  font-size: var(--font-size-base);
+  color: var(--color-steel-gray);
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* Form Card */
+.formCard {
+  background: white;
+  border-radius: var(--border-radius-2xl);
+  padding: clamp(2rem, 5vw, 3rem);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+  border: 1px solid var(--color-gray-200);
+  animation: fadeInUp 0.6s ease 0.2s both;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Form Content */
+.formContent {
+  margin: 2rem 0;
+  min-height: 400px;
+}
+
+/* Help Section */
+.helpSection {
+  margin-top: 2rem;
+  text-align: center;
+  animation: fadeIn 0.6s ease 0.4s both;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.helpText {
+  font-size: var(--font-size-sm);
+  color: var(--color-steel-gray);
+  margin: 0;
+}
+
+.helpLink {
+  color: var(--color-accent-green);
+  font-weight: var(--font-weight-semibold);
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.helpLink:hover {
+  color: var(--color-accent-green-light);
+  text-decoration: underline;
+}
+
+/* Background Elements */
+.backgroundElements {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.bgShape1,
+.bgShape2 {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(5, 150, 105, 0.03) 0%, transparent 70%);
+}
+
+.bgShape1 {
+  width: 500px;
+  height: 500px;
+  top: -250px;
+  right: -250px;
+  animation: floatShape 20s ease-in-out infinite;
+}
+
+.bgShape2 {
+  width: 400px;
+  height: 400px;
+  bottom: -200px;
+  left: -200px;
+  animation: floatShape 25s ease-in-out infinite 5s;
+}
+
+@keyframes floatShape {
+  0%, 100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  25% {
+    transform: translate(20px, -20px) rotate(5deg);
+  }
+  50% {
+    transform: translate(-10px, 10px) rotate(-3deg);
+  }
+  75% {
+    transform: translate(15px, 15px) rotate(4deg);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .financingForm {
+    padding: clamp(3rem, 6vw, 4rem) 0;
+  }
+
+  .formHeader {
+    margin-bottom: 2rem;
+  }
+
+  .formCard {
+    padding: clamp(1.5rem, 4vw, 2rem);
+    border-radius: var(--border-radius-xl);
+  }
+
+  .formContent {
+    min-height: 350px;
+  }
+}
+
+@media (max-width: 480px) {
+  .financingForm {
+    padding: clamp(2rem, 5vw, 3rem) 0;
+  }
+
+  .formHeader {
+    margin-bottom: 1.5rem;
+  }
+
+  .formCard {
+    padding: 1.5rem;
+  }
+
+  .formContent {
+    margin: 1.5rem 0;
+    min-height: 300px;
+  }
+
+  .helpSection {
+    margin-top: 1.5rem;
+  }
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+  .formCard {
+    border: 2px solid var(--color-navy-blue);
+  }
+
+  .helpLink {
+    text-decoration: underline;
+  }
+}
+
+/* Reduce Motion */
+@media (prefers-reduced-motion: reduce) {
+  .formHeader,
+  .formCard,
+  .helpSection,
+  .bgShape1,
+  .bgShape2 {
+    animation: none;
+  }
+
+  * {
+    transition: none;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .financingForm {
+    background: white;
+    padding: 1rem 0;
+  }
+
+  .backgroundElements {
+    display: none;
+  }
+
+  .formCard {
+    box-shadow: none;
+    border: 1px solid #ddd;
+  }
+
+  .helpSection {
+    display: none;
+  }
+}
+
+/* Loading State Overlay */
+.loadingOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  backdrop-filter: blur(5px);
+}
+
+.loadingSpinner {
+  width: 60px;
+  height: 60px;
+  border: 4px solid var(--color-gray-200);
+  border-top-color: var(--color-accent-green);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Focus visible styles for accessibility */
+.formCard *:focus-visible {
+  outline: 2px solid var(--color-accent-green);
+  outline-offset: 2px;
+}
+
+/* Smooth transitions */
+.formContent > * {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}

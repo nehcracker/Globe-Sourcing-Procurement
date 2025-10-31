@@ -8,7 +8,7 @@ import WhatWeFinance from '../components/Financing/WhatWeFinance/WhatWeFinance';
 import BenefitsSection from '../components/Financing/BenefitsSection/BenefitsSection';
 import ECAsPartners from '../components/Financing/ECAsPartners/ECAsPartners';
 import IndustriesSupported from '../components/Financing/IndustriesSupported/IndustriesSupported';
-// import FinancingForm from './FinancingForm/FinancingForm';
+import FinancingForm from '../components/Financing/FinancingForm/FinancingForm';
 // import FinancingCTA from './FinancingCTA/FinancingCTA';
 // import FinancingFAQ from './FinancingFAQ/FinancingFAQ';
 import styles from './FinancingPage.module.css';
@@ -20,7 +20,7 @@ const FinancingPage = () => {
     description: 'Comprehensive trade financing solutions including Letters of Credit, Bank Guarantees, and structured finance for international procurement and sourcing.',
     keywords: 'import financing, export financing, letters of credit, trade finance, bank guarantees, ECA support, international trade financing, supply chain finance',
     image: '/images/og-financing-globe-sourcing.jpg',
-    url: '/financing',
+    url: '/import-financing',
     type: 'website',
   };
 
@@ -93,7 +93,7 @@ const FinancingPage = () => {
           <IndustriesSupported />
         </section>
 
-        {/* Application Form Section 
+        {/* Application Form Section */}
         <section id="financing-form" className={styles.formSection}>
           <FinancingForm />
         </section>
