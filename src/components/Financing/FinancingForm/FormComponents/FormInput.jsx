@@ -2,6 +2,17 @@
 import React from 'react';
 import styles from './FormInput.module.css';
 
+// Utility function to format numbers with thousand separators
+const formatNumber = (value) => {
+  if (!value) return '';
+  const num = parseFloat(value);
+  if (isNaN(num)) return value;
+  return num.toLocaleString('en-US', {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  });
+};
+
 const FormInput = ({
   label,
   name,
@@ -33,6 +44,9 @@ const FormInput = ({
       onBlur(e);
     }
   };
+
+  // For number inputs, format the display value
+  const displayValue = type === 'number' ? formatNumber(value) : value;
 
   return (
     <div className={`${styles.formGroup} ${error ? styles.hasError : ''}`}>
@@ -66,6 +80,11 @@ const FormInput = ({
           aria-invalid={error ? 'true' : 'false'}
           aria-describedby={error ? `${name}-error` : helpText ? `${name}-help` : undefined}
         />
+        {type === 'number' && displayValue && (
+          <div className={styles.formattedValue}>
+            {displayValue}
+          </div>
+        )}
       </div>
 
       {helpText && !error && (

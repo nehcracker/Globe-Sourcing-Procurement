@@ -148,6 +148,21 @@
   appearance: textfield;
 }
 
+/* Formatted value display for number inputs */
+.formattedValue {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: var(--font-size-sm);
+  color: var(--color-steel-gray);
+  pointer-events: none;
+  background: white;
+  padding: 0 0.5rem;
+  border-radius: 4px;
+  opacity: 0.8;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   .input {

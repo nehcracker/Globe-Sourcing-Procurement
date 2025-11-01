@@ -96,7 +96,7 @@ const Step3FundingDetails = ({ formData, errors, onChange, onBlur }) => {
           Amount and Terms
         </h3>
 
-        <div className={styles.formGrid.twoColumns}>
+        <div className={`${styles.formGrid} ${styles.twoColumnLayout}`}>
           <FormInput
             label="Financing Amount Required"
             name="financingAmount"

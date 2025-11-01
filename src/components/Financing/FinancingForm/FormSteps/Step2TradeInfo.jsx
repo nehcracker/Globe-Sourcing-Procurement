@@ -1,3 +1,4 @@
+
 // Src/components/Financing/FinancingForm/FormSteps/Step2TradeInfo.jsx
 import React from 'react';
 import { Package, TrendingUp, MapPin, DollarSign } from 'lucide-react';
@@ -36,6 +37,11 @@ const Step2TradeInfo = ({ formData, errors, onChange, onBlur }) => {
   // Payment terms
   const paymentTerms = [
     { label: 'Letter of Credit (LC)', value: 'lc' },
+    { label: 'Stanby Letter of Credit (SBLC)', value: 'blc' },
+    { label: 'Bank Guarantee', value: 'bank_guarantee' },
+    { label: 'Trade Credit', value: 'trade_credit' },
+    { label: 'Pre-shipment Financing', value: 'pre_shipment' },
+    { label: 'Post-shipment Financing', value: 'post_shipment' },
     { label: 'Documents Against Payment (D/P)', value: 'dp' },
     { label: 'Documents Against Acceptance (D/A)', value: 'da' },
     { label: 'Open Account (O/A)', value: 'oa' },
@@ -148,7 +154,7 @@ const Step2TradeInfo = ({ formData, errors, onChange, onBlur }) => {
           Geographic Details
         </h3>
 
-        <div className={styles.formGrid.twoColumns}>
+        <div className={`${styles.formGrid} ${styles.twoColumnLayout}`}>
           <FormSelect
             label="Origin Country"
             name="originCountry"
@@ -184,7 +190,7 @@ const Step2TradeInfo = ({ formData, errors, onChange, onBlur }) => {
           Financial Details
         </h3>
 
-        <div className={styles.formGrid.twoColumns}>
+        <div className={`${styles.formGrid} ${styles.twoColumnLayout}`}>
           <FormInput
             label="Estimated Transaction Value"
             name="transactionValue"

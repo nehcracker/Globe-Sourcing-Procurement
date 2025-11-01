@@ -74,6 +74,11 @@
   grid-template-columns: repeat(3, 1fr);
 }
 
+/* Two-column grid for all form fields */
+.formGrid.twoColumnLayout {
+  grid-template-columns: repeat(2, 1fr);
+}
+
 /* Full width items */
 .fullWidth {
   grid-column: 1 / -1;
@@ -350,7 +355,8 @@
   }
 
   .formGrid.twoColumns,
-  .formGrid.threeColumns {
+  .formGrid.threeColumns,
+  .formGrid.twoColumnLayout {
     grid-template-columns: 1fr;
   }
 

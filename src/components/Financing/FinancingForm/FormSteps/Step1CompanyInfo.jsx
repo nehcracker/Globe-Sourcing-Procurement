@@ -67,22 +67,20 @@ const Step1CompanyInfo = ({ formData, errors, onChange, onBlur }) => {
           Company Details
         </h3>
 
-        <div className={styles.formGrid}>
-          <div className={styles.fullWidth}>
-            <FormInput
-              label="Legal Company Name"
-              name="companyName"
-              type="text"
-              value={formData.companyName}
-              onChange={onChange}
-              onBlur={onBlur}
-              error={errors.companyName}
-              placeholder="Enter your company's legal name"
-              required
-              icon={<Building size={18} />}
-              helpText="Enter the full legal name as registered"
-            />
-          </div>
+        <div className={`${styles.formGrid} ${styles.twoColumnLayout}`}>
+          <FormInput
+            label="Legal Company Name"
+            name="companyName"
+            type="text"
+            value={formData.companyName}
+            onChange={onChange}
+            onBlur={onBlur}
+            error={errors.companyName}
+            placeholder="Enter your company's legal name"
+            required
+            icon={<Building size={18} />}
+            helpText="Enter the full legal name as registered"
+          />
 
           <FormInput
             label="Company Registration Number"
@@ -110,20 +108,18 @@ const Step1CompanyInfo = ({ formData, errors, onChange, onBlur }) => {
             required
           />
 
-          <div className={styles.fullWidth}>
-            <FormInput
-              label="Company Website (Optional)"
-              name="website"
-              type="url"
-              value={formData.website}
-              onChange={onChange}
-              onBlur={onBlur}
-              error={errors.website}
-              placeholder="https://www.example.com"
-              icon={<Globe size={18} />}
-              helpText="Your company's official website URL"
-            />
-          </div>
+          <FormInput
+            label="Company Website (Optional)"
+            name="website"
+            type="url"
+            value={formData.website}
+            onChange={onChange}
+            onBlur={onBlur}
+            error={errors.website}
+            placeholder="https://www.example.com"
+            icon={<Globe size={18} />}
+            helpText="Your company's official website URL"
+          />
         </div>
       </div>
 
@@ -134,36 +130,48 @@ const Step1CompanyInfo = ({ formData, errors, onChange, onBlur }) => {
           Primary Contact Person
         </h3>
 
-        <div className={styles.formGrid}>
-          <div className={styles.fullWidth}>
-            <FormInput
-              label="Contact Person Full Name"
-              name="contactPerson"
-              type="text"
-              value={formData.contactPerson}
-              onChange={onChange}
-              onBlur={onBlur}
-              error={errors.contactPerson}
-              placeholder="First Name Last Name"
-              required
-              icon={<User size={18} />}
-              helpText="Full name of the authorized representative"
-            />
-          </div>
-
+        <div className={`${styles.formGrid} ${styles.twoColumnLayout}`}>
           <FormInput
-            label="Business Email Address"
-            name="email"
-            type="email"
-            value={formData.email}
+            label="Contact Person Full Name"
+            name="contactPerson"
+            type="text"
+            value={formData.contactPerson}
             onChange={onChange}
             onBlur={onBlur}
-            error={errors.email}
+            error={errors.contactPerson}
+            placeholder="First Name Last Name"
+            required
+            icon={<User size={18} />}
+            helpText="Full name of the authorized representative"
+          />
+
+          <FormInput
+            label="Contact Email Address"
+            name="contactEmail"
+            type="email"
+            value={formData.contactEmail}
+            onChange={onChange}
+            onBlur={onBlur}
+            error={errors.contactEmail}
             placeholder="contact@company.com"
             required
             autoComplete="email"
             icon={<Mail size={18} />}
-            helpText="Use your company email (not personal)"
+            helpText="Primary contact email for this application"
+          />
+
+          <FormInput
+            label="Business Email Address (Optional)"
+            name="businessEmail"
+            type="email"
+            value={formData.businessEmail}
+            onChange={onChange}
+            onBlur={onBlur}
+            error={errors.businessEmail}
+            placeholder="business@company.com"
+            autoComplete="email"
+            icon={<Mail size={18} />}
+            helpText="Official company email (if different from contact)"
           />
 
           <FormInput

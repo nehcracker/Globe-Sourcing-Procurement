@@ -1,5 +1,5 @@
 // Src/components/Financing/FinancingForm/FinancingForm.jsx
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import ProgressBar from './FormComponents/ProgressBar';
 import FormNavigation from './FormComponents/FormNavigation';
 import Step1CompanyInfo from './FormSteps/Step1CompanyInfo';
@@ -15,6 +15,9 @@ const FinancingForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [referenceNumber, setReferenceNumber] = useState('');
+
+  // Ref to the form content container for smooth scrolling
+  const formContentRef = useRef(null);
 
   const { errors, validateStep, clearAllErrors } = useFormValidation();
 
@@ -55,6 +58,16 @@ const FinancingForm = () => {
     marketingConsent: false,
   });
 
+  // Smooth scroll to top of form content
+  const scrollToFormTop = () => {
+    if (formContentRef.current) {
+      formContentRef.current.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    }
+  };
+
   // Handle input change
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -77,14 +90,22 @@ const FinancingForm = () => {
     if (isValid) {
       setCurrentStep(prev => Math.min(prev + 1, 4));
       clearAllErrors();
-      // Scroll to top of form
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      // Scroll to top of form content smoothly
+      scrollToFormTop();
     } else {
-      // Scroll to first error
+      // Scroll to first error within the form content
       const firstError = document.querySelector('[aria-invalid="true"]');
-      if (firstError) {
-        firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        firstError.focus();
+      if (firstError && formContentRef.current) {
+        const formContentRect = formContentRef.current.getBoundingClientRect();
+        const errorRect = firstError.getBoundingClientRect();
+        const scrollTop = errorRect.top - formContentRect.top + formContentRef.current.scrollTop - 100;
+        
+        formContentRef.current.scrollTo({
+          top: scrollTop,
+          behavior: 'smooth'
+        });
+        
+        setTimeout(() => firstError.focus(), 300);
       }
     }
   };
@@ -93,7 +114,8 @@ const FinancingForm = () => {
   const handlePrevious = () => {
     setCurrentStep(prev => Math.max(prev - 1, 1));
     clearAllErrors();
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    // Scroll to top of form content smoothly
+    scrollToFormTop();
   };
 
   // Generate reference number
@@ -124,8 +146,15 @@ const FinancingForm = () => {
     
     if (!isValid) {
       const firstError = document.querySelector('[aria-invalid="true"]');
-      if (firstError) {
-        firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      if (firstError && formContentRef.current) {
+        const formContentRect = formContentRef.current.getBoundingClientRect();
+        const errorRect = firstError.getBoundingClientRect();
+        const scrollTop = errorRect.top - formContentRect.top + formContentRef.current.scrollTop - 100;
+        
+        formContentRef.current.scrollTo({
+          top: scrollTop,
+          behavior: 'smooth'
+        });
       }
       return;
     }
@@ -150,7 +179,7 @@ const FinancingForm = () => {
 
       // Success!
       setIsSubmitted(true);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      scrollToFormTop();
 
       console.log('✅ Application submitted successfully!');
       console.log('📧 Confirmation email sent to:', formData.email);
@@ -162,6 +191,11 @@ const FinancingForm = () => {
       setIsSubmitting(false);
     }
   };
+
+  // Scroll to top when step changes
+  useEffect(() => {
+    scrollToFormTop();
+  }, [currentStep]);
 
   // If submitted, show success page
   if (isSubmitted) {
@@ -234,8 +268,11 @@ const FinancingForm = () => {
           {/* Progress Bar */}
           <ProgressBar currentStep={currentStep} totalSteps={4} />
 
-          {/* Form Content */}
-          <div className={styles.formContent}>
+          {/* Form Content with ref for scrolling */}
+          <div 
+            ref={formContentRef}
+            className={styles.formContent}
+          >
             {renderStep()}
           </div>
 
@@ -257,7 +294,7 @@ const FinancingForm = () => {
           <p className={styles.helpText}>
             Need assistance? Contact our financing team at{' '}
             <a href="mailto:financing@globesourceprocurement.com" className={styles.helpLink}>
-              financing@globesourceprocurement.com
+              info@globesourceprocurement.com
             </a>
           </p>
         </div>

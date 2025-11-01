@@ -100,8 +100,14 @@ const useFormValidation = () => {
     const contactPersonError = validateRequired(formData.contactPerson, 'Contact person name');
     if (contactPersonError) stepErrors.contactPerson = contactPersonError;
 
-    const emailError = validateEmail(formData.email);
-    if (emailError) stepErrors.email = emailError;
+    const contactEmailError = validateEmail(formData.contactEmail);
+    if (contactEmailError) stepErrors.contactEmail = contactEmailError;
+
+    // Business email is optional, but if provided, validate it
+    if (formData.businessEmail) {
+      const businessEmailError = validateEmail(formData.businessEmail);
+      if (businessEmailError) stepErrors.businessEmail = businessEmailError;
+    }
 
     const phoneError = validatePhone(formData.phone);
     if (phoneError) stepErrors.phone = phoneError;
