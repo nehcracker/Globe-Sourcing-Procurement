@@ -1,0 +1,257 @@
+/* src/components/Financing/FinancingForm/FormSidebar/SidebarCards/ProgressTracker.module.css */
+
+.card {
+  background: white;
+  border: 1px solid var(--color-gray-200);
+  border-radius: var(--border-radius-xl);
+  padding: 1.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  border-color: var(--color-accent-green);
+}
+
+.progressHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.cardTitle {
+  font-size: 1rem;
+  font-weight: var(--font-weight-bold);
+  color: var(--color-navy-blue);
+  margin: 0;
+}
+
+.progressPercentage {
+  font-size: 1.25rem;
+  font-weight: var(--font-weight-bold);
+  color: var(--color-accent-green);
+}
+
+.progressRingContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 1.5rem 0;
+}
+
+.progressRing {
+  transform: rotate(-90deg);
+}
+
+.progressRingCircleProgress {
+  transition: stroke-dashoffset 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  stroke-linecap: round;
+}
+
+.progressRingText {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.progressRingPercentage {
+  font-size: 1.75rem;
+  font-weight: var(--font-weight-bold);
+  color: var(--color-navy-blue);
+  line-height: 1;
+  margin-bottom: 0.25rem;
+}
+
+.progressRingLabel {
+  font-size: 0.75rem;
+  color: var(--color-steel-gray);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.progressStats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  background: linear-gradient(135deg, rgba(5, 150, 105, 0.05) 0%, rgba(59, 130, 246, 0.05) 100%);
+  border-radius: var(--border-radius-lg);
+}
+
+.progressStat {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.progressStatIcon {
+  width: 32px;
+  height: 32px;
+  background: var(--color-accent-green);
+  border-radius: var(--border-radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  flex-shrink: 0;
+}
+
+.progressStatText {
+  flex: 1;
+  min-width: 0;
+}
+
+.progressStatValue {
+  font-size: 1rem;
+  font-weight: var(--font-weight-bold);
+  color: var(--color-navy-blue);
+  line-height: 1.2;
+  margin-bottom: 0.125rem;
+}
+
+.progressStatLabel {
+  font-size: 0.625rem;
+  color: var(--color-steel-gray);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  line-height: 1.2;
+}
+
+.stepsList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.stepItem {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.875rem;
+  border-radius: var(--border-radius-lg);
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.stepItem.clickable {
+  cursor: pointer;
+}
+
+.stepItem.clickable:hover {
+  background: rgba(5, 150, 105, 0.05);
+  transform: translateX(3px);
+}
+
+.stepItem.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.stepItem.current {
+  background: linear-gradient(135deg, rgba(30, 58, 138, 0.08) 0%, rgba(5, 150, 105, 0.08) 100%);
+  border: 1px solid var(--color-accent-green);
+}
+
+.stepItem.completed {
+  background: rgba(5, 150, 105, 0.03);
+}
+
+.stepIcon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: var(--font-weight-bold);
+  font-size: 0.875rem;
+  flex-shrink: 0;
+  border: 2px solid var(--color-gray-200);
+  background: white;
+  transition: all 0.3s ease;
+}
+
+.stepItem.current .stepIcon {
+  background: linear-gradient(135deg, var(--color-navy-blue), var(--color-navy-blue-light));
+  border-color: var(--color-navy-blue);
+  color: white;
+}
+
+.stepItem.completed .stepIcon {
+  background: var(--color-accent-green);
+  border-color: var(--color-accent-green);
+  color: white;
+}
+
+.stepNumber {
+  color: var(--color-steel-gray);
+}
+
+.stepItem.current .stepNumber {
+  color: white;
+}
+
+.stepInfo {
+  flex: 1;
+  min-width: 0;
+}
+
+.stepTitle {
+  font-size: 0.875rem;
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-navy-blue);
+  line-height: 1.3;
+  margin-bottom: 0.125rem;
+}
+
+.stepStatus {
+  font-size: 0.625rem;
+  color: var(--color-steel-gray);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  line-height: 1.2;
+}
+
+.stepItem.current .stepStatus {
+  color: var(--color-accent-green);
+  font-weight: var(--font-weight-semibold);
+}
+
+.stepItem.completed .stepStatus {
+  color: var(--color-accent-green);
+}
+
+.currentIndicator {
+  color: var(--color-accent-green);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@media (max-width: 768px) {
+  .stepItem {
+    padding: 0.75rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .progressRingCircleProgress,
+  .stepItem,
+  .currentIndicator {
+    transition: none;
+    animation: none;
+  }
+}

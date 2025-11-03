@@ -8,10 +8,41 @@ import { useState, useCallback } from 'react';
 const useFormValidation = () => {
   const [errors, setErrors] = useState({});
 
-  // Email validation
+  // Contact email validation (allows any domain)
+  const validateContactEmail = useCallback((email) => {
+    if (!email) return 'Contact email is required';
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      return 'Please enter a valid email address';
+    }
+
+    return null;
+  }, []);
+
+  // Business email validation (strictly business domains)
+  const validateBusinessEmail = useCallback((email) => {
+    if (!email) return null; // Optional field
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      return 'Please enter a valid email address';
+    }
+
+    // Check for free email providers - block them for business email
+    const freeProviders = ['gmail.com', 'yahoo.com', 'hotmail.com', 'outlook.com', 'aol.com', 'icloud.com', 'live.com', 'me.com', 'msn.com', 'protonmail.com', 'yandex.com', 'zoho.com', 'mail.com', 'gmx.com'];
+    const domain = email.split('@')[1]?.toLowerCase();
+    if (freeProviders.includes(domain)) {
+      return 'Please use a business email address (personal email domains are not allowed)';
+    }
+
+    return null;
+  }, []);
+
+  // Legacy email validation (kept for backward compatibility)
   const validateEmail = useCallback((email) => {
     if (!email) return 'Email is required';
-    
+
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       return 'Please enter a valid email address';
@@ -100,12 +131,12 @@ const useFormValidation = () => {
     const contactPersonError = validateRequired(formData.contactPerson, 'Contact person name');
     if (contactPersonError) stepErrors.contactPerson = contactPersonError;
 
-    const contactEmailError = validateEmail(formData.contactEmail);
+    const contactEmailError = validateContactEmail(formData.contactEmail);
     if (contactEmailError) stepErrors.contactEmail = contactEmailError;
 
-    // Business email is optional, but if provided, validate it
+    // Business email is optional, but if provided, validate it strictly
     if (formData.businessEmail) {
-      const businessEmailError = validateEmail(formData.businessEmail);
+      const businessEmailError = validateBusinessEmail(formData.businessEmail);
       if (businessEmailError) stepErrors.businessEmail = businessEmailError;
     }
 
@@ -116,7 +147,7 @@ const useFormValidation = () => {
     if (addressError) stepErrors.address = addressError;
 
     return stepErrors;
-  }, [validateCompanyName, validateRegistrationNumber, validateRequired, validateEmail, validatePhone]);
+  }, [validateCompanyName, validateRegistrationNumber, validateRequired, validateContactEmail, validateBusinessEmail, validatePhone]);
 
   // Validate Step 2: Trade Information
   const validateStep2 = useCallback((formData) => {

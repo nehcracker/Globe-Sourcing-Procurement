@@ -1,17 +1,13 @@
-# Financing Form Updates - TODO List
+# TODO: Fix Email Validation for Financing Form
 
-## 1. Smooth Step Navigation
-- [x] Add React ref to form content container in FinancingForm.jsx
-- [x] Modify handleNext and handlePrevious to scroll form content instead of window
-- [ ] Test smooth scrolling behavior between steps
+## Tasks
+- [x] Update FinancingForm.jsx to use contactEmail and businessEmail in formData
+- [x] Update references to formData.email to formData.contactEmail in FinancingForm.jsx
+- [x] Add validateContactEmail and validateBusinessEmail functions in useFormValidation.js
+- [x] Update validateStep1 in useFormValidation.js to use appropriate validation for each email field
+- [ ] Test the form to ensure Contact Email allows any domain and Business Email blocks free domains
 
-## 2. Dual Email Fields
-- [x] Update formData in FinancingForm.jsx to include contactEmail and businessEmail
-- [x] Modify Step1CompanyInfo.jsx to have Contact Email (required) and Business Email (optional)
-- [x] Update useFormValidation.js to validate dual email fields appropriately
-- [x] Update SubmissionSuccess.jsx to use contactEmail for confirmation email
-
-## 3. Testing
-- [x] Test form navigation scrolling (React app started successfully)
-- [x] Test email field validation (Validation updated for dual email fields)
-- [x] Test form submission with new email fields (Submission success updated to use contactEmail)
+## Status
+- [x] Plan approved by user
+- [x] Implementation in progress
+- [x] All changes completed

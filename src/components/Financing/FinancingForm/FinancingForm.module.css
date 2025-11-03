@@ -10,7 +10,7 @@
 }
 
 .container {
-  max-width: 900px;
+  max-width: var(--container-xl);
   margin: 0 auto;
   padding: 0 clamp(1rem, 4vw, 2rem);
   position: relative;
@@ -102,6 +102,28 @@
 
 .formContent::-webkit-scrollbar-thumb:hover {
   background: var(--color-accent-green-light);
+}
+
+/* Two-column layout for form + sidebar */
+.formLayout {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 2rem;
+  align-items: start;
+  margin-bottom: 2rem;
+}
+
+@media (max-width: 1200px) {
+  .formLayout {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .formLayout {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* Firefox scrollbar */

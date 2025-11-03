@@ -1,0 +1,168 @@
+/* src/components/Financing/FinancingForm/FormSidebar/SidebarCards/SupportCard.module.css */
+
+.card {
+  background: linear-gradient(135deg, var(--color-navy-blue) 0%, var(--color-navy-blue-light) 100%);
+  border: 1px solid var(--color-navy-blue);
+  border-radius: var(--border-radius-xl);
+  padding: 1.5rem;
+  box-shadow: 0 4px 12px rgba(30, 58, 138, 0.3);
+  transition: all 0.3s ease;
+  color: white;
+}
+
+.card:hover {
+  box-shadow: 0 6px 16px rgba(30, 58, 138, 0.4);
+  transform: translateY(-2px);
+}
+
+.cardHeader {
+  margin-bottom: 1rem;
+}
+
+.cardTitle {
+  font-size: 1rem;
+  font-weight: var(--font-weight-bold);
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0;
+}
+
+.cardTitle svg {
+  color: var(--color-accent-green-light);
+  flex-shrink: 0;
+}
+
+.cardContent {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.supportText {
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.contactMethods {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.contactButton {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.875rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--border-radius-lg);
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: inherit;
+  font-size: inherit;
+  text-align: left;
+  width: 100%;
+}
+
+.contactButton:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: var(--color-accent-green-light);
+  transform: translateX(3px);
+}
+
+.contactButton svg {
+  flex-shrink: 0;
+  color: var(--color-accent-green-light);
+}
+
+.contactInfo {
+  flex: 1;
+  min-width: 0;
+}
+
+.contactLabel {
+  font-size: 0.6875rem;
+  color: rgba(255, 255, 255, 0.7);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.125rem;
+  line-height: 1.2;
+}
+
+.contactValue {
+  font-size: 0.875rem;
+  font-weight: var(--font-weight-semibold);
+  color: white;
+  line-height: 1.3;
+}
+
+.officeHours {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 0.875rem;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: var(--border-radius-lg);
+}
+
+.officeHours svg {
+  flex-shrink: 0;
+  color: var(--color-accent-green-light);
+  margin-top: 0.125rem;
+}
+
+.hoursInfo {
+  flex: 1;
+}
+
+.hoursLabel {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 0.25rem;
+}
+
+.hoursValue {
+  font-size: 0.875rem;
+  font-weight: var(--font-weight-semibold);
+  color: white;
+}
+
+.responseTime {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  padding: 0.75rem;
+  background: rgba(5, 150, 105, 0.2);
+  border-radius: var(--border-radius-lg);
+  line-height: 1.5;
+}
+
+.responseTime strong {
+  color: var(--color-accent-green-light);
+  font-weight: var(--font-weight-bold);
+}
+
+@media (max-width: 768px) {
+  .contactButton {
+    padding: 0.75rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .contactButton {
+    transition: none;
+  }
+
+  .card:hover,
+  .contactButton:hover {
+    transform: none;
+  }
+}

@@ -1,0 +1,53 @@
+/* src/components/Financing/FinancingForm/FormSidebar/FormSidebar.module.css */
+
+.sidebar {
+  width: 100%;
+  max-width: 380px;
+  height: fit-content;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.sidebar.sticky {
+  position: sticky;
+  top: 2rem;
+}
+
+.sidebarContent {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Responsive design */
+@media (max-width: 1200px) {
+  .sidebar {
+    max-width: 100%;
+    margin-top: 2rem;
+  }
+
+  .sidebar.sticky {
+    position: relative;
+    top: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    display: none;
+  }
+}
+
+/* Print styles */
+@media print {
+  .sidebar {
+    display: none;
+  }
+}
+
+/* Reduce motion */
+@media (prefers-reduced-motion: reduce) {
+  .sidebar {
+    transition: none;
+  }
+}

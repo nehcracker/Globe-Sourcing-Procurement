@@ -8,6 +8,7 @@ import Step3FundingDetails from './FormSteps/Step3FundingDetails';
 import Step4Declaration from './FormSteps/Step4Declaration';
 import SubmissionSuccess from './SubmissionSuccess';
 import useFormValidation from '../../../hooks/useFormValidation';
+import FormSidebar from './FormSidebar/FormSidebar';
 import styles from './FinancingForm.module.css';
 
 const FinancingForm = () => {
@@ -29,7 +30,8 @@ const FinancingForm = () => {
     country: '',
     website: '',
     contactPerson: '',
-    email: '',
+    contactEmail: '',
+    businessEmail: '',
     phone: '',
     address: '',
 
@@ -129,13 +131,13 @@ const FinancingForm = () => {
   const sendConfirmationEmail = async (data, refNumber) => {
     // This is a mock function - replace with actual API call
     console.log('📧 Sending confirmation email...');
-    console.log('To:', data.email);
+    console.log('To:', data.contactEmail);
     console.log('Reference Number:', refNumber);
     console.log('Application Data:', data);
-    
+
     // Simulate API call delay
     await new Promise(resolve => setTimeout(resolve, 1000));
-    
+
     return { success: true };
   };
 
@@ -182,7 +184,7 @@ const FinancingForm = () => {
       scrollToFormTop();
 
       console.log('✅ Application submitted successfully!');
-      console.log('📧 Confirmation email sent to:', formData.email);
+      console.log('📧 Confirmation email sent to:', formData.contactEmail);
 
     } catch (error) {
       console.error('❌ Submission error:', error);
@@ -202,7 +204,7 @@ const FinancingForm = () => {
     return (
       <SubmissionSuccess
         referenceNumber={referenceNumber}
-        email={formData.email}
+        email={formData.contactEmail}
         companyName={formData.companyName}
       />
     );
@@ -252,18 +254,20 @@ const FinancingForm = () => {
   };
 
   return (
-    <section className={styles.financingForm}>
-      <div className={styles.container}>
-        {/* Form Header */}
-        <div className={styles.formHeader}>
-          <h1 className={styles.formTitle}>Trade Financing Application</h1>
-          <p className={styles.formSubtitle}>
-            Complete this form to apply for import/export financing. Our team will review your 
-            application and contact you within 48-72 hours.
-          </p>
-        </div>
+  <section className={styles.financingForm}>
+    <div className={styles.container}>
+      {/* Form Header */}
+      <div className={styles.formHeader}>
+        <h1 className={styles.formTitle}>Trade Financing Application</h1>
+        <p className={styles.formSubtitle}>
+          Complete this form to apply for import/export financing. Our team will review your 
+          application and contact you within 48-72 hours.
+        </p>
+      </div>
 
-        {/* Form Card */}
+      {/* Two Column Layout: Form + Sidebar */}
+      <div className={styles.formLayout}>
+        {/* Main Form Card */}
         <div className={styles.formCard}>
           {/* Progress Bar */}
           <ProgressBar currentStep={currentStep} totalSteps={4} />
@@ -288,25 +292,38 @@ const FinancingForm = () => {
             showPrevious={true}
           />
         </div>
+              
+        
 
-        {/* Help Section */}
-        <div className={styles.helpSection}>
-          <p className={styles.helpText}>
-            Need assistance? Contact our financing team at{' '}
-            <a href="mailto:financing@globesourceprocurement.com" className={styles.helpLink}>
-              info@globesourceprocurement.com
-            </a>
-          </p>
-        </div>
+        {/* Sidebar */}
+        <FormSidebar
+          currentStep={currentStep}
+          totalSteps={4}
+          formData={formData}
+          errors={errors}
+          onStepClick={setCurrentStep}
+        />
       </div>
 
-      {/* Background Elements */}
-      <div className={styles.backgroundElements}>
-        <div className={styles.bgShape1}></div>
-        <div className={styles.bgShape2}></div>
+      {/* Help Section */}
+      <div className={styles.helpSection}>
+        <p className={styles.helpText}>
+          Need assistance? Contact our financing team at{' '}
+          <a href="mailto:infog@globesourceprocurement.com" className={styles.helpLink}>
+            info@globesourceprocurement.com
+          </a>
+        </p>
       </div>
-    </section>
-  );
+    </div>
+
+
+    {/* Background Elements */}
+    <div className={styles.backgroundElements}>
+      <div className={styles.bgShape1}></div>
+      <div className={styles.bgShape2}></div>
+    </div>
+  </section>
+);
 };
 
 export default FinancingForm;
