@@ -18,6 +18,13 @@ const FinancingHero = () => {
     return () => clearTimeout(timer);
   }, []);
 
+  const handleApplyClick = () => {
+    const formSection = document.getElementById('financing-form');
+    if (formSection) {
+      formSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   // Key highlights for the hero
   const highlights = [
     { 
@@ -87,7 +94,7 @@ const FinancingHero = () => {
 
             {/* CTA Buttons */}
             <div className={`${styles.ctaButtons} ${isVisible ? styles.fadeInUp : ''}`}>
-              <button className={styles.primaryBtn}>
+              <button className={styles.primaryBtn} onClick={handleApplyClick}>
                 <span>Apply for Financing</span>
                 <ArrowRight size={20} />
                 <div className={styles.buttonRipple}></div>
